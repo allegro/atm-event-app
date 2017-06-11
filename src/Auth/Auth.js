@@ -2,6 +2,7 @@
 import auth0 from 'auth0-js';
 import config from '../config';
 import history from '../history';
+import firebase from 'firebase';
 
 export default class Auth {
     userProfile;
@@ -16,6 +17,7 @@ export default class Auth {
         scope: this.requestedScopes
     });
 
+
     constructor() {
         this.login = this.login.bind(this);
         this.logout = this.logout.bind(this);
@@ -25,6 +27,11 @@ export default class Auth {
         this.getAccessToken = this.getAccessToken.bind(this);
         this.getProfile = this.getProfile.bind(this);
         this.authFetch = this.authFetch.bind(this);
+        this.firebase = firebase.initializeApp(config.FIREBASE_CONFIG);
+        const delegationToken = localStorage.getItem('delegation');
+        if (delegationToken && delegationToken !== 'undefined') {
+            firebase.auth().signInWithCustomToken(delegationToken).catch(console.error);
+        }
     }
 
     login() {
@@ -34,6 +41,14 @@ export default class Auth {
     handleAuthentication() {
         this.auth0.parseHash((err, authResult) => {
             if (authResult && authResult.accessToken && authResult.idToken) {
+                const Authentication = new auth0.Authentication({domain: config.AUTH_CONFIG.domain, clientID: config.AUTH_CONFIG.clientId});
+                Authentication.delegation({
+                    id_token: authResult.idToken,
+                    grant_type: 'urn:ietf:params:oauth:grant-type:jwt-bearer',
+                    apiType: 'firebase'
+                }, (err, res) => {
+                    localStorage.setItem('delegation', res.idToken);
+                });
                 this.setSession(authResult);
                 history.replace('/home');
             } else if (err) {
@@ -48,11 +63,11 @@ export default class Auth {
             authResult.expiresIn * 1000 + new Date().getTime()
         );
         const scopes = authResult.scope || this.requestedScopes || '';
-
         localStorage.setItem('access_token', authResult.accessToken);
         localStorage.setItem('id_token', authResult.idToken);
         localStorage.setItem('expires_at', expiresAt);
         localStorage.setItem('scopes', JSON.stringify(scopes));
+        localStorage.setItem('delegation', authResult.delegation);
         history.replace('/home');
     }
 

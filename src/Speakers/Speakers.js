@@ -6,6 +6,10 @@ import ReactFireMixin from 'reactfire';
 
 class Speakers extends Component {
 
+    static propTypes = {
+        auth: PropTypes.object.isRequired
+    };
+
     constructor(props) {
         super(props);
         this.state = {
@@ -13,12 +17,8 @@ class Speakers extends Component {
         }
     }
 
-    static contextTypes = {
-        firebase: PropTypes.object
-    };
-
     componentDidMount() {
-        this.bindAsArray(this.context.firebase.database().ref('/speakers'), 'speakers');
+        this.bindAsArray(this.props.auth.firebase.database().ref('/speakers'), 'speakers');
     }
 
     render() {

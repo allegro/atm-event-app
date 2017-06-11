@@ -8,7 +8,6 @@ import Callback from './Callback/Callback';
 import Speakers from "./Speakers/Speakers";
 import Auth from './Auth/Auth';
 import history from './history';
-import Firebase from "./firebase";
 
 const auth = new Auth();
 
@@ -18,16 +17,14 @@ const handleAuthentication = (nextState) => {
 
 export default () => {
     return (
-        <Firebase>
-            <BrowserRouter history={history} component={App}>
-                <div>
-                    <Route path="/" render={(props) => <App auth={auth} {...props} />}/>
-                    <Route path="/home" render={(props) => <Home auth={auth} {...props} />}/>
-                    <Route path="/speakers" render={(props) => <Speakers auth={auth} {...props} />}/>
-                    <Route path="/profile" render={(props) => (!auth.isAuthenticated() ? (<Redirect to="/home"/>) : (<Profile auth={auth} {...props} />))}/>
-                    <Route path="/callback" render={(props) => {handleAuthentication(props);return <Callback {...props} />}}/>
-                </div>
-            </BrowserRouter>
-        </Firebase>
+        <BrowserRouter history={history} component={App}>
+            <div>
+                <Route path="/" render={(props) => <App auth={auth} {...props} />}/>
+                <Route path="/home" render={(props) => <Home auth={auth} {...props} />}/>
+                <Route path="/speakers" render={(props) => <Speakers auth={auth} {...props} />}/>
+                <Route path="/profile" render={(props) => (!auth.isAuthenticated() ? (<Redirect to="/home"/>) : (<Profile auth={auth} {...props} />))}/>
+                <Route path="/callback" render={(props) => {handleAuthentication(props);return <Callback {...props} />}}/>
+            </div>
+        </BrowserRouter>
     );
 }
