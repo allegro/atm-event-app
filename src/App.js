@@ -12,7 +12,7 @@ export default class App extends Component {
     }
 
     goTo = (route: string) => {
-        this.props.history.replace(`/${route}`);
+        this.props.history.replace(`/atm/${route}`);
         this.handleClose();
     };
 
