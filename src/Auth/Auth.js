@@ -50,9 +50,9 @@ export default class Auth {
                     localStorage.setItem('delegation', res.idToken);
                 });
                 this.setSession(authResult);
-                history.replace('/home');
+                history.replace('/atm/home');
             } else if (err) {
-                history.replace('/home');
+                history.replace('/atm/home');
                 console.log(err);
             }
         });
@@ -68,7 +68,7 @@ export default class Auth {
         localStorage.setItem('expires_at', expiresAt);
         localStorage.setItem('scopes', JSON.stringify(scopes));
         localStorage.setItem('delegation', authResult.delegation);
-        history.replace('/home');
+        history.replace('/atm/home');
     }
 
     getAccessToken() {
@@ -98,7 +98,7 @@ export default class Auth {
         this.userProfile = null;
         firebase.auth().signOut();
         // navigate to the home route
-        history.replace('/home');
+        history.replace('/atm/home');
     }
 
     isAuthenticated() {
