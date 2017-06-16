@@ -96,6 +96,7 @@ export default class Auth {
         localStorage.removeItem('expires_at');
         localStorage.removeItem('scopes');
         this.userProfile = null;
+        firebase.auth().signOut();
         // navigate to the home route
         history.replace('/home');
     }

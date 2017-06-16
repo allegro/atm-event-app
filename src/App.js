@@ -21,7 +21,6 @@ export default class App extends Component {
 
     render() {
         const {isAuthenticated, userHasScopes} = this.props.auth;
-
         return (
             <div id="app">
                 <AppBar title="ATM2017" onLeftIconButtonTouchTap={this.handleOpen}
