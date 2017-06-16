@@ -1,8 +1,11 @@
 // @flow
 import ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
-import makeMainRoutes from './routes';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import router from './router';
 import './index.css';
 
-ReactDOM.render(makeMainRoutes(), document.getElementById('root'));
+injectTapEventPlugin();
+
+ReactDOM.render(router, document.getElementById('root'));
 registerServiceWorker();

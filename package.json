@@ -10,6 +10,7 @@
     "auth0-js": "^8.7.0",
     "firebase": "^4.1.1",
     "history": "^4.6.1",
+    "material-ui": "^0.18.3",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
@@ -17,6 +18,7 @@
     "react-mixin": "^3.0.5",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
+    "react-tap-event-plugin": "^2.0.1",
     "reactfire": "^1.0.0"
   },
   "scripts": {

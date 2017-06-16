@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import reactMixin from 'react-mixin';
 import ReactFireMixin from 'reactfire';
+import {Card, CardHeader} from "material-ui";
 
 class Speakers extends Component {
 
@@ -22,11 +23,11 @@ class Speakers extends Component {
     }
 
     render() {
-        return (
-            <ul>
-                {this.state.speakers.map(it => <li key={it.email}>{it.email}</li>)}
-            </ul>
-        );
+        const speakers = this.state.speakers.map(speaker =>
+            <Card key={speaker.email}>
+                <CardHeader title={`${speaker.name.first} ${speaker.name.last}`} subtitle={speaker.email} avatar={speaker.picture.medium}/>
+            </Card>);
+        return <div>{speakers}</div>;
     }
 }
 
