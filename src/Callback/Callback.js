@@ -4,6 +4,7 @@ import loading from './loading.svg';
 
 class Callback extends Component {
     render() {
+        console.log('callback redner');
         const style = {
             position: 'absolute',
             display: 'flex',

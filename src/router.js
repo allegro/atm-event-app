@@ -19,11 +19,11 @@ const handleAuthentication = (nextState) => {
 export default <MuiThemeProvider>
     <BrowserRouter history={history} component={App}>
         <div>
-            <Route path="/" render={(props) => <App auth={auth} {...props} />}/>
-            <Route path="/home" render={(props) => <Home auth={auth} {...props} />}/>
-            <Route path="/speakers" render={(props) => <Speakers auth={auth} {...props} />}/>
-            <Route path="/profile" render={(props) => (!auth.isAuthenticated() ? (<Redirect to="/home"/>) : (<Profile auth={auth} {...props} />))}/>
-            <Route path="/callback" render={(props) => { handleAuthentication(props); return <Callback {...props} /> }}/>
+            <Route path="/atm/" render={(props) => <App auth={auth} {...props} />}/>
+            <Route path="/atm/home" render={(props) => <Home auth={auth} {...props} />}/>
+            <Route path="/atm/speakers" render={(props) => <Speakers auth={auth} {...props} />}/>
+            <Route path="/atm/profile" render={(props) => (!auth.isAuthenticated() ? (<Redirect to="/home"/>) : (<Profile auth={auth} {...props} />))}/>
+            <Route path="/atm/callback" render={(props) => { handleAuthentication(props); return <Callback {...props} /> }}/>
         </div>
     </BrowserRouter>
 </MuiThemeProvider>;
