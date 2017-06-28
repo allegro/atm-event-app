@@ -1,0 +1,82 @@
+[
+  {
+    "date": "06.09.2017",
+    "agenda": [
+      {
+        "hour": "8:00 - 9:30",
+        "title": "przyjazd organizatorów",
+        "speaker": "Anonymous"
+      },
+      {
+        "hour": "8:00 - 9:30",
+        "title": "przyjazd organizatorów",
+        "speaker": "Anonymous"
+      },
+      {
+        "hour": "8:00 - 9:30",
+        "title": "przyjazd organizatorów",
+        "speaker": "Anonymous"
+      },
+      {
+        "hour": "8:00 - 9:30",
+        "title": "przyjazd organizatorów",
+        "speaker": "Anonymous"
+      },
+      {
+        "hour": "8:00 - 9:30",
+        "title": "przyjazd organizatorów",
+        "speaker": "Anonymous"
+      },
+      {
+        "hour": "8:00 - 9:30",
+        "title": "przyjazd organizatorów",
+        "speaker": "Anonymous"
+      },
+      {
+        "hour": "8:00 - 9:30",
+        "title": "przyjazd organizatorów",
+        "speaker": "Anonymous"
+      }
+    ]
+  },
+  {
+    "date": "07.09.2017",
+    "agenda": [
+      {
+        "hour": "8:00 - 9:30",
+        "title": "przerwa",
+        "speaker": "Anonymous"
+      },
+      {
+        "hour": "8:00 - 9:30",
+        "title": "przerwa",
+        "speaker": "Anonymous"
+      },
+      {
+        "hour": "8:00 - 9:30",
+        "title": "przerwa",
+        "speaker": "Anonymous"
+      },
+      {
+        "hour": "8:00 - 9:30",
+        "title": "przerwa",
+        "speaker": "Anonymous"
+      },
+      {
+        "hour": "8:00 - 9:30",
+        "title": "przerwa",
+        "speaker": "Anonymous"
+      },
+      {
+        "hour": "8:00 - 9:30",
+        "title": "przerwa",
+        "speaker": "Anonymous"
+      },
+      {
+        "hour": "8:00 - 9:30",
+        "title": "przerwa",
+        "speaker": "Anonymous"
+      }
+    ]
+  }
+]

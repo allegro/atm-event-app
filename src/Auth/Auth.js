@@ -1,6 +1,6 @@
 // @flow
 import auth0 from 'auth0-js';
-import config from '../config';
+import config from '../Config/config';
 import history from '../history';
 import firebase from 'firebase';
 

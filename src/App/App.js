@@ -26,9 +26,9 @@ export default class App extends Component {
                 <AppBar title="ATM2017" onLeftIconButtonTouchTap={this.handleOpen}
                         iconClassNameRight="muidocs-icon-navigation-expand-more"/>
                 <Drawer docked={false} width={300} open={this.state.open} onRequestChange={(open) => this.setState({open})}>
-                    {!isAuthenticated() && (
-                        <MenuItem primaryText="Login" leftIcon={<ContentLink/>} onTouchTap={() => this.props.auth.login()}/>)}
+                    {!isAuthenticated() && (<MenuItem primaryText="Login" leftIcon={<ContentLink/>} onTouchTap={() => this.props.auth.login()}/>)}
                     <MenuItem primaryText="Home" leftIcon={<ContentLink/>} onTouchTap={() => this.goTo('home')}/>
+                    <MenuItem primaryText="Schedule" leftIcon={<ContentLink/>} onTouchTap={() => this.goTo('schedule')}/>
                     {isAuthenticated() && (
                         <MenuItem primaryText="Profil" leftIcon={<ContentLink/>} onTouchTap={() => this.goTo('profile')}/>)}
                     {isAuthenticated() && userHasScopes(['atmadmin']) && (
