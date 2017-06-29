@@ -50,7 +50,7 @@ class AnonymousAppBar extends Component {
     render() {
         return (
             <AppBar title="ATM2017" iconElementRight={<IconButton><SocialPerson/></IconButton>}
-                    showMenuIconButton={false}
+                    showMenuIconButton={false} style={{position: 'sticky', top: 0}}
                     onRightIconButtonTouchTap={() => this.props.login()}>
                 {this.props.children}
             </AppBar>
@@ -62,7 +62,7 @@ class AnonymousAppBar extends Component {
 class UserAppBar extends Component {
     render() {
         return (
-            <AppBar title="ATM2017" onLeftIconButtonTouchTap={this.props.onLeftIconButtonTouchTap}
+            <AppBar title="ATM2017" onLeftIconButtonTouchTap={this.props.onLeftIconButtonTouchTap} style={{position: 'sticky', top: 0}}
                     iconElementRight={<Avatar size={36} style={{margin: '7px 0px 0px 0px'}} src={this.props.profile.picture}/>}>
                 {this.props.children}
             </AppBar>
