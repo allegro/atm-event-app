@@ -3,6 +3,7 @@ import React from 'react';
 import {Redirect, Route, BrowserRouter} from 'react-router-dom';
 import ApplicationBar from './Components/ApplicationBar/ApplicationBar';
 import BottomMenu from "./Components/BottomMenu/BottomMenu";
+import ScrollToTop from './Components/ScrollToTop/ScrollToTop';
 import Auth from './Auth/Auth';
 import history from './history';
 import Home from './Views/Home/Home';
@@ -39,6 +40,7 @@ export default <MuiThemeProvider muiTheme={getMuiTheme(theme)}>
             <Route path="/atm/profile" render={(props) => (!auth.isAuthenticated() ? (<Redirect to="/home"/>) : (<Profile auth={auth} {...props} />))}/>
             <Route path="/atm/callback" render={handleCallback}/>
             <Route render={(props) => <BottomMenu auth={auth} history={props.history}/>}/>
+            <ScrollToTop/>
         </div>
     </BrowserRouter>
 </MuiThemeProvider>;
