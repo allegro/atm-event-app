@@ -1,0 +1,12 @@
+{
+  "short_name": "ATM",
+  "name": "ATM Companion App",
+  "description": "Your best way to interact with ATM event!",
+  "start_url": "./index.html?utm=homescreen",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#ede7f6",
+  "background_color": "#ede7f6",
+  "gcm_sender_id": "549261178603",
+  "gcm_user_visible_only": true
+}
