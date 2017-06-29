@@ -22,22 +22,23 @@ const handleAuthentication = (nextState) => {
     if (/access_token|id_token|error/.test(nextState.location.hash)) auth.handleAuthentication();
 };
 
+const handleCallback = (props) => {
+    handleAuthentication(props);
+    return <Callback {...props} />
+};
+
 export default <MuiThemeProvider muiTheme={getMuiTheme(theme)}>
     <BrowserRouter history={history}>
         <div>
-            <Route render={(props) => <ApplicationBar auth={auth} {...props} />}/>
+            <Route render={(props) => <ApplicationBar auth={auth} history={props.history}/>}/>
             <Route path="/atm/" exact={true} render={(props) => <Home auth={auth} {...props} />}/>
             <Route path="/atm/schedule" render={(props) => <Schedule {...props} />}/>
             <Route path="/atm/talk/:id" component={Talk}/>
             <Route path="/atm/info" render={(props) => <Info {...props} />}/>
             <Route path="/atm/speakers" render={(props) => <Speakers auth={auth} {...props} />}/>
-            <Route path="/atm/profile"
-                   render={(props) => (!auth.isAuthenticated() ? (<Redirect to="/home"/>) : (<Profile auth={auth} {...props} />))}/>
-            <Route path="/atm/callback" render={(props) => {
-                handleAuthentication(props);
-                return <Callback {...props} />
-            }}/>
-            <Route render={(props) => <BottomMenu auth={auth} {...props} />}/>
+            <Route path="/atm/profile" render={(props) => (!auth.isAuthenticated() ? (<Redirect to="/home"/>) : (<Profile auth={auth} {...props} />))}/>
+            <Route path="/atm/callback" render={handleCallback}/>
+            <Route render={(props) => <BottomMenu auth={auth} history={props.history}/>}/>
         </div>
     </BrowserRouter>
 </MuiThemeProvider>;
