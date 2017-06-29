@@ -2,12 +2,22 @@
 import React, {Component} from 'react';
 import {Card, CardHeader, CardText, CardTitle, Tab, Tabs} from "material-ui";
 import schedule from './schedule.json';
+import ScheduleItem from "./ScheduleItem";
+import slugify from 'slugify';
 
-export default class Home extends Component {
+export default class Schedule extends Component {
+
+    goTo = (route: string) => {
+        this.props.history.replace(`/atm/talk/${route}`);
+    };
+
     render() {
         const tabs = schedule.map(day =>
-            <Tab label={day.date}>
-                {day.agenda.map(this.toCard)}
+            <Tab key={day.date} label={day.date}>
+                {day.agenda.map(item => {
+                    const id = slugify(item.title);
+                    return <ScheduleItem key={id} id={id} content={item.content} speaker={item.speaker} hour={item.hour} title={item.title} action={this.goTo}/>;
+                })}
             </Tab>
         );
 

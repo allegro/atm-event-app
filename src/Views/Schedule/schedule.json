@@ -1,0 +1,96 @@
+[
+  {
+    "date": "środa",
+    "agenda": [
+      {
+        "hour": "8:00 - 9:30",
+        "title": "przyjazd organizatorów",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+        "speaker": "Anonymous"
+      },
+      {
+        "hour": "8:00 - 9:30",
+        "title": "przyjazd organizatorów1",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+        "speaker": "Anonymous"
+      },
+      {
+        "hour": "8:00 - 9:30",
+        "title": "przyjazd organizatorów2",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+        "speaker": "Anonymous"
+      },
+      {
+        "hour": "8:00 - 9:30",
+        "title": "przyjazd organizatorów3",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+        "speaker": "Anonymous"
+      },
+      {
+        "hour": "8:00 - 9:30",
+        "title": "przyjazd organizatorów4",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+        "speaker": "Anonymous"
+      },
+      {
+        "hour": "8:00 - 9:30",
+        "title": "przyjazd organizatorów7",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+        "speaker": "Anonymous"
+      },
+      {
+        "hour": "8:00 - 9:30",
+        "title": "przyjazd organizatorów5",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+        "speaker": "Anonymous"
+      }
+    ]
+  },
+  {
+    "date": "czwartek",
+    "agenda": [
+      {
+        "hour": "8:00 - 9:30",
+        "title": "przerwa",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+        "speaker": "Anonymous"
+      },
+      {
+        "hour": "8:00 - 9:30",
+        "title": "przerwa1",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+        "speaker": "Anonymous"
+      },
+      {
+        "hour": "8:00 - 9:30",
+        "title": "przerwa21",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+        "speaker": "Anonymous"
+      },
+      {
+        "hour": "8:00 - 9:30",
+        "title": "przerwa2",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+        "speaker": "Anonymous"
+      },
+      {
+        "hour": "8:00 - 9:30",
+        "title": "przerwa3",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+        "speaker": "Anonymous"
+      },
+      {
+        "hour": "8:00 - 9:30",
+        "title": "przerwa4",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+        "speaker": "Anonymous"
+      },
+      {
+        "hour": "8:00 - 9:30",
+        "title": "przerwa5",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+        "speaker": "Anonymous"
+      }
+    ]
+  }
+]

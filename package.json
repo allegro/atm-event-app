@@ -22,7 +22,8 @@
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
     "react-tap-event-plugin": "^2.0.1",
-    "reactfire": "^1.0.0"
+    "reactfire": "^1.0.0",
+    "slugify": "^1.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
