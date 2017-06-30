@@ -19,7 +19,7 @@ export default class BottomMenu extends Component {
 
     render() {
         return (
-            <Paper zDepth={1} style={{position: 'sticky', bottom: 0}}>
+            <Paper zDepth={1} style={{position: 'sticky', bottom: 0, zIndex: 1000}}>
                 <BottomNavigation>
                     <BottomNavigationItem label="Home" icon={<ActionHome/>} onTouchTap={() => this.goTo('')}/>
                     <BottomNavigationItem label="Schedule" icon={<ActionSchedule/>} onTouchTap={() => this.goTo('schedule')}/>
