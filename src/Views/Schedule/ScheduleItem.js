@@ -26,10 +26,12 @@ export default class ScheduleItem extends Component {
 
         const scheduleItemMeta = this.props.speaker
             ? <CardHeader title={this.props.speaker}
+                          textStyle={{'padding': '0'}}
                           subtitle={this.props.hour}
                           avatar={this.props.avatar || <Avatar icon={<SocialPerson/>}/>}/>
             : <CardHeader subtitle={this.props.hour}
-                          avatar={<Avatar icon={<ActionSchedule/>}/>}/>
+                          textStyle={{'padding': '0'}}
+                          avatar={<Avatar icon={<ActionSchedule/>}/>}/>;
 
         return (
             <CSSTransitionGroup
