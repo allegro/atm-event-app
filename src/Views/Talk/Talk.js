@@ -4,7 +4,7 @@ import {Avatar, BottomNavigation, BottomNavigationItem, Paper, RaisedButton} fro
 import schedule from '../Schedule/schedule.json';
 import slugify from 'slugify';
 import config from '../../Config/theme';
-import ActionHome from 'material-ui/svg-icons/action/home';
+import ActionGrade from 'material-ui/svg-icons/action/grade';
 import ReactDisqusComments from 'react-disqus-comments';
 
 window.disqus_developer = 1;
@@ -19,11 +19,10 @@ export default class Talk extends Component {
                     {item.photo ? <Avatar size={140} src={item.photo}/> : null}
                     <h2 style={{color: config.palette.accent1Color}}>{item.speaker}</h2>
                     <h3>{item.title}</h3>
-                    <RaisedButton style={{width: '90%', margin: 10}} label="Oceń Wystąpienie" secondary={true}/>
                     <BottomNavigation style={{marginTop: 20}}>
-                        <BottomNavigationItem label="Button1" icon={<ActionHome/>}/>
-                        <BottomNavigationItem label="Button2" icon={<ActionHome/>}/>
+                        <BottomNavigationItem label="3.42" icon={<ActionGrade/>}/>
                     </BottomNavigation>
+                    <RaisedButton style={{width: '90%', margin: 10}} label="Oceń Wystąpienie" secondary={true}/>
                 </Paper>
                 <h2>Komentarze</h2>
                 <Paper style={{padding: 30, marginTop: 30, position: 'relative'}} zDepth={1}>
@@ -31,14 +30,6 @@ export default class Talk extends Component {
                         shortname="atm-1"
                         identifier={item.title}
                         onNewComment={this.handleNewComment}/>
-                    <div style={{
-                        backgroundColor: '#fff',
-                        position: 'absolute',
-                        bottom: '15px',
-                        display: 'block',
-                        height: '75px',
-                        width: '86%'
-                    }}/>
                 </Paper>
             </div>
         )
