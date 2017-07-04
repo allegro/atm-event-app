@@ -14,7 +14,7 @@ export default class Home extends Component {
             <div>
                 <Card>
                     <CardMedia overlay={<CardTitle title={next.title} subtitle={next.content}/>}>
-                        <img src="https://bgalek.github.io/atm/img/speakers/back.png" alt=""/>
+                        <img src="https://raw.githubusercontent.com/bgalek/atm/master/public/img/back.png" alt=""/>
                     </CardMedia>
                     <CardHeader title={next.speaker ? next.speaker.name : ""} subtitle={moment(next.date + ' ' + next.start).fromNow()}
                                 avatar={next.speaker ? next.speaker.photo : null}/>
