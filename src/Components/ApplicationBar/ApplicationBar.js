@@ -32,7 +32,7 @@ export default class ApplicationBar extends Component {
     handleClose = () => this.setState({open: false});
 
     goTo = (route: string) => {
-        this.props.history.replace(`/atm/${route}`);
+        this.props.history.push(`/atm/${route}`);
         this.handleClose();
     };
 

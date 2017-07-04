@@ -21,6 +21,11 @@ export default class ScheduleRepository {
     }
 
     static findNext(date, limit = 1) {
-        return records().get().filter(record => moment(record.date).isAfter(moment(date))).slice(0, limit);
+        return records()
+            .get()
+            .filter(record => {
+                return !record.isTechnical() && moment(record.date).isAfter(moment(date));
+            })
+            .slice(0, limit);
     }
 }

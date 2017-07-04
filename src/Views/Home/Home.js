@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import './Home.css';
 import {Card, CardHeader, CardMedia, CardTitle} from "material-ui";
 import ScheduleRepository from "../../Repositories/ScheduleRepository";
+import ScheduleItem from '../Schedule/ScheduleItem';
 import moment from "moment";
 
 export default class Home extends Component {
@@ -20,16 +21,7 @@ export default class Home extends Component {
                                 avatar={next.speaker ? next.speaker.photo : null}/>
                 </Card>
                 <h2>Kolejne wystąpienia:</h2>
-                {
-                    nextRecords.map(record =>
-                        <Card style={{margin: '30px 0'}}>
-                            <CardTitle titleStyle={{textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden'}} title={record.title}/>
-                            <CardHeader title={record.speaker ? record.speaker.name : ""}
-                                        subtitle={moment(record.date + ' ' + record.start).fromNow()}
-                                        avatar={record.speaker ? record.speaker.photo : null}/>
-                        </Card>
-                    )
-                }
+                {nextRecords.map(item => <ScheduleItem key={item.id} item={item} hideDescription={true} />)}
             </div>
         )
     }

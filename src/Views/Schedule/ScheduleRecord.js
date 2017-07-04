@@ -47,4 +47,8 @@ export default class ScheduleRecord {
     get key() {
         return this.___id;
     }
+
+    isTechnical() {
+        return !this.speaker;
+    }
 }

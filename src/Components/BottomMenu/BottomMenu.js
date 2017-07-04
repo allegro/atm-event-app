@@ -14,7 +14,7 @@ export default class BottomMenu extends Component {
     };
 
     goTo = (route: string) => {
-        this.props.history.replace(`/atm/${route}`);
+        this.props.history.push(`/atm/${route}`);
     };
 
     render() {
