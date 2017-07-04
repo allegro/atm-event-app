@@ -34,7 +34,7 @@ export default <MuiThemeProvider muiTheme={getMuiTheme(theme)}>
             <Route render={(props) => <ApplicationBar auth={auth} history={props.history}/>}/>
             <Route path="/atm/" exact={true} render={(props) => <Home auth={auth} {...props} />}/>
             <Route path="/atm/schedule" render={(props) => <Schedule {...props} />}/>
-            <Route path="/atm/talk/:id" component={Talk}/>
+            <Route path="/atm/talk/:id" render={(props) => <Talk auth={auth} {...props}/>}/>
             <Route path="/atm/info" render={(props) => <Info {...props} />}/>
             <Route path="/atm/speakers" render={(props) => <Speakers auth={auth} {...props} />}/>
             <Route path="/atm/profile" render={(props) => (!auth.isAuthenticated() ? (<Redirect to="/home"/>) : (<Profile auth={auth} {...props} />))}/>

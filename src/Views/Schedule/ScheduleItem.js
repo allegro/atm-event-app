@@ -9,7 +9,6 @@ import {CSSTransitionGroup} from 'react-transition-group'
 export default class ScheduleItem extends Component {
 
     static propTypes = {
-        id: PropTypes.string.isRequired,
         item: PropTypes.object.isRequired,
         action: PropTypes.func
     };
@@ -20,24 +19,19 @@ export default class ScheduleItem extends Component {
             : null;
 
         const scheduleItemMeta = this.props.item.speaker
-            ? <CardHeader title={this.props.item.speaker}
+            ? <CardHeader title={this.props.item.speaker.name}
                           textStyle={{'padding': '0'}}
-                          subtitle={this.props.item.hour}
-                          avatar={this.props.item.photo ? <Avatar src={this.props.item.photo}/> : <Avatar icon={<SocialPerson/>}/>}
+                          subtitle={`${this.props.item.start} - ${this.props.item.end}`}
+                          avatar={this.props.item.speaker.photo ? <Avatar src={this.props.item.photo}/> : <Avatar icon={<SocialPerson/>}/>}
             />
-            : <CardHeader subtitle={this.props.item.hour}
+            : <CardHeader subtitle={`${this.props.item.start} - ${this.props.item.end}`}
                           textStyle={{'padding': '0'}}
             />;
 
         return (
-            <CSSTransitionGroup
-                key={this.props.id}
-                transitionName="schedule-card-animation"
-                transitionAppear={true}
-                transitionAppearTimeout={500}
-                transitionEnter={false}
-                transitionLeave={false}>
-                <Card className="schedule-card" onTouchTap={() => this.props.action(this.props.id)}>
+            <CSSTransitionGroup key={this.props.item.id} transitionName="schedule-card-animation"
+                transitionAppear={true} transitionAppearTimeout={500} transitionEnter={false} transitionLeave={false}>
+                <Card className="schedule-card" onTouchTap={() => this.props.item.speaker ? this.props.action(this.props.item.id) : null}>
                     <CardTitle title={this.props.item.title}/>
                     {scheduleItemDescription}
                     {scheduleItemMeta}
