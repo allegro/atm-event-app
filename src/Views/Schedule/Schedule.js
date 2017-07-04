@@ -7,9 +7,9 @@ import moment from "moment";
 
 export default class Schedule extends Component {
 
-    goTo(route: string) {
+    goTo = (route: string) => {
         this.props.history.replace(`/atm/talk/${route}`);
-    }
+    };
 
     render() {
         const scheduleDays = ScheduleRepository.days();
