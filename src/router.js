@@ -32,6 +32,7 @@ export default <MuiThemeProvider muiTheme={getMuiTheme(theme)}>
     <BrowserRouter history={history}>
         <div>
             <Route render={(props) => <ApplicationBar auth={auth} history={props.history}/>}/>
+            <Route exact path="/" render={() => <Redirect to="/atm/" />}/>
             <Route path="/atm/" exact={true} render={(props) => <Home auth={auth} {...props} />}/>
             <Route path="/atm/schedule" render={(props) => <Schedule {...props} />}/>
             <Route path="/atm/talk/:id" render={(props) => <Talk auth={auth} {...props}/>}/>
