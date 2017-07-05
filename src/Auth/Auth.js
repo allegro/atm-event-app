@@ -28,10 +28,6 @@ export default class Auth {
         this.getProfile = this.getProfile.bind(this);
         this.authFetch = this.authFetch.bind(this);
         this.firebase = firebase.initializeApp(config.FIREBASE_CONFIG);
-        const delegationToken = localStorage.getItem('delegation');
-        if (delegationToken && delegationToken !== 'undefined') {
-            firebase.auth().signInWithCustomToken(delegationToken).catch(console.error);
-        }
     }
 
     login() {
@@ -41,14 +37,6 @@ export default class Auth {
     handleAuthentication() {
         this.auth0.parseHash((err, authResult) => {
             if (authResult && authResult.accessToken && authResult.idToken) {
-                const Authentication = new auth0.Authentication({domain: config.AUTH_CONFIG.domain, clientID: config.AUTH_CONFIG.clientId});
-                Authentication.delegation({
-                    id_token: authResult.idToken,
-                    grant_type: 'urn:ietf:params:oauth:grant-type:jwt-bearer',
-                    apiType: 'firebase'
-                }, (err, res) => {
-                    localStorage.setItem('delegation', res.idToken);
-                });
                 this.setSession(authResult);
                 history.replace('/atm/');
             } else if (err) {
@@ -96,7 +84,6 @@ export default class Auth {
         localStorage.removeItem('expires_at');
         localStorage.removeItem('scopes');
         this.userProfile = null;
-        firebase.auth().signOut();
         // navigate to the home route
         history.replace('/atm/');
     }
