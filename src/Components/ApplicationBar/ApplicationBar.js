@@ -19,7 +19,7 @@ export default class ApplicationBar extends Component {
 
     componentWillMount() {
         this.props.auth.onAuthStateChanged(firebaseUser => {
-            this.setState({isLoggedIn: (null !== firebaseUser)});
+            this.setState({isLoggedIn: (null !== firebaseUser), profile: firebaseUser});
         });
     }
 
@@ -65,7 +65,7 @@ class UserAppBar extends Component {
         return (
             <AppBar title={this.props.title} onLeftIconButtonTouchTap={this.props.onLeftIconButtonTouchTap}
                     style={{position: 'sticky', top: 0}}
-                    iconElementRight={<Avatar size={36} style={{margin: '7px 0px 0px 0px'}} src={this.props.profile.picture}/>}>
+                    iconElementRight={<Avatar size={36} style={{margin: '7px 0px 0px 0px'}} src={this.props.profile.photoURL}/>}>
                 {this.props.children}
             </AppBar>
         )
@@ -76,7 +76,7 @@ class UserAppBar extends Component {
 class ApplicationDrawer extends Component {
 
     render() {
-        const {isAuthenticated, userHasScopes} = this.props.auth;
+        const {isAdmin, isAuthenticated} = this.props.auth;
         return (
             <Drawer docked={false} width={300} open={this.props.open} onRequestChange={(open) => this.props.onChange(open)}>
                 {!isAuthenticated() && (
@@ -85,7 +85,7 @@ class ApplicationDrawer extends Component {
                 <MenuItem primaryText="Schedule" leftIcon={<ContentLink/>} onTouchTap={() => this.props.goTo('schedule')}/>
                 {isAuthenticated() && (
                     <MenuItem primaryText="Profil" leftIcon={<ContentLink/>} onTouchTap={() => this.props.goTo('profile')}/>)}
-                {isAuthenticated() && userHasScopes(['atmadmin']) && (
+                {isAdmin() && (
                     <MenuItem primaryText="Admin" leftIcon={<ContentLink/>} onTouchTap={() => this.props.goTo('admin')}/>)}
                 {isAuthenticated() && (
                     <MenuItem primaryText="Speakers" leftIcon={<ContentLink/>} onTouchTap={() => this.props.goTo('speakers')}/>)}

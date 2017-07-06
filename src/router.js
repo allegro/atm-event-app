@@ -14,7 +14,7 @@ import theme from './Config/theme';
 import Schedule from "./Views/Schedule/Schedule";
 import Info from "./Views/Info/Info";
 import Talk from "./Views/Talk/Talk";
-import FirebaseAuth from "./Auth/FirebaseAuth";
+import FirebaseAuth from "./Auth/Auth";
 import Login from "./Views/Login/Login";
 
 const auth = new FirebaseAuth();

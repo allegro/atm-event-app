@@ -32,5 +32,5 @@ export default {
     },
     appBar: {
         height: 50,
-    },
+    }
 }
