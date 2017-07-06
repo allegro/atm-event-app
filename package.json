@@ -9,7 +9,6 @@
     "react-scripts": "1.0.7"
   },
   "dependencies": {
-    "auth0-js": "^8.7.0",
     "firebase": "^4.1.1",
     "history": "^4.6.1",
     "material-ui": "^0.18.3",

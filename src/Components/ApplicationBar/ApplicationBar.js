@@ -14,18 +14,13 @@ export default class ApplicationBar extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {open: false, profile: {}};
+        this.state = {open: false, profile: {}, isLoggedIn: props.auth.isAuthenticated()};
     }
 
     componentWillMount() {
-        if (this.props.auth.isAuthenticated()) {
-            const {userProfile, getProfile} = this.props.auth;
-            if (!userProfile) {
-                getProfile((err, profile) => this.setState({profile}));
-            } else {
-                this.setState({profile: userProfile});
-            }
-        }
+        this.props.auth.onAuthStateChanged(firebaseUser => {
+            this.setState({isLoggedIn: (null !== firebaseUser)});
+        });
     }
 
     handleOpen = () => this.setState({open: true});
@@ -37,17 +32,16 @@ export default class ApplicationBar extends Component {
     };
 
     render() {
-        if (this.props.auth.isAuthenticated()) {
+        if (this.state.isLoggedIn) {
             return (
                 <UserAppBar title={"ATM2017"} onLeftIconButtonTouchTap={this.handleOpen} profile={this.state.profile}>
-                    <ApplicationDrawer auth={this.props.auth} open={this.state.open}
-                                       onChange={(state) => this.setState({open: state})}
+                    <ApplicationDrawer auth={this.props.auth} open={this.state.open} onChange={(state) => this.setState({open: state})}
                                        goTo={this.goTo}/>
                 </UserAppBar>
             )
         } else {
             return (
-                <AnonymousAppBar login={this.props.auth.login} title={"ATM2017"}/>
+                <AnonymousAppBar login={() => this.goTo('login')} title={"ATM2017"}/>
             )
         }
     }
