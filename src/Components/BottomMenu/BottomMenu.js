@@ -21,7 +21,7 @@ export default class BottomMenu extends Component {
         return (
             <Paper zDepth={1} style={{position: 'sticky', bottom: 0, zIndex: 1000}}>
                 <BottomNavigation>
-                    <BottomNavigationItem label="Główna" icon={<ActionHome/>} onTouchTap={() => this.goTo('')}/>
+                    <BottomNavigationItem label="Główna" icon={<ActionHome/>} onTouchTap={() => this.goTo('home')}/>
                     <BottomNavigationItem label="Rozkład" icon={<ActionSchedule/>} onTouchTap={() => this.goTo('schedule')}/>
                     <BottomNavigationItem label="Mapa" icon={<IconLocationOn/>} onTouchTap={() => this.goTo('info')}/>
                 </BottomNavigation>

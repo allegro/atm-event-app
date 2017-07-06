@@ -1,15 +1,10 @@
 // @flow
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import reactMixin from 'react-mixin';
 import ReactFireMixin from 'reactfire';
 import {Card, CardHeader} from "material-ui";
 
 class Speakers extends Component {
-
-    static propTypes = {
-        auth: PropTypes.object.isRequired
-    };
 
     constructor(props) {
         super(props);

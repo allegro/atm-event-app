@@ -1,6 +1,5 @@
 // @flow
 import React, {Component} from 'react';
-import './Home.css';
 import {Card, CardHeader, CardMedia, CardTitle} from "material-ui";
 import ScheduleRepository from "../../Repositories/ScheduleRepository";
 import ScheduleItem from '../Schedule/ScheduleItem';
@@ -21,7 +20,7 @@ export default class Home extends Component {
                                 avatar={next.speaker ? next.speaker.photo : null}/>
                 </Card>
                 <h2>Kolejne wystąpienia:</h2>
-                {nextRecords.map(item => <ScheduleItem key={item.id} item={item} hideDescription={true} />)}
+                {nextRecords.map(item => <ScheduleItem key={item.id} item={item} hideDescription={true}/>)}
             </div>
         )
     }

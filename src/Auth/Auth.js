@@ -2,6 +2,7 @@
 import config from '../Config/config';
 import firebase from 'firebase';
 import Profile from "./Profile";
+import history from '../history';
 
 firebase.initializeApp(config.FIREBASE_CONFIG);
 
@@ -38,6 +39,7 @@ export default class FirebaseAuth {
         firebase.auth().signInWithEmailAndPassword(login, password)
             .then(() => {
                 console.log('Login complete, redirect!');
+                history.push('/atm/home');
             })
             .catch((error) => {
                 console.log('Login err: ', error.message);

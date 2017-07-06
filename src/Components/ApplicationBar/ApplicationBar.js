@@ -20,6 +20,7 @@ export default class ApplicationBar extends Component {
     componentWillMount() {
         this.props.auth.onAuthStateChanged(firebaseUser => {
             this.setState({isLoggedIn: (null !== firebaseUser), profile: firebaseUser});
+            this.goTo('home');
         });
     }
 
