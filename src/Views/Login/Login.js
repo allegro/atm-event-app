@@ -11,33 +11,31 @@ export default class Login extends React.Component {
 
     render() {
         return (
-            <div style={{margin: '0 auto', padding: '30px'}}>
-                <Paper style={{padding: 30, textAlign: 'center', display: 'flex', flexDirection: 'column'}} zDepth={1}>
-                    <ActionLock style={{width: '100%', height: '75px'}}/>
-                    <form onSubmit={this.handleSubmit}>
-                        <TextField hintText="wprowadź email" floatingLabelText="email"
-                                   ref={(input) => {
-                                       this.login = input;
-                                   }}
-                                   fullWidth={true}
-                                   type="email"
-                                   onChange={(event, newValue) => this.setState({username: newValue})}
-                        />
-                        <TextField
-                            type="password"
-                            hintText="wprowadź hasło"
-                            floatingLabelText="hasło"
-                            fullWidth={true}
-                            ref={(input) => {
-                                this.password = input;
-                            }}
-                            onChange={(event, newValue) => this.setState({password: newValue})}
-                        />
-                        <RaisedButton type="submit" style={{marginTop: '30px'}} label="zaloguj" primary={true}
-                                      onClick={(event) => this.handleSubmit(event)}/>
-                    </form>
-                </Paper>
-            </div>
+            <Paper style={{padding: 30, margin: 30, textAlign: 'center', display: 'flex', flexDirection: 'column'}} zDepth={1}>
+                <ActionLock style={{width: '100%', height: '75px'}}/>
+                <form onSubmit={this.handleSubmit}>
+                    <TextField hintText="wprowadź email" floatingLabelText="email"
+                               ref={(input) => {
+                                   this.login = input;
+                               }}
+                               fullWidth={true}
+                               type="email"
+                               onChange={(event, newValue) => this.setState({username: newValue})}
+                    />
+                    <TextField
+                        type="password"
+                        hintText="wprowadź hasło"
+                        floatingLabelText="hasło"
+                        fullWidth={true}
+                        ref={(input) => {
+                            this.password = input;
+                        }}
+                        onChange={(event, newValue) => this.setState({password: newValue})}
+                    />
+                    <RaisedButton type="submit" style={{marginTop: '30px'}} label="zaloguj" primary={true}
+                                  onClick={(event) => this.handleSubmit(event)}/>
+                </form>
+            </Paper>
         )
     }
 }

@@ -30,8 +30,8 @@ class Talk extends Component {
         const item = ScheduleRepository.findById(this.props.match.params.id);
         console.log(this.state.vote.score);
         return (
-            <div style={{margin: '0 auto', padding: '30px'}}>
-                <Paper style={{padding: 30, textAlign: 'center'}} zDepth={1}>
+            <div>
+                <Paper style={{padding: 30, margin: 30, textAlign: 'center'}} zDepth={1}>
                     {item.speaker.photo ? <Avatar size={140} src={item.speaker.photo}/> : null}
                     <h2 style={{color: config.palette.accent1Color}}>{item.speaker.name}</h2>
                     <h3>{item.title}</h3>
@@ -42,7 +42,7 @@ class Talk extends Component {
                                 onVote={() => this.state.vote.score !== null ? this.state.ref.update({score: parseFloat(parseFloat(this.state.vote.score || 0) + 0.1).toFixed(2)}) : null}/>
                 </Paper>
                 <h2>Komentarze</h2>
-                <Paper style={{padding: 30, marginTop: 30, position: 'relative'}} zDepth={1}>
+                <Paper style={{padding: 30}} zDepth={1}>
                     <ReactDisqusComments shortname="atm-1" identifier={item.title}/>
                 </Paper>
             </div>

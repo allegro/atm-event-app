@@ -66,7 +66,7 @@ class UserAppBar extends Component {
         return (
             <AppBar title={this.props.title} onLeftIconButtonTouchTap={this.props.onLeftIconButtonTouchTap}
                     style={{position: 'sticky', top: 0}}
-                    iconElementRight={<Avatar size={36} style={{margin: '7px 0px 0px 0px'}} src={this.props.profile.photoURL}/>}>
+                    iconElementRight={<Avatar size={32} style={{margin: '6px 0px 0px 0px', border: '2px solid #fff'}} src={this.props.profile.photoURL}/>}>
                 {this.props.children}
             </AppBar>
         )

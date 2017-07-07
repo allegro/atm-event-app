@@ -8,5 +8,5 @@ import './index.css';
 
 injectTapEventPlugin();
 
-ReactDOM.render(router, document.getElementById('root'));
+ReactDOM.render(router, document.querySelector('body'));
 registerServiceWorker();
