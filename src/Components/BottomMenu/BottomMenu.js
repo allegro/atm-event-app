@@ -4,14 +4,8 @@ import {BottomNavigation, BottomNavigationItem, Paper} from "material-ui";
 import ActionHome from 'material-ui/svg-icons/action/home';
 import ActionSchedule from 'material-ui/svg-icons/action/schedule';
 import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
-import {PropTypes} from 'prop-types';
 
 export default class BottomMenu extends Component {
-
-    static propTypes = {
-        auth: PropTypes.object.isRequired,
-        history: PropTypes.object.isRequired
-    };
 
     goTo = (route: string) => {
         this.props.history.push(`/atm/${route}`);

@@ -35,14 +35,14 @@ export default class ApplicationBar extends Component {
     render() {
         if (this.state.isLoggedIn) {
             return (
-                <UserAppBar title={"ATM2017"} onLeftIconButtonTouchTap={this.handleOpen} profile={this.state.profile}>
+                <UserAppBar title={"ATM2017"} onLeftIconButtonTouchTap={this.handleOpen} profile={this.state.profile} goTo={this.goTo}>
                     <ApplicationDrawer auth={this.props.auth} open={this.state.open} onChange={(state) => this.setState({open: state})}
                                        goTo={this.goTo}/>
                 </UserAppBar>
             )
         } else {
             return (
-                <AnonymousAppBar login={() => this.goTo('login')} title={"ATM2017"}/>
+                <AnonymousAppBar title={"ATM2017"}/>
             )
         }
     }
@@ -53,7 +53,7 @@ class AnonymousAppBar extends Component {
         return (
             <AppBar title={this.props.title} iconElementRight={<IconButton><SocialPerson/></IconButton>}
                     showMenuIconButton={false} style={{position: 'sticky', top: 0}}
-                    onRightIconButtonTouchTap={() => this.props.login()}>
+                    onRightIconButtonTouchTap={this.handleLogin}>
                 {this.props.children}
             </AppBar>
         )
@@ -64,9 +64,11 @@ class AnonymousAppBar extends Component {
 class UserAppBar extends Component {
     render() {
         return (
-            <AppBar title={this.props.title} onLeftIconButtonTouchTap={this.props.onLeftIconButtonTouchTap}
+            <AppBar title={this.props.title}
+                    onLeftIconButtonTouchTap={this.props.onLeftIconButtonTouchTap}
                     style={{position: 'sticky', top: 0}}
-                    iconElementRight={<Avatar size={32} style={{margin: '6px 0px 0px 0px', border: '2px solid #fff'}} src={this.props.profile.photoURL}/>}>
+                    onRightIconButtonTouchTap={() => this.props.goTo('profile')}
+                    iconElementRight={<Avatar style={{cursor: 'pointer'}} size={48} src={this.props.profile.photoURL}/>}>
                 {this.props.children}
             </AppBar>
         )

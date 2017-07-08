@@ -31,6 +31,6 @@ export default {
         shadowColor: fullBlack,
     },
     appBar: {
-        height: 50,
+        // height: 50,
     }
 }

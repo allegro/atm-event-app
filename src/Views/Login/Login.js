@@ -1,7 +1,12 @@
 import * as React from "react";
 import {LinearProgress, Paper, RaisedButton, TextField} from "material-ui";
+import {PropTypes} from 'prop-types';
 
 export default class Login extends React.Component {
+
+    static propTypes = {
+        handleLogin: PropTypes.func.isRequired
+    };
 
     constructor() {
         super();
@@ -12,7 +17,7 @@ export default class Login extends React.Component {
         this.setState({loading: true});
         let login = this.login.input.value;
         if (!login.split('@')[1]) login = login + '@allegrogroup.com';
-        this.props.auth.login(login, this.password.input.value).then(() => {
+        this.props.handleLogin(login, this.password.input.value).then(() => {
             console.log('Login complete, redirect!');
         }).catch((error) => {
             this.setState({loading: false, error: error.message});

@@ -13,7 +13,7 @@ import {PropTypes} from 'prop-types';
 class Talk extends Component {
 
     static propTypes = {
-        auth: PropTypes.object,
+        firebase: PropTypes.object,
         match: PropTypes.object
     };
 
@@ -23,22 +23,23 @@ class Talk extends Component {
     }
 
     componentDidMount() {
-        const firebaseRef = this.props.auth.firebase.database().ref(`/votes/${this.props.match.params.id}`);
+        const firebaseRef = this.props.firebase.database().ref(`/votes/${this.props.match.params.id}`);
         this.setState({ref: firebaseRef});
         this.bindAsObject(firebaseRef, 'vote');
     }
 
     handleVote = (score) => {
         const newScore = parseFloat(parseFloat(this.state.vote.score || 0) + score).toFixed(2);
-        this.state.ref.update({score: newScore});
+        this.state.ref.update({score: newScore})
     };
 
     render() {
         const item = ScheduleRepository.findById(this.props.match.params.id);
+        const avatar = item.speaker.photo ? <Avatar size={140} src={item.speaker.photo}/> : null;
         return (
             <div>
                 <Paper style={{padding: 30, margin: 30, textAlign: 'center'}} zDepth={1}>
-                    {item.speaker.photo ? <Avatar size={140} src={item.speaker.photo}/> : null}
+                    {avatar}
                     <h2 style={{color: config.palette.accent1Color}}>{item.speaker.name}</h2>
                     <h3>{item.title}</h3>
                     <BottomNavigation style={{marginTop: 20}}>

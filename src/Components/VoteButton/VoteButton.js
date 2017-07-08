@@ -29,15 +29,13 @@ export default class VoteButton extends Component {
         this.handleClose();
     };
 
-    static customContentStyle = {
-        width: 250,
-        maxWidth: 'none',
-    };
+    static modalStyle = {width: 250, maxWidth: 'none'};
+    static buttonStyle = {width: '90%', margin: 10};
 
     render() {
         return (
-            <RaisedButton style={{width: '90%', margin: 10}} label="Oceń Wystąpienie" secondary={true} onTouchTap={this.handleOpen}>
-                <Dialog title="Oddaj głos" modal={false} open={this.state.open} onRequestClose={this.handleClose} contentStyle={VoteButton.customContentStyle}>
+            <RaisedButton style={VoteButton.buttonStyle} label="Oceń Wystąpienie" secondary={true} onTouchTap={this.handleOpen}>
+                <Dialog modal={false} open={this.state.open} onRequestClose={this.handleClose} contentStyle={VoteButton.modalStyle}>
                     <IconButton onTouchTap={() => this.handleRating(-1.5)} touch={true}><ActionGrade/></IconButton>
                     <IconButton onTouchTap={() => this.handleRating(-1)} touch={true}><ActionGrade/></IconButton>
                     <IconButton onTouchTap={() => this.handleRating(1)} touch={true}><ActionGrade/></IconButton>

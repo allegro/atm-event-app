@@ -47,7 +47,7 @@ class AnimatedRoute extends React.Component {
         return (
             <Route exact={this.props.exact} path={this.props.path} render={(props) => {
                 return <RouteTransition pathname={props.location.pathname} atEnter={{opacity: 0}} atLeave={{opacity: 0}} atActive={{opacity: 1}}>
-                    {React.cloneElement(this.props.view, Object.assign({auth: auth}, props))}
+                    {React.cloneElement(this.props.view, props)}
                 </RouteTransition>
             }}/>
         )
@@ -59,14 +59,14 @@ export default <MuiThemeProvider muiTheme={getMuiTheme(theme)}>
         <div>
             <Route render={(props) => <ApplicationBar auth={auth} history={props.history}/>}/>
             <Route exact path="/" view={() => <Redirect to="/atm/home"/>}/>
-            <AnimatedRoute path="/atm/login" view={<Login auth={auth}/>}/>
+            <AnimatedRoute path="/atm/login" view={<Login handleLogin={auth.login}/>}/>
             <SecuredRoute path="/atm/home" view={<Home/>}/>
             <SecuredRoute path="/atm/schedule" view={<Schedule/>}/>
-            <SecuredRoute path="/atm/talk/:id" view={<Talk/>}/>
+            <SecuredRoute path="/atm/talk/:id" view={<Talk firebase={auth.firebase}/>}/>
             <SecuredRoute path="/atm/info" view={<Info/>}/>
             <SecuredRoute path="/atm/speakers" view={<Speakers/>}/>
-            <SecuredRoute path="/atm/profile" view={<Profile/>}/>
-            <Route render={(props) => <BottomMenu auth={auth} history={props.history}/>}/>
+            <SecuredRoute path="/atm/profile" view={<Profile handleProfile={auth.getProfile} handleLogout={auth.logout}/>}/>
+            <Route render={(props) => <BottomMenu history={props.history}/>}/>
             <ScrollToTop/>
         </div>
     </BrowserRouter>
