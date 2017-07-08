@@ -4,20 +4,22 @@ import {Avatar, BottomNavigation, BottomNavigationItem, CircularProgress, Paper}
 import ScheduleRepository from '../../Repositories/ScheduleRepository'
 import config from '../../Config/theme';
 import ActionGrade from 'material-ui/svg-icons/action/grade';
-import ReactDisqusComments from 'react-disqus-comments';
 import VoteButton from "../../Components/VoteButton/VoteButton";
 import reactMixin from 'react-mixin';
 import ReactFireMixin from 'reactfire';
+import Comments from "./Comments";
+import {PropTypes} from 'prop-types';
 
 class Talk extends Component {
 
+    static propTypes = {
+        auth: PropTypes.object,
+        match: PropTypes.object
+    };
+
     constructor(props) {
         super(props);
-        this.state = {
-            vote: {
-                score: null
-            }
-        }
+        this.state = {vote: {score: null}}
     }
 
     componentDidMount() {
@@ -25,6 +27,11 @@ class Talk extends Component {
         this.setState({ref: firebaseRef});
         this.bindAsObject(firebaseRef, 'vote');
     }
+
+    handleVote = (score) => {
+        const newScore = parseFloat(parseFloat(this.state.vote.score || 0) + score).toFixed(2);
+        this.state.ref.update({score: newScore});
+    };
 
     render() {
         const item = ScheduleRepository.findById(this.props.match.params.id);
@@ -35,15 +42,15 @@ class Talk extends Component {
                     <h2 style={{color: config.palette.accent1Color}}>{item.speaker.name}</h2>
                     <h3>{item.title}</h3>
                     <BottomNavigation style={{marginTop: 20}}>
-                        {this.state.vote.score === null ? <CircularProgress size={30} thickness={1}/> : 'undefined' === typeof this.state.vote.score ? <BottomNavigationItem label={0} icon={<ActionGrade/>}/> : <BottomNavigationItem label={parseFloat(this.state.vote.score).toFixed(2)} icon={<ActionGrade/>}/>}
+                        {this.state.vote.score === null ?
+                            <CircularProgress size={30} thickness={1}/> : 'undefined' === typeof this.state.vote.score ?
+                                <BottomNavigationItem label={0} icon={<ActionGrade/>}/> :
+                                <BottomNavigationItem label={parseFloat(this.state.vote.score).toFixed(2)} icon={<ActionGrade/>}/>}
                     </BottomNavigation>
-                    <VoteButton id={item.id}
-                                onVote={() => this.state.vote.score !== null ? this.state.ref.update({score: parseFloat(parseFloat(this.state.vote.score || 0) + 0.1).toFixed(2)}) : null}/>
+                    <VoteButton id={item.id} onVote={this.handleVote}/>
                 </Paper>
                 <h2>Komentarze</h2>
-                <Paper style={{padding: 30}} zDepth={1}>
-                    <ReactDisqusComments shortname="atm-1" identifier={item.title}/>
-                </Paper>
+                <Comments id={item.id}/>
             </div>
         )
     }
