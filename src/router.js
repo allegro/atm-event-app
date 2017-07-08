@@ -17,6 +17,7 @@ import Talk from "./Views/Talk/Talk";
 import FirebaseAuth from "./Auth/Auth";
 import Login from "./Views/Login/Login";
 import {PropTypes} from 'prop-types';
+import {RouteTransition} from "react-router-transition";
 
 const auth = new FirebaseAuth();
 
@@ -29,10 +30,27 @@ class SecuredRoute extends React.Component {
 
     render() {
         const redirect = <Redirect to="/atm/login"/>;
-        return <Route exact
-                      path={this.props.path}
-                      render={(props) => (auth.isAuthenticated() ? React.cloneElement(this.props.view, Object.assign({auth: auth}, props)) : redirect)}
-        />
+        return (
+            <AnimatedRoute path={this.props.path} view={(auth.isAuthenticated() ? this.props.view : redirect)}/>
+        );
+    }
+}
+
+class AnimatedRoute extends React.Component {
+    static propTypes = {
+        view: PropTypes.object.isRequired,
+        path: PropTypes.string.isRequired,
+        exact: PropTypes.bool
+    };
+
+    render() {
+        return (
+            <Route exact={this.props.exact} path={this.props.path} render={(props) => {
+                return <RouteTransition pathname={props.location.pathname} atEnter={{opacity: 0}} atLeave={{opacity: 0}} atActive={{opacity: 1}}>
+                    {React.cloneElement(this.props.view, Object.assign({auth: auth}, props))}
+                </RouteTransition>
+            }}/>
+        )
     }
 }
 
@@ -40,8 +58,8 @@ export default <MuiThemeProvider muiTheme={getMuiTheme(theme)}>
     <BrowserRouter history={history}>
         <div>
             <Route render={(props) => <ApplicationBar auth={auth} history={props.history}/>}/>
-            <Route exact path="/" render={() => <Redirect to="/atm/home"/>}/>
-            <Route path="/atm/login" render={(props) => <Login auth={auth} {...props} />}/>
+            <Route exact path="/" view={() => <Redirect to="/atm/home"/>}/>
+            <AnimatedRoute path="/atm/login" view={<Login auth={auth}/>}/>
             <SecuredRoute path="/atm/home" view={<Home/>}/>
             <SecuredRoute path="/atm/schedule" view={<Schedule/>}/>
             <SecuredRoute path="/atm/talk/:id" view={<Talk/>}/>

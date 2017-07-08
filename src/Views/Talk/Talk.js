@@ -28,7 +28,6 @@ class Talk extends Component {
 
     render() {
         const item = ScheduleRepository.findById(this.props.match.params.id);
-        console.log(this.state.vote.score);
         return (
             <div>
                 <Paper style={{padding: 30, margin: 30, textAlign: 'center'}} zDepth={1}>
