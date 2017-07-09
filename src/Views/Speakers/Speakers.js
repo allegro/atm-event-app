@@ -14,7 +14,7 @@ class Speakers extends Component {
     }
 
     componentDidMount() {
-        this.bindAsArray(this.props.auth.firebase.database().ref('/speakers'), 'speakers');
+        this.bindAsArray(this.props.firebase.database().ref('/speakers'), 'speakers');
     }
 
     render() {
