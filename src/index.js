@@ -5,10 +5,10 @@ import {Redirect, Route, BrowserRouter} from 'react-router-dom';
 import registerServiceWorker from './registerServiceWorker';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import {MuiThemeProvider} from "material-ui";
+import createHistory from 'history/createBrowserHistory'
 import ScrollToTop from "./Components/ScrollToTop/ScrollToTop";
 import ApplicationBar from './Components/ApplicationBar/ApplicationBar';
 import BottomMenu from "./Components/BottomMenu/BottomMenu";
-import history from './history';
 import Home from './Views/Home/Home';
 import Profile from './Views/Profile/Profile';
 import Speakers from "./Views/Speakers/Speakers";
@@ -29,7 +29,7 @@ injectTapEventPlugin();
 const auth = new FirebaseAuth();
 
 const app = <MuiThemeProvider muiTheme={getMuiTheme(theme)}>
-    <BrowserRouter history={history}>
+    <BrowserRouter history={createHistory({forceRefresh: true})}>
         <div>
             <Route render={(props) => <ApplicationBar auth={auth} history={props.history}/>}/>
             <Route exact path="/" view={() => <Redirect to="/atm/home"/>}/>
