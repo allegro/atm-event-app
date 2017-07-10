@@ -13,13 +13,14 @@ import {PropTypes} from 'prop-types';
 class Talk extends Component {
 
     static propTypes = {
+        getProfile: PropTypes.func.isRequired,
         firebase: PropTypes.object,
         match: PropTypes.object
     };
 
     constructor(props) {
         super(props);
-        this.state = {vote: {score: null}}
+        this.state = {vote: {score: null, source: this.props.getProfile().email}}
     }
 
     componentDidMount() {
@@ -29,8 +30,7 @@ class Talk extends Component {
     }
 
     handleVote = (score) => {
-        const newScore = parseFloat(parseFloat(this.state.vote.score || 0) + score).toFixed(2);
-        this.state.ref.update({score: newScore})
+        this.state.ref.child('/' + this.props.getProfile().displayName).update({score: score, time: new Date()});
     };
 
     render() {

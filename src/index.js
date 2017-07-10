@@ -36,7 +36,7 @@ const app = <MuiThemeProvider muiTheme={getMuiTheme(theme)}>
             <AnimatedRoute path="/atm/login" view={<Login handleLogin={auth.login}/>}/>
             <SecuredRoute auth={auth} path="/atm/home" view={<Home/>}/>
             <SecuredRoute auth={auth} path="/atm/schedule" view={<Schedule/>}/>
-            <SecuredRoute auth={auth} path="/atm/talk/:id" view={<Talk firebase={auth.firebase}/>}/>
+            <SecuredRoute auth={auth} path="/atm/talk/:id" view={<Talk firebase={auth.firebase} getProfile={auth.getProfile}/>}/>
             <SecuredRoute auth={auth} path="/atm/info" view={<Info/>}/>
             <SecuredRoute auth={auth} path="/atm/speakers" view={<Speakers firebase={auth.firebase}/>}/>
             <SecuredRoute auth={auth} path="/atm/profile" view={<Profile handleProfile={auth.getProfile} handleLogout={auth.logout}/>}/>

@@ -36,10 +36,11 @@ export default class VoteButton extends Component {
         return (
             <RaisedButton style={VoteButton.buttonStyle} label="Oceń Wystąpienie" secondary={true} onTouchTap={this.handleOpen}>
                 <Dialog modal={false} open={this.state.open} onRequestClose={this.handleClose} contentStyle={VoteButton.modalStyle}>
-                    <IconButton onTouchTap={() => this.handleRating(-1.5)} touch={true}><ActionGrade/></IconButton>
                     <IconButton onTouchTap={() => this.handleRating(-1)} touch={true}><ActionGrade/></IconButton>
+                    <IconButton onTouchTap={() => this.handleRating(0)} touch={true}><ActionGrade/></IconButton>
                     <IconButton onTouchTap={() => this.handleRating(1)} touch={true}><ActionGrade/></IconButton>
-                    <IconButton onTouchTap={() => this.handleRating(1.5)} touch={true}><ActionGrade/></IconButton>
+                    <IconButton onTouchTap={() => this.handleRating(2)} touch={true}><ActionGrade/></IconButton>
+                    <IconButton onTouchTap={() => this.handleRating(3)} touch={true}><ActionGrade/></IconButton>
                 </Dialog>
             </RaisedButton>
         );
