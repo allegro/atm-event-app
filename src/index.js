@@ -24,10 +24,13 @@ import SecuredRoute from './Components/Route/SecuredRoute';
 import 'moment/locale/pl';
 import './index.css';
 import Stream from './Views/Stream/Stream';
+import ScheduleRepository from './Repositories/ScheduleRepository';
 
 injectTapEventPlugin();
 
 const auth = new FirebaseAuth();
+
+ScheduleRepository.connectWith(auth.firebase.database().ref('/schedule'));
 
 const app = <MuiThemeProvider muiTheme={getMuiTheme(theme)}>
     <BrowserRouter history={createHistory({forceRefresh: true})}>

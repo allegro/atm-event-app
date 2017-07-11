@@ -6,6 +6,11 @@ import ScheduleItem from './ScheduleItem';
 import moment from "moment";
 
 export default class Schedule extends Component {
+
+    componentDidMount() {
+        ScheduleRepository.on('change', () => this.forceUpdate());
+    }
+
     render() {
         const scheduleDays = ScheduleRepository.days();
 

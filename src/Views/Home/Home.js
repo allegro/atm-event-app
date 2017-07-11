@@ -7,6 +7,10 @@ import moment from "moment";
 
 export default class Home extends Component {
 
+    componentDidMount() {
+        ScheduleRepository.on('change', () => this.forceUpdate());
+    }
+
     render() {
         const nextRecords = ScheduleRepository.findNext(new Date(), 5);
         const next = nextRecords.splice(1, 1)[0];
