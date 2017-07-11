@@ -32,7 +32,7 @@ const auth = new FirebaseAuth();
 const app = <MuiThemeProvider muiTheme={getMuiTheme(theme)}>
     <BrowserRouter history={createHistory({forceRefresh: true})}>
         <div>
-            <Route render={(props) => <ApplicationBar auth={auth} history={props.history}/>}/>
+            <ApplicationBar auth={auth} />
             <Route exact path="/" view={() => <Redirect to="/atm/home"/>}/>
             <AnimatedRoute path="/atm/login" view={<Login handleLogin={auth.login}/>}/>
             <SecuredRoute auth={auth} path="/atm/home" view={<Home/>}/>
@@ -42,7 +42,7 @@ const app = <MuiThemeProvider muiTheme={getMuiTheme(theme)}>
             <SecuredRoute auth={auth} path="/atm/stream" view={<Stream/>}/>
             <SecuredRoute auth={auth} path="/atm/speakers" view={<Speakers firebase={auth.firebase}/>}/>
             <SecuredRoute auth={auth} path="/atm/profile" view={<Profile handleProfile={auth.getProfile} handleLogout={auth.logout}/>}/>
-            <Route render={(props) => <BottomMenu history={props.history}/>}/>
+            <BottomMenu />
             <ScrollToTop/>
         </div>
     </BrowserRouter>
