@@ -1,12 +1,20 @@
 // @flow
 import React, {Component} from 'react';
+import {withRouter} from 'react-router-dom'
+import {PropTypes} from 'prop-types';
 import {BottomNavigation, BottomNavigationItem, Paper} from "material-ui";
 import ActionHome from 'material-ui/svg-icons/action/home';
 import ActionSchedule from 'material-ui/svg-icons/action/schedule';
 import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
 import AvVideocam from 'material-ui/svg-icons/av/videocam';
 
-export default class BottomMenu extends Component {
+class BottomMenuComponent extends Component {
+
+    static propTypes = {
+        match: PropTypes.object.isRequired,
+        location: PropTypes.object.isRequired,
+        history: PropTypes.object.isRequired
+    };
 
     goTo = (route: string) => {
         this.props.history.push(`/atm/${route}`);
@@ -25,3 +33,5 @@ export default class BottomMenu extends Component {
         );
     }
 }
+
+export default withRouter(BottomMenuComponent);

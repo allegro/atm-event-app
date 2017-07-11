@@ -1,27 +1,40 @@
 import TAFFY from 'taffy';
-import schedule from './schedule.json';
 import ScheduleRecord from "../Views/Schedule/ScheduleRecord";
 import moment from 'moment';
+import { EventEmitter } from 'events';
 
-const records = TAFFY(schedule.map(item => item.agenda
-    .map(record => new ScheduleRecord(item.date, record.start, record.end, record.title, record.content, record.speaker, record.photo)))
-    .reduce((a, b) => a.concat(b)));
+class ScheduleRepository extends EventEmitter {
 
-export default class ScheduleRepository {
-    static findAll(date) {
-        return records({date: date}).get();
+    constructor() {
+        super();
+        this.records = TAFFY();
     }
 
-    static findById(id) {
-        return records({id: id}).first();
+    connectWith(firebaseRef) {
+        firebaseRef.on('value', scheduleData => {
+            const records = scheduleData.val().map(item => item.agenda
+                .map(record => new ScheduleRecord(item.date, record.start, record.end, record.title, record.content, record.speaker, record.photo)))
+                .reduce((a, b) => a.concat(b));
+
+            this.records = TAFFY(records);
+            this.emit('change');
+        });
     }
 
-    static days() {
-        return records().distinct("date");
+    findAll(date) {
+        return this.records({date: date}).get();
     }
 
-    static findNext(date, limit = 1) {
-        return records()
+    findById(id) {
+        return this.records({id: id}).first();
+    }
+
+    days() {
+        return this.records().distinct("date");
+    }
+
+    findNext(date, limit = 1) {
+        return this.records()
             .get()
             .filter(record => {
                 return !record.isTechnical() && moment(record.date).isAfter(moment(date));
@@ -29,3 +42,5 @@ export default class ScheduleRepository {
             .slice(0, limit);
     }
 }
+
+export default new ScheduleRepository();
