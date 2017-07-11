@@ -74,26 +74,24 @@ class Talk extends Component {
 
 class FullStar extends Component {
     static propTypes = {
-        rating: PropTypes.number.isRequired,
         onVote: PropTypes.func.isRequired
     };
 
     render() {
         return (
-            <IconButton onTouchTap={() => this.props.onVote(this.props.rating)} touch={true}><ActionGrade/></IconButton>
+            <IconButton onTouchTap={() => this.props.onVote()} touch={true}><ActionGrade/></IconButton>
         );
     }
 }
 
 class EmptyStar extends Component {
     static propTypes = {
-        rating: PropTypes.number.isRequired,
         onVote: PropTypes.func.isRequired
     };
 
     render() {
         return (
-            <IconButton onTouchTap={() => this.props.onVote(this.props.rating)} touch={true}><ToggleStarBorder/></IconButton>
+            <IconButton onTouchTap={() => this.props.onVote()} touch={true}><ToggleStarBorder/></IconButton>
         );
     }
 }
