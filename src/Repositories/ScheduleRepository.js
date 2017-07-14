@@ -1,24 +1,14 @@
 import TAFFY from 'taffy';
 import ScheduleRecord from "../Views/Schedule/ScheduleRecord";
 import moment from 'moment';
-import { EventEmitter } from 'events';
 
-class ScheduleRepository extends EventEmitter {
+export default class ScheduleRepository {
 
-    constructor() {
-        super();
-        this.records = TAFFY();
-    }
-
-    connectWith(firebaseRef) {
-        firebaseRef.on('value', scheduleData => {
-            const records = scheduleData.val().map(item => item.agenda
-                .map(record => new ScheduleRecord(item.date, record.start, record.end, record.title, record.content, record.speaker, record.photo)))
-                .reduce((a, b) => a.concat(b));
-
-            this.records = TAFFY(records);
-            this.emit('change');
-        });
+    constructor(snapshot) {
+        const records = snapshot.map(item => item.agenda
+            .map(record => new ScheduleRecord(item.date, record.start, record.end, record.title, record.content, record.speaker, record.photo)))
+            .reduce((a, b) => a.concat(b), []);
+        this.records = TAFFY(records);
     }
 
     findAll(date) {
@@ -42,5 +32,3 @@ class ScheduleRepository extends EventEmitter {
             .slice(0, limit);
     }
 }
-
-export default new ScheduleRepository();

@@ -7,11 +7,11 @@ export default class Profile extends Component {
 
     static propTypes = {
         handleLogout: PropTypes.func.isRequired,
-        handleProfile: PropTypes.func.isRequired
+        profile: PropTypes.object.isRequired
     };
 
     render() {
-        const profile = this.props.handleProfile();
+        const {profile} = this.props;
         return (
             <div>
                 <Paper style={{padding: 30, margin: 30, textAlign: 'center'}} zDepth={1}>

@@ -8,7 +8,9 @@ import AuthenticatedBar from "./AuthenticatedBar";
 class ApplicationBarComponent extends Component {
 
     static propTypes = {
-        auth: PropTypes.object.isRequired,
+        profile: PropTypes.object.isRequired,
+        title: PropTypes.string.isRequired,
+        isLoggedIn: PropTypes.bool.isRequired,
         match: PropTypes.object.isRequired,
         location: PropTypes.object.isRequired,
         history: PropTypes.object.isRequired
@@ -18,19 +20,8 @@ class ApplicationBarComponent extends Component {
         super(props);
 
         this.state = {
-            open: false,
-            profile: {},
-            isLoggedIn: props.auth.isAuthenticated()
+            open: false
         };
-    }
-
-    componentWillMount() {
-        this.props.auth.onAuthStateChanged(firebaseUser => {
-            this.setState({
-                isLoggedIn: (null !== firebaseUser),
-                profile: firebaseUser
-            });
-        });
     }
 
     handleOpen = () => this.setState({open: true});
@@ -42,13 +33,14 @@ class ApplicationBarComponent extends Component {
     };
 
     render() {
-        if (this.state.isLoggedIn) {
+        if (this.props.isLoggedIn) {
             return (
-                <AuthenticatedBar title={"ATM2017"} onLeftIconButtonTouchTap={this.handleOpen} profile={this.state.profile} goTo={this.goTo}/>
+                <AuthenticatedBar title={this.props.title} onLeftIconButtonTouchTap={this.handleOpen} profile={this.props.profile}
+                                  goTo={this.goTo}/>
             )
         } else {
             return (
-                <AnonymousBar title={"ATM2017"}/>
+                <AnonymousBar title={this.props.title}/>
             )
         }
     }

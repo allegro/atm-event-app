@@ -1,7 +1,6 @@
 // @flow
 import React, {Component} from 'react';
 import {Avatar, Paper, IconButton} from 'material-ui';
-import ScheduleRepository from '../../Repositories/ScheduleRepository'
 import config from '../../Config/theme';
 import ToggleStarBorder from 'material-ui/svg-icons/toggle/star-border';
 import ActionGrade from 'material-ui/svg-icons/action/grade';
@@ -13,7 +12,7 @@ import {PropTypes} from 'prop-types';
 class Talk extends Component {
 
     static propTypes = {
-        getProfile: PropTypes.func.isRequired,
+        profile: PropTypes.object.isRequired,
         firebase: PropTypes.object,
         match: PropTypes.object
     };
@@ -30,7 +29,7 @@ class Talk extends Component {
     }
 
     handleVote(score) {
-        this.state.ref.child('/' + this.props.getProfile().displayName).update({score: score, time: new Date()});
+        this.state.ref.child('/' + this.props.profile.displayName).update({score: score, time: new Date()});
     };
 
     getStars(initialRating) {
@@ -54,9 +53,9 @@ class Talk extends Component {
     }
 
     render() {
-        const item = ScheduleRepository.findById(this.props.match.params.id);
+        const item = this.props.schedule.findById(this.props.match.params.id);
         const avatar = item.speaker.photo ? <Avatar size={140} src={item.speaker.photo}/> : null;
-        const initialVote = this.state.votes[this.props.getProfile().displayName];
+        const initialVote = this.state.votes[this.props.profile.displayName];
         return (
             <div>
                 <Paper style={{padding: 30, margin: 30, textAlign: 'center'}} zDepth={1}>

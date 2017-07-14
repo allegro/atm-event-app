@@ -1,9 +1,8 @@
 import * as React from "react";
-import {withRouter} from 'react-router-dom'
 import {LinearProgress, Paper, RaisedButton, TextField} from "material-ui";
 import {PropTypes} from 'prop-types';
 
-class Login extends React.Component {
+export default class Login extends React.Component {
 
     static propTypes = {
         handleLogin: PropTypes.func.isRequired
@@ -21,7 +20,6 @@ class Login extends React.Component {
 
         this.props.handleLogin(login, this.password.input.value).then(() => {
             console.log('Login complete, redirect!');
-            this.props.history.push('/atm/home');
         }).catch((error) => {
             this.setState({loading: false, error: error.message});
         });
@@ -48,5 +46,3 @@ class Login extends React.Component {
         )
     }
 }
-
-export default withRouter(Login);
