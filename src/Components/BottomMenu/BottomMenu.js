@@ -26,7 +26,7 @@ class BottomMenuComponent extends Component {
                 <BottomNavigation>
                     <BottomNavigationItem label="Główna" icon={<ActionHome/>} onTouchTap={() => this.goTo('home')}/>
                     <BottomNavigationItem label="Rozkład" icon={<ActionSchedule/>} onTouchTap={() => this.goTo('schedule')}/>
-                    <BottomNavigationItem label="Stream" icon={<AvVideocam/>} onTouchTap={() => this.goTo('loading')}/>
+                    <BottomNavigationItem label="Stream" icon={<AvVideocam/>} onTouchTap={() => this.goTo('stream')}/>
                     <BottomNavigationItem label="Mapa" icon={<IconLocationOn/>} onTouchTap={() => this.goTo('info')}/>
                 </BottomNavigation>
             </Paper>
