@@ -1,5 +1,5 @@
 // @flow
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'
 import { PropTypes } from 'prop-types';
 import { BottomNavigation, BottomNavigationItem, Paper } from 'material-ui';
@@ -25,7 +25,7 @@ class BottomMenuComponent extends Component {
             { label: 'Mapa', icon: <CommunicationLocationOn/>, link: '/atm/info' },
         ];
 
-        const acriveOptionIndex = menuOptions.findIndex(option => window.location.pathname.startsWith(option.link));
+        const acriveOptionIndex = menuOptions.findIndex(option => this.props.location.pathname.startsWith(option.link));
 
         return (
             <Paper zDepth={1} style={{position: 'fixed', bottom: 0, zIndex: 1000, width: '100%'}}>
