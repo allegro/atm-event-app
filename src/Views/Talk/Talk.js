@@ -14,17 +14,14 @@ export default class Talk extends Component {
         match: PropTypes.object
     };
 
-    handleVote(score) {
-        this.props.handleVote(this.props.match.params.id, score);
-    };
-
     render() {
-        const talkId = this.props.match.params.id;
+        const { match, votes, schedule, profile, handleVote } = this.props;
+        const talkId = match.params.id;
 
-        const votes = this.props.votes[talkId];
-        const item = this.props.schedule.findById(talkId);
+        const talkVotes = votes[talkId] || {};
+        const item = schedule.findById(talkId);
         const avatar = item.speaker.photo ? <Avatar size={140} src={item.speaker.photo}/> : null;
-        const initialVote = votes[this.props.profile.displayName];
+        const userVote = talkVotes[profile.displayName];
 
         return (
             <div>
@@ -32,7 +29,7 @@ export default class Talk extends Component {
                     {avatar}
                     <h2 style={{color: config.palette.accent1Color}}>{item.speaker.name}</h2>
                     <h3>{item.title}</h3>
-                    <VotingStars initialRating={initialVote} handleVote={score => this.handleVote(score)} />
+                    <VotingStars initialRating={userVote} handleVote={score => handleVote(talkId, score)} />
                 </Paper>
                 <h2>Komentarze</h2>
                 <Comments id={item.id}/>

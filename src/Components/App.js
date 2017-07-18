@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react';
-import { Redirect, Route, BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory'
 import 'moment/locale/pl';
 
