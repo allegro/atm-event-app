@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory'
 import 'moment/locale/pl';
 
@@ -59,7 +59,8 @@ export default class App extends Component {
         if (!isLoggedIn) return <Login handleLogin={actions.login}/>;
 
         return <div>
-            <AnimatedRoute exact path="/atm/" view={<Home schedule={schedule}/>}/>
+            <Route exact path="/atm" render={() => <Redirect to="/atm/home" />} />
+            <AnimatedRoute path="/atm/home" view={<Home schedule={schedule}/>}/>
             <AnimatedRoute path="/atm/schedule" view={<Schedule schedule={schedule}/>}/>
             <AnimatedRoute path="/atm/talk/:id" view={<Talk profile={profile} schedule={schedule} votes={votes} handleVote={actions.vote} />}/>
             <AnimatedRoute path="/atm/info" view={<Info/>}/>
