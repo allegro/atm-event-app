@@ -13,7 +13,7 @@ export default class ScheduleRepository {
                 title: record.title,
                 type: record.type,
                 content: record.content,
-                speaker: record.speaker,
+                speakers: Array.isArray(record.speakers) ? record.speakers : (record.speaker ? [ record.speaker ] : []),
                 photo: record.photo
             })))
             .reduce((a, b) => a.concat(b), []);

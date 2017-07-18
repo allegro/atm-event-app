@@ -48,10 +48,11 @@ class ScheduleItem extends Component {
                      onTouchTap={() => history.push(`/atm/talk/${item.id}`)}>
             <CardTitle title={item.title}/>
             {hideDescription || item.type === 'lightning' ? null : <CardText>{item.content}</CardText>}
-            <CardHeader title={item.speaker.name}
+
+            <CardHeader title={item.speakers.map(speaker => speaker.name).join(', ')}
                         textStyle={{'padding': '0'}}
                         subtitle={`${item.start} - ${item.end}`}
-                        avatar={item.speaker.photo ? <Avatar src={item.photo}/> : <Avatar icon={<SocialPerson/>}/>}
+                        avatar={<span>{item.speakers.map(speaker => <Avatar key={speaker.name} className="speaker-avatar" src={speaker.photo}/>)}</span>}
             />
         </Card>;
     }
