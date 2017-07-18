@@ -11,9 +11,11 @@ import 'moment/locale/pl';
 import './index.css';
 import App from './Components/App';
 
+import config from './Config/config';
+
 injectTapEventPlugin();
 
-const auth = new FirebaseAuth();
+const auth = new FirebaseAuth(config.FIREBASE_CONFIG);
 
 ReactDOM.render(
     <MuiThemeProvider muiTheme={getMuiTheme(theme)}>

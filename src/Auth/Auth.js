@@ -1,54 +1,52 @@
 // @flow
-import config from '../Config/config';
 import firebase from 'firebase';
-import Profile from "./Profile";
+import EventEmitter from 'events';
 
-firebase.initializeApp(config.FIREBASE_CONFIG);
+export default class FirebaseAuth extends EventEmitter {
+    constructor(firebaseConfig) {
+        super();
 
-export default class FirebaseAuth {
+        const app = this.app = firebase.initializeApp(firebaseConfig);
+        const auth = app.auth();
+        const database = app.database().ref();
 
-    constructor() {
-        this._firebase = firebase;
-        this.isAuthenticated = this.isAuthenticated.bind(this);
-        this.getProfile = this.getProfile.bind(this);
-        this.onAuthStateChanged = this.onAuthStateChanged.bind(this);
-        this.login = this.login.bind(this);
-        this.logout = this.logout.bind(this);
-        this.isAdmin = this.isAdmin.bind(this);
-    }
+        auth.onAuthStateChanged(user => {
+            if (!user) {
+                this.emit('userNotLogged');
+            } else {
+                database.on('value', snapshot => {
+                    const data = snapshot.val();
+                    this.emit('userLoggedIn', user, data);
+                });
+            }
+        });
 
-    isAuthenticated() {
-        return null !== this._firebase.auth().currentUser;
-    }
+        this.actions = {
+            /**
+             *
+             * @returns {Promise}
+             */
+            logout: () => auth.signOut(),
 
-    getProfile() {
-        if (this.isAuthenticated()) {
-            const currentUser = this._firebase.auth().currentUser;
-            if (currentUser) {
-                return new Profile(currentUser);
+            /**
+             *
+             * @param {String} email
+             * @param {String} password
+             * @returns {Promise}
+             */
+            login: (email, password) => auth.signInWithEmailAndPassword(email, password),
+
+            /**
+             *
+             * @param {String} talkId
+             * @param {Number} score
+             */
+            vote: (talkId, score) => {
+                database.child(`/votes/${talkId}/${auth.currentUser.displayName}/`).update({
+                    score: score,
+                    time: new Date()
+                });
             }
         }
-    }
-
-    onAuthStateChanged(func) {
-        return this._firebase.auth().onAuthStateChanged(func);
-    }
-
-    login(login, password) {
-        return firebase.auth().signInWithEmailAndPassword(login, password);
-    }
-
-    logout() {
-        this._firebase.auth().signOut();
-    }
-
-    isAdmin() {
-        if (this.isAuthenticated()) return this._firebase.auth().currentUser.role === 'admin';
-        return false
-    }
-
-
-    get firebase() {
-        return this._firebase;
     }
 }

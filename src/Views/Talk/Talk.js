@@ -4,96 +4,64 @@ import {Avatar, Paper, IconButton} from 'material-ui';
 import config from '../../Config/theme';
 import ToggleStarBorder from 'material-ui/svg-icons/toggle/star-border';
 import ActionGrade from 'material-ui/svg-icons/action/grade';
-import reactMixin from 'react-mixin';
-import ReactFireMixin from 'reactfire';
 import Comments from './Comments';
 import {PropTypes} from 'prop-types';
 
-class Talk extends Component {
+export default class Talk extends Component {
 
     static propTypes = {
         profile: PropTypes.object.isRequired,
-        firebase: PropTypes.object,
         match: PropTypes.object
     };
 
-    constructor(props) {
-        super(props);
-        this.state = {votes: {}}
-    }
-
-    componentDidMount() {
-        const firebaseRef = this.props.firebase.database().ref(`/votes/${this.props.match.params.id}`);
-        this.setState({ref: firebaseRef});
-        this.bindAsObject(firebaseRef, 'votes');
-    }
-
     handleVote(score) {
-        this.state.ref.child('/' + this.props.profile.displayName).update({score: score, time: new Date()});
+        this.props.handleVote(this.props.match.params.id, score);
     };
 
-    getStars(initialRating) {
-        if (!initialRating || !initialRating.hasOwnProperty('score')) {
-            return <div>
-                <EmptyStar onVote={() => this.handleVote(-1)}/>
-                <EmptyStar onVote={() => this.handleVote(0)}/>
-                <EmptyStar onVote={() => this.handleVote(1)}/>
-                <EmptyStar onVote={() => this.handleVote(2)}/>
-                <EmptyStar onVote={() => this.handleVote(3)}/>
-            </div>
-        }
-        const score = initialRating.score;
-        return <div>
-            {score >= -1 ? <FullStar onVote={() => this.handleVote(-1)}/> : <EmptyStar onVote={() => this.handleVote(-1)}/>}
-            {score >= 0 ? <FullStar onVote={() => this.handleVote(0)}/> : <EmptyStar onVote={() => this.handleVote(0)}/>}
-            {score >= 1 ? <FullStar onVote={() => this.handleVote(1)}/> : <EmptyStar onVote={() => this.handleVote(1)}/>}
-            {score >= 2 ? <FullStar onVote={() => this.handleVote(2)}/> : <EmptyStar onVote={() => this.handleVote(2)}/>}
-            {score >= 3 ? <FullStar onVote={() => this.handleVote(3)}/> : <EmptyStar onVote={() => this.handleVote(3)}/>}
-        </div>
-    }
-
     render() {
-        const item = this.props.schedule.findById(this.props.match.params.id);
+        const talkId = this.props.match.params.id;
+
+        const votes = this.props.votes[talkId];
+        const item = this.props.schedule.findById(talkId);
         const avatar = item.speaker.photo ? <Avatar size={140} src={item.speaker.photo}/> : null;
-        const initialVote = this.state.votes[this.props.profile.displayName];
+        const initialVote = votes[this.props.profile.displayName];
+
         return (
             <div>
                 <Paper style={{padding: 30, margin: 30, textAlign: 'center'}} zDepth={1}>
                     {avatar}
                     <h2 style={{color: config.palette.accent1Color}}>{item.speaker.name}</h2>
                     <h3>{item.title}</h3>
-                    {this.getStars(initialVote)}
+                    <VotingStars initialRating={initialVote} handleVote={score => this.handleVote(score)} />
                 </Paper>
                 <h2>Komentarze</h2>
                 <Comments id={item.id}/>
             </div>
-        )
-    }
-}
-
-class FullStar extends Component {
-    static propTypes = {
-        onVote: PropTypes.func.isRequired
-    };
-
-    render() {
-        return (
-            <IconButton onTouchTap={() => this.props.onVote()} touch={true}><ActionGrade/></IconButton>
         );
     }
 }
 
-class EmptyStar extends Component {
-    static propTypes = {
-        onVote: PropTypes.func.isRequired
-    };
+/**
+ * @param {Object} initialRating
+ * @param {Function} handleVote
+ */
+const VotingStars = ({ initialRating, handleVote }) => {
+    const currentScore = initialRating && initialRating.hasOwnProperty('score') ? initialRating.score : -2;
+    return <div>
+        <Star starScore={-1} currentScore={currentScore} onClick={handleVote}/>
+        <Star starScore={0} currentScore={currentScore} onClick={handleVote}/>
+        <Star starScore={1} currentScore={currentScore} onClick={handleVote}/>
+        <Star starScore={2} currentScore={currentScore} onClick={handleVote}/>
+        <Star starScore={3} currentScore={currentScore} onClick={handleVote}/>
+    </div>
+};
 
-    render() {
-        return (
-            <IconButton onTouchTap={() => this.props.onVote()} touch={true}><ToggleStarBorder/></IconButton>
-        );
-    }
-}
-
-reactMixin(Talk.prototype, ReactFireMixin);
-export default Talk;
+/**
+ * @param {Number} currentScore
+ * @param {Number} starScore
+ * @param {Function} onClick
+ */
+const Star = ({ currentScore, starScore, onClick }) => {
+    const starIcon = starScore <= currentScore ? <ActionGrade/> : <ToggleStarBorder/>;
+    return <IconButton onTouchTap={() => onClick(starScore)} touch={true}>{starIcon}</IconButton>;
+};
