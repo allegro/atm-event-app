@@ -1,15 +1,16 @@
 import slugify from 'slugify';
 
 export default class ScheduleRecord {
-    constructor(date, start, end, title, content, speaker, photo = 'https://bgalek.github.io/atm/img/speakers/person.svg') {
+    constructor({ date, start, end, title, content, speakers = [], type = 'talk', photo = 'https://bgalek.github.io/atm/img/speakers/person.svg'}) {
         this._id = slugify(title || '');
         this._date = date;
         this._start = start;
         this._end = end;
         this._title = title;
         this._content = content;
-        this._speaker = speaker;
+        this._speakers = speakers;
         this._photo = photo;
+        this._type = type;
     }
 
     get date() {
@@ -32,8 +33,8 @@ export default class ScheduleRecord {
         return this._content;
     }
 
-    get speaker() {
-        return this._speaker;
+    get speakers() {
+        return this._speakers;
     }
 
     get photo() {
@@ -48,7 +49,11 @@ export default class ScheduleRecord {
         return this.___id;
     }
 
+    get type() {
+        return this._type;
+    }
+
     isTechnical() {
-        return !this.speaker;
+        return !this.speakers || this.speakers.length === 0;
     }
 }

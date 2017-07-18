@@ -1,3 +1,7 @@
+.schedule-card .speaker-avatar:nth-child(n+2) {
+    margin-left: -12px;
+}
+
 .schedule-card-animation-appear {
     opacity: 0.01;
 }

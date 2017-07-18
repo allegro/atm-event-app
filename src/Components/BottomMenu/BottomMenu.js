@@ -25,11 +25,11 @@ class BottomMenuComponent extends Component {
             { label: 'Mapa', icon: <CommunicationLocationOn/>, link: '/atm/info' },
         ];
 
-        const acriveOptionIndex = menuOptions.findIndex(option => this.props.location.pathname.startsWith(option.link));
+        const activeOptionIndex = menuOptions.findIndex(option => this.props.location.pathname.startsWith(option.link));
 
         return (
             <Paper zDepth={1} style={{position: 'fixed', bottom: 0, zIndex: 1000, width: '100%'}}>
-                <BottomNavigation selectedIndex={acriveOptionIndex}>
+                <BottomNavigation selectedIndex={activeOptionIndex}>
                     {menuOptions.map(option =>
                         <BottomNavigationItem
                             key={option.link}

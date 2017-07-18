@@ -3,8 +3,22 @@ import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom'
 import {PropTypes} from 'prop-types';
 import {Avatar, Card, CardHeader, CardText, CardTitle} from "material-ui";
+import { SocialPerson, PlacesFreeBreakfast, MapsRestaurantMenu, SocialLocationCity,
+    ActionVerifiedUser, ActionSpeakerNotes, ActionFlightTakeoff, ActionFlightLand } from 'material-ui/svg-icons';
+
 import './ScheduleItem.css';
-import SocialPerson from 'material-ui/svg-icons/social/person';
+
+const getIconForEventType = type => {
+    return {
+        registration: <ActionVerifiedUser />,
+        open: <ActionFlightLand />,
+        keynote: <ActionSpeakerNotes />,
+        coffeebreak: <PlacesFreeBreakfast />,
+        lunch: <MapsRestaurantMenu />,
+        party: <SocialLocationCity />,
+        close: <ActionFlightTakeoff />
+    }[type];
+};
 
 class ScheduleItem extends Component {
 
@@ -15,11 +29,15 @@ class ScheduleItem extends Component {
     };
 
     renderTechnicalTime() {
-        const {item} = this.props;
+        const { title, type, start, end } = this.props.item;
 
-        return <Card className="schedule-card">
-            <CardTitle title={item.title}/>
-            <CardHeader subtitle={`${item.start} - ${item.end}`} textStyle={{'padding': '0'}}/>
+        return <Card className="schedule-card" style={{margin: '0 0 30px'}}>
+            <CardHeader
+                title={title}
+                subtitle={`${start} - ${end}`}
+                textStyle={{'padding': '0'}}
+                avatar={<Avatar icon={getIconForEventType(type)}/>}
+            />
         </Card>;
     }
 
@@ -29,11 +47,12 @@ class ScheduleItem extends Component {
         return <Card className="schedule-card" style={{margin: '0 0 30px 0', cursor: 'pointer'}}
                      onTouchTap={() => history.push(`/atm/talk/${item.id}`)}>
             <CardTitle title={item.title}/>
-            {hideDescription ? null : <CardText>{item.content}</CardText>}
-            <CardHeader title={item.speaker.name}
+            {hideDescription || item.type === 'lightning' ? null : <CardText>{item.content}</CardText>}
+
+            <CardHeader title={item.speakers.map(speaker => speaker.name).join(', ')}
                         textStyle={{'padding': '0'}}
                         subtitle={`${item.start} - ${item.end}`}
-                        avatar={item.speaker.photo ? <Avatar src={item.photo}/> : <Avatar icon={<SocialPerson/>}/>}
+                        avatar={<span>{item.speakers.map(speaker => <Avatar key={speaker.name} className="speaker-avatar" src={speaker.photo}/>)}</span>}
             />
         </Card>;
     }
