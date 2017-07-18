@@ -59,8 +59,7 @@ export default class App extends Component {
         if (!isLoggedIn) return <Login handleLogin={actions.login}/>;
 
         return <div>
-            <Route exact path="/" view={() => <Redirect to="/atm/home"/>}/>
-            <AnimatedRoute path="/atm/home" view={<Home schedule={schedule}/>}/>
+            <AnimatedRoute exact path="/atm/" view={<Home schedule={schedule}/>}/>
             <AnimatedRoute path="/atm/schedule" view={<Schedule schedule={schedule}/>}/>
             <AnimatedRoute path="/atm/talk/:id" view={<Talk profile={profile} schedule={schedule} votes={votes} handleVote={actions.vote} />}/>
             <AnimatedRoute path="/atm/info" view={<Info/>}/>

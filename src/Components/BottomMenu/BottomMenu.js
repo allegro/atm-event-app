@@ -24,7 +24,7 @@ class BottomMenuComponent extends Component {
         return (
             <Paper zDepth={1} style={{position: 'fixed', bottom: 0, zIndex: 1000, width: '100%'}}>
                 <BottomNavigation>
-                    <BottomNavigationItem label="Główna" icon={<ActionHome/>} onTouchTap={() => this.goTo('home')}/>
+                    <BottomNavigationItem label="Główna" icon={<ActionHome/>} onTouchTap={() => this.goTo('')}/>
                     <BottomNavigationItem label="Rozkład" icon={<ActionSchedule/>} onTouchTap={() => this.goTo('schedule')}/>
                     <BottomNavigationItem label="Stream" icon={<AvVideocam/>} onTouchTap={() => this.goTo('stream')}/>
                     <BottomNavigationItem label="Mapa" icon={<IconLocationOn/>} onTouchTap={() => this.goTo('info')}/>
