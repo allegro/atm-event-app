@@ -10,21 +10,31 @@ export default class Login extends React.Component {
 
     constructor() {
         super();
-        this.state = {loading: false, error: null};
+        this.state = {
+            loading: false,
+            error: null
+        };
     }
 
     handleSubmit(event) {
-        this.setState({loading: true});
-        let login = this.login.input.value;
-        if (!login.split('@')[1]) login = login + '@allegrogroup.com';
+        const { handleLogin } = this.props;
 
-        this.props.handleLogin(login, this.password.input.value).then(() => {
-            console.log('Login complete, redirect!');
-        }).catch((error) => {
-            this.setState({loading: false, error: error.message});
-        });
+        const login = this.loginField.getValue();
+        const password = this.passwordField.getValue();
+        const email = login + (login.split('@').length > 1 ? '' : '@allegrogroup.com');
+
+        this.setState({ loading: true });
+
+        handleLogin(email, password).catch(error => this.setState({
+            loading: false,
+            error: error.message
+        }));
 
         event.preventDefault();
+    }
+
+    resetErrors() {
+        this.setState({ error: null });
     }
 
     render() {
@@ -33,12 +43,22 @@ export default class Login extends React.Component {
                 {this.state.loading ? <LinearProgress mode="indeterminate"/> : null}
                 <form onSubmit={this.handleSubmit}>
                     <TextField
-                        hintText="bartosz.galek" floatingLabelText="login" ref={(input) => this.login = input}
-                        fullWidth={true} type="text" onChange={(event, newValue) => this.setState({username: newValue, error: null})}/>
-                    <TextField type="password" hintText="wprowadź hasło z identyfikatora" floatingLabelText="hasło"
-                               errorText={this.state.error}
-                               fullWidth={true} ref={(input) => this.password = input}
-                               onChange={(event, newValue) => this.setState({password: newValue, error: null})}/>
+                        type="text"
+                        hintText="bartosz.galek"
+                        floatingLabelText="login"
+                        ref={(input) => this.loginField = input}
+                        onChange={() => this.resetErrors()}
+                        fullWidth={true}
+                    />
+                    <TextField
+                        type="password"
+                        hintText="wprowadź hasło z identyfikatora"
+                        floatingLabelText="hasło"
+                        ref={(input) => this.passwordField = input}
+                        fullWidth={true}
+                        onChange={() => this.resetErrors()}
+                        errorText={this.state.error}
+                    />
                     <RaisedButton type="submit" style={{marginTop: '30px'}} label="zaloguj" primary={true}
                                   onClick={(event) => this.handleSubmit(event)}/>
                 </form>
