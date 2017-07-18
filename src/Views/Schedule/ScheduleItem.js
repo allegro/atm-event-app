@@ -47,7 +47,7 @@ class ScheduleItem extends Component {
         return <Card className="schedule-card" style={{margin: '0 0 30px 0', cursor: 'pointer'}}
                      onTouchTap={() => history.push(`/atm/talk/${item.id}`)}>
             <CardTitle title={item.title}/>
-            {hideDescription ? null : <CardText>{item.content}</CardText>}
+            {hideDescription || item.type === 'lightning' ? null : <CardText>{item.content}</CardText>}
             <CardHeader title={item.speaker.name}
                         textStyle={{'padding': '0'}}
                         subtitle={`${item.start} - ${item.end}`}
