@@ -1,17 +1,17 @@
-// @flow
-import React, {Component} from 'react';
-import {AppBar, Avatar} from "material-ui";
+import React from 'react';
+import { AppBar, Avatar } from 'material-ui';
+import { withRouter } from 'react-router-dom';
 
-export default class AuthenticatedBar extends Component {
-    render() {
-        return (
-            <AppBar title={this.props.title}
-                    showMenuIconButton={false}
-                    style={{position: 'sticky', top: 0}}
-                    onRightIconButtonTouchTap={() => this.props.goTo('profile')}
-                    iconElementRight={<Avatar style={{cursor: 'pointer'}} size={48} src={this.props.profile.photoURL}/>}>
-                {this.props.children}
-            </AppBar>
-        )
-    }
-}
+const AuthenticatedBar = ({ title, profile, children, history }) => {
+    return (
+        <AppBar title={title}
+                showMenuIconButton={false}
+                style={{position: 'sticky', top: 0}}
+                onRightIconButtonTouchTap={() => history.push('/atm/profile')}
+                iconElementRight={<Avatar style={{cursor: 'pointer'}} size={48} src={profile.photoURL}/>}>
+            {children}
+        </AppBar>
+    );
+};
+
+export default withRouter(AuthenticatedBar);

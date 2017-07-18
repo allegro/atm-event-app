@@ -27,6 +27,8 @@ class BottomMenuComponent extends Component {
 
         const acriveOptionIndex = menuOptions.findIndex(option => this.props.location.pathname.startsWith(option.link));
 
+        // containerElement={<Link to="/first"/>}
+
         return (
             <Paper zDepth={1} style={{position: 'fixed', bottom: 0, zIndex: 1000, width: '100%'}}>
                 <BottomNavigation selectedIndex={acriveOptionIndex}>
