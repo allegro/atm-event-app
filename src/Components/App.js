@@ -10,15 +10,12 @@ import { Home, Info, Loading, Login, Profile, Schedule, Speakers, Stream, Talk }
 
 export default class App extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            title: 'ATM2017',
-            isLoading: true,
-            isLoggedIn: false,
-            profile: {}
-        };
-    }
+    state = {
+        title: 'ATM2017',
+        isLoading: true,
+        isLoggedIn: false,
+        profile: {}
+    };
 
     componentWillMount() {
         const { auth } = this.props;
