@@ -9,6 +9,7 @@ import {
     deepPurple700,
     fullBlack,
     grey300,
+    orange500,
     white
 } from 'material-ui/styles/colors';
 import {fade} from "material-ui/utils/colorManipulator";
@@ -29,6 +30,7 @@ export default {
         pickerHeaderColor: cyan500,
         clockCircleColor: fade(darkBlack, 0.07),
         shadowColor: fullBlack,
+        ratingStarsColor: orange500
     },
     appBar: {
         // height: 50,

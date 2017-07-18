@@ -1,20 +1,20 @@
 // @flow
-import React, {Component} from 'react';
-import {Paper} from "material-ui";
+import React from 'react';
+import {Paper} from 'material-ui';
 import ReactDisqusComments from 'react-disqus-comments';
 import {PropTypes} from 'prop-types';
 
-export default class Comments extends Component {
+/**
+ * @param {String} id
+ */
+const Comments = ({ id }) => {
+    return <Paper style={{padding: 30}} zDepth={1}>
+        <ReactDisqusComments shortname="atm-1" identifier={id}/>
+    </Paper>;
+};
 
-    static propTypes = {
-        id: PropTypes.string.isRequired
-    };
+Comments.propTypes = {
+    id: PropTypes.string.isRequired
+};
 
-    render() {
-        return (
-            <Paper style={{padding: 30}} zDepth={1}>
-                <ReactDisqusComments shortname="atm-1" identifier={this.props.id}/>
-            </Paper>
-        );
-    }
-}
+export default Comments;
