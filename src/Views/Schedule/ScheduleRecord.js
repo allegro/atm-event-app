@@ -1,7 +1,7 @@
 import slugify from 'slugify';
 
 export default class ScheduleRecord {
-    constructor(date, start, end, title, content, speaker, photo = 'https://bgalek.github.io/atm/img/speakers/person.svg') {
+    constructor({ date, start, end, title, content, speaker, type = 'talk', photo = 'https://bgalek.github.io/atm/img/speakers/person.svg'}) {
         this._id = slugify(title || '');
         this._date = date;
         this._start = start;
@@ -10,6 +10,7 @@ export default class ScheduleRecord {
         this._content = content;
         this._speaker = speaker;
         this._photo = photo;
+        this._type = type;
     }
 
     get date() {
@@ -46,6 +47,10 @@ export default class ScheduleRecord {
 
     get key() {
         return this.___id;
+    }
+
+    get type() {
+        return this._type;
     }
 
     isTechnical() {

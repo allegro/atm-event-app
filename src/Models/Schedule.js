@@ -6,7 +6,16 @@ export default class ScheduleRepository {
 
     constructor(snapshot) {
         const records = snapshot.map(item => item.agenda
-            .map(record => new ScheduleRecord(item.date, record.start, record.end, record.title, record.content, record.speaker, record.photo)))
+            .map(record => new ScheduleRecord({
+                date: item.date,
+                start: record.start,
+                end: record.end,
+                title: record.title,
+                type: record.type,
+                content: record.content,
+                speaker: record.speaker,
+                photo: record.photo
+            })))
             .reduce((a, b) => a.concat(b), []);
         this.records = TAFFY(records);
     }
