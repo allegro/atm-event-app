@@ -7,7 +7,7 @@ export default class AnonymousAppBar extends Component {
     render() {
         return (
             <AppBar title={this.props.title} iconElementRight={<IconButton><SocialPerson/></IconButton>}
-                    iconElementLeft={<img src="https://raw.githubusercontent.com/allegro/atm-event-app/master/public/img/logo.svg" style={{height: 30, padding: 8}} />}
+                    iconElementLeft={<img src="https://raw.githubusercontent.com/allegro/atm-event-app/master/public/img/logo.svg" alt="logo" style={{height: 30, padding: 8}} />}
                     style={{position: 'sticky', top: 0}}
                     onRightIconButtonTouchTap={this.handleLogin}>
                 {this.props.children}

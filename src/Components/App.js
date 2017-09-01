@@ -84,7 +84,7 @@ export default class App extends Component {
 
         const routesDefinitions = [{
                 path: '/atm-event-app/home', exact: true,
-                appTitle: () => '',
+            appTitle: () => <div/>,
                 main: () => <Home schedule={schedule}/>
             },
             {
