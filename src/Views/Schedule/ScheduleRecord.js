@@ -1,7 +1,7 @@
 import slugify from 'slugify';
 
 export default class ScheduleRecord {
-    constructor({ date, start, end, title, content, speakers = [], type = 'talk', photo = 'https://bgalek.github.io/atm/img/speakers/person.svg'}) {
+    constructor({ date, start, end, title, content, speakers = [], type = 'talk', photo = ''}) {
         this._id = slugify(title || '');
         this._date = date;
         this._start = start;

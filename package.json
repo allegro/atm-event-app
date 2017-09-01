@@ -2,7 +2,7 @@
   "name": "atm",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://bgalek.github.io/atm",
+  "homepage": "https://allegro.tech/atm-event-app",
   "devDependencies": {
     "flow-bin": "^0.47.0",
     "gh-pages": "^1.0.0",
