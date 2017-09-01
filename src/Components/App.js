@@ -69,7 +69,7 @@ export default class App extends Component {
         const { actions } = this.props.auth;
 
         return <div>
-            <AnonymousBar title={this.state.title + ': logowanie'} />
+            <AnonymousBar title="Logowanie" />
             <Login handleLogin={actions.login} />
         </div>;
     }

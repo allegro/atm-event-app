@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'
 import { PropTypes } from 'prop-types';
 import { BottomNavigation, BottomNavigationItem, Paper } from 'material-ui';
-import { ActionHome, ActionSchedule, CommunicationLocationOn, AvVideocam } from 'material-ui/svg-icons';
+import { ActionHome, ActionSchedule, CommunicationLocationOn, ActionCardTravel } from 'material-ui/svg-icons';
 
 class BottomMenuComponent extends Component {
 
@@ -21,7 +21,7 @@ class BottomMenuComponent extends Component {
         const menuOptions = [
             { label: 'Główna', icon: <ActionHome/>, link: '/atm-event-app/home' },
             { label: 'Rozkład', icon: <ActionSchedule/>, link: '/atm-event-app/schedule' },
-            { label: 'Stream', icon: <AvVideocam/>, link: '/atm-event-app/stream' },
+            { label: 'Dojazd', icon: <ActionCardTravel/>, link: '/atm-event-app/logistics' },
             { label: 'Mapa', icon: <CommunicationLocationOn/>, link: '/atm-event-app/info' },
         ];
 
