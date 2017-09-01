@@ -52,7 +52,7 @@ class ScheduleItem extends Component {
             <CardHeader titleColor="#D50E50" title={item.speakers.map(speaker => speaker.name).join(', ')}
                         textStyle={{'padding': '0'}}
                         subtitle={`${item.start} - ${item.end}`}
-                        avatar={<span>{item.speakers.map(speaker => <Avatar key={speaker.name} className="speaker-avatar" src={speaker.photo}/>)}</span>}
+                        avatar={<span>{item.speakers.map((speaker, i) => <Avatar key={`${speaker.name}-${i}`} className="speaker-avatar" src={speaker.photo}/>)}</span>}
             />
         </Card>;
     }

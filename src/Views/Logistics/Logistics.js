@@ -5,7 +5,7 @@ export default class Logistics extends React.Component {
 
     render() {
         return (
-            <Paper style={{padding: 30, margin: 30, textAlign: 'center', display: 'flex', flexDirection: 'column'}}
+            <Paper style={{minHeight: '100vh', padding: 30, margin: 30, textAlign: 'center', display: 'flex', flexDirection: 'column'}}
                    zDepth={1}>
                 <div dangerouslySetInnerHTML={{__html: this.props.text}}/>
             </Paper>
