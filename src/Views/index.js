@@ -5,7 +5,7 @@ import Login from './Login/Login';
 import Profile from './Profile/Profile';
 import Schedule from './Schedule/Schedule';
 import Speakers from './Speakers/Speakers';
-import Stream from './Stream/Stream';
+import Logistics from './Logistics/Logistics';
 import Talk from './Talk/Talk';
 
 export {
@@ -16,6 +16,6 @@ export {
     Profile,
     Schedule,
     Speakers,
-    Stream,
+    Logistics,
     Talk
 };

@@ -6,12 +6,12 @@ import 'moment/locale/pl';
 
 import { Profile as ProfileModel, Schedule as ScheduleModel } from '../Models';
 import { ScrollToTop, AnonymousBar, AuthenticatedBar, BottomMenu, AnimatedRoute } from '../Components';
-import { Home, Info, Loading, Login, Profile, Schedule, Speakers, Stream, Talk } from '../Views';
+import { Home, Info, Loading, Login, Profile, Schedule, Speakers, Logistics, Talk } from '../Views';
 
 export default class App extends Component {
 
     state = {
-        title: 'ATM2017',
+        title: '',
         isLoading: true,
         isLoggedIn: false,
         profile: {}
@@ -84,7 +84,7 @@ export default class App extends Component {
 
         const routesDefinitions = [{
                 path: '/atm-event-app/home', exact: true,
-                appTitle: () => <div>ATM 2017</div>,
+                appTitle: () => '',
                 main: () => <Home schedule={schedule}/>
             },
             {
@@ -103,9 +103,9 @@ export default class App extends Component {
                 main: () => <Info/>
             },
             {
-                path: '/atm-event-app/stream',
+                path: '/atm-event-app/logistics',
                 appTitle: () => <div>Oglądaj na żywo</div>,
-                main: () => <Stream/>
+                main: () => <Logistics/>
             },
             {
                 path: '/atm-event-app/speakers',
