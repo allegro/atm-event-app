@@ -4,9 +4,9 @@ import {
     deepOrange100,
     deepOrange500,
     deepOrangeA200,
-    deepPurple100,
-    deepPurple500,
-    deepPurple700,
+    indigo100,
+    indigo500,
+    indigo700,
     fullBlack,
     grey300,
     orange500,
@@ -16,9 +16,9 @@ import {fade} from "material-ui/utils/colorManipulator";
 
 export default {
     palette: {
-        primary1Color: deepPurple500,
-        primary2Color: deepPurple700,
-        primary3Color: deepPurple100,
+        primary1Color: indigo500,
+        primary2Color: indigo700,
+        primary3Color: indigo100,
         accent1Color: deepOrangeA200,
         accent2Color: deepOrange100,
         accent3Color: deepOrange500,

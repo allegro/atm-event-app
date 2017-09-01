@@ -28,7 +28,7 @@ class BottomMenuComponent extends Component {
         const activeOptionIndex = menuOptions.findIndex(option => this.props.location.pathname.startsWith(option.link));
 
         return (
-            <Paper zDepth={1} style={{position: 'fixed', bottom: 0, zIndex: 1000, width: '100%'}}>
+            <Paper className="bottomBar" zDepth={1} style={{position: 'fixed', bottom: 0, zIndex: 1000, width: '100%'}}>
                 <BottomNavigation selectedIndex={activeOptionIndex}>
                     {menuOptions.map(option =>
                         <BottomNavigationItem

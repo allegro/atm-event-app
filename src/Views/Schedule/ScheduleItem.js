@@ -49,7 +49,7 @@ class ScheduleItem extends Component {
             <CardTitle title={item.title}/>
             {hideDescription || item.type === 'lightning' ? null : <CardText>{item.content}</CardText>}
 
-            <CardHeader title={item.speakers.map(speaker => speaker.name).join(', ')}
+            <CardHeader titleColor="#D50E50" title={item.speakers.map(speaker => speaker.name).join(', ')}
                         textStyle={{'padding': '0'}}
                         subtitle={`${item.start} - ${item.end}`}
                         avatar={<span>{item.speakers.map(speaker => <Avatar key={speaker.name} className="speaker-avatar" src={speaker.photo}/>)}</span>}

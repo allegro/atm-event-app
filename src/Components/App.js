@@ -34,6 +34,7 @@ export default class App extends Component {
             isLoggedIn: true,
             profile: new ProfileModel(user),
             schedule: new ScheduleModel(dbSnapshot.schedule),
+            logistics: dbSnapshot.logistics,
             speakers: dbSnapshot.speakers,
             votes: dbSnapshot.votes
         }));
@@ -79,12 +80,12 @@ export default class App extends Component {
      * that all the needed data are loaded and present
      */
     renderApp() {
-        const { profile, title, schedule, speakers, votes } = this.state;
+        const { profile, title, logistics, schedule, speakers, votes } = this.state;
         const { actions } = this.props.auth;
 
         const routesDefinitions = [{
                 path: '/atm-event-app/home', exact: true,
-            appTitle: () => <div/>,
+            appTitle: () => <div>Event App</div>,
                 main: () => <Home schedule={schedule}/>
             },
             {
@@ -105,7 +106,7 @@ export default class App extends Component {
             {
                 path: '/atm-event-app/logistics',
                 appTitle: () => <div>Oglądaj na żywo</div>,
-                main: () => <Logistics/>
+                main: () => <Logistics text={logistics}/>
             },
             {
                 path: '/atm-event-app/speakers',
