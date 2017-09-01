@@ -19,10 +19,10 @@ class BottomMenuComponent extends Component {
 
     render() {
         const menuOptions = [
-            { label: 'Główna', icon: <ActionHome/>, link: '/atm/home' },
-            { label: 'Rozkład', icon: <ActionSchedule/>, link: '/atm/schedule' },
-            { label: 'Stream', icon: <AvVideocam/>, link: '/atm/stream' },
-            { label: 'Mapa', icon: <CommunicationLocationOn/>, link: '/atm/info' },
+            { label: 'Główna', icon: <ActionHome/>, link: '/atm-event-app/home' },
+            { label: 'Rozkład', icon: <ActionSchedule/>, link: '/atm-event-app/schedule' },
+            { label: 'Stream', icon: <AvVideocam/>, link: '/atm-event-app/stream' },
+            { label: 'Mapa', icon: <CommunicationLocationOn/>, link: '/atm-event-app/info' },
         ];
 
         const activeOptionIndex = menuOptions.findIndex(option => this.props.location.pathname.startsWith(option.link));

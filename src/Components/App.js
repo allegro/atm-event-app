@@ -83,37 +83,37 @@ export default class App extends Component {
         const { actions } = this.props.auth;
 
         const routesDefinitions = [{
-                path: '/atm/home', exact: true,
+                path: '/atm-event-app/home', exact: true,
                 appTitle: () => <div>ATM 2017</div>,
                 main: () => <Home schedule={schedule}/>
             },
             {
-                path: '/atm/schedule',
+                path: '/atm-event-app/schedule',
                 appTitle: () => <div>Rozkład jazdy</div>,
                 main: () => <Schedule schedule={schedule}/>
             },
             {
-                path: '/atm/talk/:id',
+                path: '/atm-event-app/talk/:id',
                 appTitle: (props) => <div>{schedule.findById(props.match.params.id).title}</div>,
                 main: () => <Talk profile={profile} schedule={schedule} votes={votes} handleVote={actions.vote} />
             },
             {
-                path: '/atm/info',
+                path: '/atm-event-app/info',
                 appTitle: () => <div>Mapa wydarzenia</div>,
                 main: () => <Info/>
             },
             {
-                path: '/atm/stream',
+                path: '/atm-event-app/stream',
                 appTitle: () => <div>Oglądaj na żywo</div>,
                 main: () => <Stream/>
             },
             {
-                path: '/atm/speakers',
+                path: '/atm-event-app/speakers',
                 appTitle: () => <div>Prelegenci</div>,
                 main: () => <Speakers speakers={speakers}/>
             },
             {
-                path: '/atm/profile',
+                path: '/atm-event-app/profile',
                 appTitle: () => <div>Witaj {profile.displayName}!</div>,
                 main: () => <Profile profile={profile} handleLogout={actions.logout}/>
             }
@@ -135,7 +135,7 @@ export default class App extends Component {
             <BrowserRouter history={createHistory({forceRefresh: true})}>
                 <div>
                     <AuthenticatedBar title={titleComponent} profile={profile} />
-                    <Route exact path="/atm" render={() => <Redirect to="/atm/home" />} />
+                    <Route exact path="/atm-event-app" render={() => <Redirect to="/atm-event-app/home" />} />
                     {mainRoutesComponents}
                     <BottomMenu/>
                     <ScrollToTop/>

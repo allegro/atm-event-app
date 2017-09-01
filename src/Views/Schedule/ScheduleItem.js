@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom'
 import {PropTypes} from 'prop-types';
 import {Avatar, Card, CardHeader, CardText, CardTitle} from "material-ui";
-import { SocialPerson, PlacesFreeBreakfast, MapsRestaurantMenu, SocialLocationCity,
+import { PlacesFreeBreakfast, MapsRestaurantMenu, SocialLocationCity,
     ActionVerifiedUser, ActionSpeakerNotes, ActionFlightTakeoff, ActionFlightLand } from 'material-ui/svg-icons';
 
 import './ScheduleItem.css';
@@ -45,7 +45,7 @@ class ScheduleItem extends Component {
         const {item, history, hideDescription} = this.props;
 
         return <Card className="schedule-card" style={{margin: '0 0 30px 0', cursor: 'pointer'}}
-                     onTouchTap={() => history.push(`/atm/talk/${item.id}`)}>
+                     onTouchTap={() => history.push(`/atm-event-app/talk/${item.id}`)}>
             <CardTitle title={item.title}/>
             {hideDescription || item.type === 'lightning' ? null : <CardText>{item.content}</CardText>}
 
