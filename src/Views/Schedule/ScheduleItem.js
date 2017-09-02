@@ -4,7 +4,7 @@ import {withRouter} from 'react-router-dom'
 import {PropTypes} from 'prop-types';
 import {Avatar, Card, CardHeader, CardText, CardTitle} from "material-ui";
 import { PlacesFreeBreakfast, MapsRestaurantMenu, SocialLocationCity,
-    ActionVerifiedUser, ActionSpeakerNotes, ActionFlightTakeoff, ActionFlightLand } from 'material-ui/svg-icons';
+    ActionVerifiedUser, ActionSpeakerNotes, ActionFlightTakeoff, ActionFlightLand, ActionStars } from 'material-ui/svg-icons';
 
 import './ScheduleItem.css';
 
@@ -25,7 +25,8 @@ class ScheduleItem extends Component {
     static propTypes = {
         item: PropTypes.object.isRequired,
         hideDescription: PropTypes.bool,
-        action: PropTypes.func
+        action: PropTypes.func,
+        score: PropTypes.string
     };
 
     renderTechnicalTime() {
@@ -42,7 +43,11 @@ class ScheduleItem extends Component {
     }
 
     renderPresentationDesc() {
-        const {item, history, hideDescription} = this.props;
+        const {item, history, hideDescription, score} = this.props;
+        const avatar = <span>
+            {item.speakers.map((speaker, i) => <Avatar key={`${speaker.name}-${i}`} className="speaker-avatar" src={speaker.photo}/>)}
+            {score ? <p style={{float: 'right'}}><ActionStars style={{verticalAlign: 'middle', padding: 5, color: 'rgba(0, 0, 0, 0.54)'}} />{score}</p> : null}
+            </span>;
 
         return <Card className="schedule-card" style={{margin: '0 0 30px 0', cursor: 'pointer'}}
                      onTouchTap={() => history.push(`/atm-event-app/talk/${item.id}`)}>
@@ -52,8 +57,7 @@ class ScheduleItem extends Component {
             <CardHeader titleColor="#D50E50" title={item.speakers.map(speaker => speaker.name).join(', ')}
                         textStyle={{'padding': '0'}}
                         subtitle={`${item.start} - ${item.end}`}
-                        avatar={<span>{item.speakers.map((speaker, i) => <Avatar key={`${speaker.name}-${i}`} className="speaker-avatar" src={speaker.photo}/>)}</span>}
-            />
+                        avatar={avatar} />
         </Card>;
     }
 

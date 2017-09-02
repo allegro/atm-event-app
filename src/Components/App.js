@@ -91,7 +91,7 @@ export default class App extends Component {
             {
                 path: '/atm-event-app/schedule',
                 appTitle: () => <div>Rozkład jazdy</div>,
-                main: () => <Schedule schedule={schedule}/>
+                main: () => <Schedule schedule={schedule} votes={votes}/>
             },
             {
                 path: '/atm-event-app/talk/:id',
