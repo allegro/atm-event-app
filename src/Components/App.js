@@ -7,6 +7,7 @@ import 'moment/locale/pl';
 import { Profile as ProfileModel, Schedule as ScheduleModel } from '../Models';
 import { ScrollToTop, AnonymousBar, AuthenticatedBar, BottomMenu, AnimatedRoute } from '../Components';
 import { Home, Info, Loading, Login, Profile, Schedule, Speakers, Logistics, Talk } from '../Views';
+import Results from "../Views/Results/Results";
 
 export default class App extends Component {
 
@@ -82,42 +83,48 @@ export default class App extends Component {
     renderApp() {
         const { profile, title, logistics, schedule, speakers, votes } = this.state;
         const { actions } = this.props.auth;
+        const titleStyle = {textOverflow: 'ellipsis', overflow: 'hidden'};
 
         const routesDefinitions = [{
                 path: '/atm-event-app/home', exact: true,
-            appTitle: () => <div>Event App</div>,
+            appTitle: () => <div style={titleStyle}>Event App</div>,
                 main: () => <Home schedule={schedule}/>
             },
             {
                 path: '/atm-event-app/schedule',
-                appTitle: () => <div>Rozkład jazdy</div>,
+                appTitle: () => <div style={titleStyle}>Rozkład jazdy</div>,
                 main: () => <Schedule schedule={schedule} votes={votes}/>
             },
             {
                 path: '/atm-event-app/talk/:id',
-                appTitle: (props) => <div>{schedule.findById(props.match.params.id).title}</div>,
+                appTitle: (props) => <div style={titleStyle}>{schedule.findById(props.match.params.id).title}</div>,
                 main: () => <Talk profile={profile} schedule={schedule} votes={votes} handleVote={actions.vote} />
             },
             {
                 path: '/atm-event-app/info',
-                appTitle: () => <div>Mapa wydarzenia</div>,
+                appTitle: () => <div style={titleStyle}>Mapa wydarzenia</div>,
                 main: () => <Info/>
             },
             {
                 path: '/atm-event-app/logistics',
-                appTitle: () => <div>Oglądaj na żywo</div>,
+                appTitle: () => <div style={titleStyle}>Dojazd</div>,
                 main: () => <Logistics text={logistics}/>
             },
             {
                 path: '/atm-event-app/speakers',
-                appTitle: () => <div>Prelegenci</div>,
+                appTitle: () => <div style={titleStyle}>Prelegenci</div>,
                 main: () => <Speakers speakers={speakers}/>
             },
             {
                 path: '/atm-event-app/profile',
-                appTitle: () => <div>Witaj {profile.displayName}!</div>,
+                appTitle: () => <div style={titleStyle}>{profile.displayName}</div>,
                 main: () => <Profile profile={profile} handleLogout={actions.logout}/>
-            }
+            },
+            {
+                path: '/atm-event-app/results',
+                appTitle: () => <div style={titleStyle}>Wyniki głosowania</div>,
+                main: () => <Results votes={votes}/>
+            },
         ];
 
         const mainRoutesComponents = routesDefinitions.map((route, index) => (
@@ -129,7 +136,7 @@ export default class App extends Component {
             {routesDefinitions.map((route, index) => (
                 <Route key={index} path={route.path} exact={route.exact} component={route.appTitle} />
             ))}
-            <Route component={() => <div>{title}</div>} />
+            <Route component={() => <div style={titleStyle}>{title}</div>} />
         </Switch>;
 
         return (

@@ -2,8 +2,6 @@ import React from 'react';
 import { Avatar, Paper } from 'material-ui';
 import { PropTypes } from 'prop-types';
 
-import config from '../../Config/theme';
-
 import Comments from './Comments';
 import VotingStars from './VotingStars';
 
@@ -32,7 +30,7 @@ const Talk = ({ match, votes, schedule, profile, handleVote }) => {
     return <div>
         <Paper className="talk" style={{padding: 30, margin: 30, textAlign: 'center'}} zDepth={1}>
             {avatars}
-            <h2 style={{color: config.palette.accent1Color}}>
+            <h2 style={{color: '#D50E50'}}>
                 {speakers.map(speaker => <div key={speaker.name}>{speaker.name}</div>)}
             </h2>
             <h3>{talk.title}</h3>

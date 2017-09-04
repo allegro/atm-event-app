@@ -42,7 +42,7 @@ const Star = ({ currentScore, value, text, onScoreChange, iconFilled, iconNormal
     const isFilled = value <= currentScore;
     const starIcon = isFilled ? iconFilled : iconNormal;
 
-    return <IconButton onTouchTap={() => onScoreChange(value)} touch={true} tooltip={text}>{starIcon}</IconButton>;
+    return <IconButton style={{width: 35}} onTouchTap={() => onScoreChange(value)} touch={true} tooltip={text}>{starIcon}</IconButton>;
 };
 
 Star.defaultProps = {

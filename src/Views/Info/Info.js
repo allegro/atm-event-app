@@ -5,14 +5,15 @@ export default class Info extends Component {
 
     componentDidMount() {
         const places = [
-            { name: 'conference', position: { lat: 52.416090, lng: 16.925757 } },
-            { name: 'game', position: { lat: 52.418960, lng: 16.932361 } },
-            { name: 'party', position: { lat: 52.408072, lng: 16.934617 } }
+            {name: 'atm', position: {lat: 52.415808, lng: 16.931525}},
+            {name: 'hotel', position: {lat: 52.408534, lng: 16.911716}},
+            {name: 'gra miejska', position: {lat: 52.407697, lng: 16.912918}},
+            {name: 'party', position: {lat: 52.407061, lng: 16.910811}}
         ];
 
         const map = new window.google.maps.Map(document.getElementById('map'), {
             zoom: 14,
-            center: { lat: 52.412108, lng: 16.933848 }
+            center: {lat: 52.412108, lng: 16.933848}
         });
 
         places.forEach(place => new window.google.maps.Marker({
@@ -24,7 +25,7 @@ export default class Info extends Component {
 
     render() {
         return (
-            <div id="map" style={{minHeight: '100vh'}}></div>
+            <div id="map" style={{minHeight: '100vh'}}/>
         );
     }
 }

@@ -16,8 +16,8 @@ export default class Profile extends Component {
             <div>
                 <Paper style={{padding: 30, margin: 30, textAlign: 'center'}} zDepth={1}>
                     <h1>{profile.displayName}</h1>
-                    <h4>{profile.email}</h4>
-                    <img style={{width: 200, padding: 30}} src={profile.photoURL} alt="profile"/>
+                    <h5>{profile.email}</h5>
+                    <img style={{width: '90%', padding: '5%'}} src={profile.photoURL} alt="profile"/>
                     <RaisedButton style={{width: '90%'}} label="Wyloguj się" secondary={true} onTouchTap={() => this.props.handleLogout()}/>
                 </Paper>
             </div>

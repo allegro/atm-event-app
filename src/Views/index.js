@@ -7,6 +7,7 @@ import Schedule from './Schedule/Schedule';
 import Speakers from './Speakers/Speakers';
 import Logistics from './Logistics/Logistics';
 import Talk from './Talk/Talk';
+import Results from './Results/Results';
 
 export {
     Home,
@@ -17,5 +18,6 @@ export {
     Schedule,
     Speakers,
     Logistics,
-    Talk
+    Talk,
+    Results
 };
