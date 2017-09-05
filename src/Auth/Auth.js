@@ -44,7 +44,7 @@ export default class FirebaseAuth extends EventEmitter {
             vote: (talkId, score) => {
                 database.child(`/votes/${talkId}/${auth.currentUser.displayName}/`).update({
                     score: score,
-                    time: new Date()
+                    time: firebase.database.ServerValue.TIMESTAMP
                 });
             }
         }
