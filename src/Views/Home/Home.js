@@ -21,7 +21,6 @@ export default class Home extends Component {
                     <CardMedia overlay={<CardTitle title={next.title}/>}>
                         <img src={photo} alt="background"/>
                     </CardMedia>
-                    {console.log(next)}
                     <CardHeader titleColor='#D50E50' title={next.speakers ? next.speakers.map(speaker => speaker.name).join(', ') : ""} subtitle={moment(next.date + ' ' + next.start).fromNow()}
                                 avatar={next.speakers ? avatar : null}/>
                 </Card>
