@@ -44,7 +44,7 @@ export default class Login extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <TextField
                         type="text"
-                        hintText="bartosz.galek"
+                        hintText="imie.nazwisko"
                         floatingLabelText="login"
                         ref={(input) => this.loginField = input}
                         onChange={() => this.resetErrors()}
@@ -52,7 +52,7 @@ export default class Login extends React.Component {
                     />
                     <TextField
                         type="password"
-                        hintText="wprowadź hasło z identyfikatora"
+                        hintText="wprowadź hasło"
                         floatingLabelText="hasło"
                         ref={(input) => this.passwordField = input}
                         fullWidth={true}
