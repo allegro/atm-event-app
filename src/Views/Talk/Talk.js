@@ -5,6 +5,7 @@ import { PropTypes } from 'prop-types';
 import Comments from './Comments';
 import VotingStars from './VotingStars';
 
+import moment from "moment";
 import './Talk.css';
 
 /**
@@ -27,6 +28,10 @@ const Talk = ({ match, votes, schedule, profile, handleVote }) => {
     const talkVotes = votes[talkId] || {};
     const { score: userVoteValue } = talkVotes[profile.displayName] || {};
 
+    this.isVotingStarted = () => {
+        return moment(talk.date + ' ' + talk.start, "YYYY-MM-DD HH:mm").isBefore();
+    };
+
     return <div>
         <Paper className="talk" style={{padding: 30, margin: 30, textAlign: 'center'}} zDepth={1}>
             {avatars}
@@ -36,7 +41,7 @@ const Talk = ({ match, votes, schedule, profile, handleVote }) => {
             <h3>{talk.title}</h3>
 
             <h4>Twoja ocena:</h4>
-            <VotingStars currentScore={userVoteValue} onScoreChange={newScore => handleVote(talkId, newScore)} />
+            <VotingStars enabled={this.isVotingStarted()} currentScore={userVoteValue} onScoreChange={newScore => handleVote(talkId, newScore)} />
         </Paper>
         <h2>Komentarze</h2>
         <Comments id={talk.id}/>

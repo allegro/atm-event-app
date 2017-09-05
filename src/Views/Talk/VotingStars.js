@@ -16,18 +16,20 @@ const VotingStars = (props) => {
         { value:  1, text: 'Dobra!' },
         { value:  2, text: 'Świetna!' },
         { value:  3, text: 'Wyśmienita!' },
-    ].map(option => <Star key={option.value} {...option} {...props} />);
+    ].map(option => <Star enabled={props.enabled} key={option.value} {...option} {...props} />);
 
-    return <div>{choices}</div>;
+    return <div>{!props.enabled ? <p style={{color: 'red'}}>zagłosujesz dopiero po rozpoczęciu prelekcji</p> : undefined}{choices}</div>;
 };
 
 VotingStars.defaultProps = {
-    currentScore: -Infinity
+    currentScore: -Infinity,
+    enabled: false
 };
 
 VotingStars.propTypes = {
     currentScore: PropTypes.number.isRequired,
-    onScoreChange: PropTypes.func.isRequired
+    onScoreChange: PropTypes.func.isRequired,
+    enabled: PropTypes.bool.isRequired
 };
 
 /**
@@ -38,11 +40,11 @@ VotingStars.propTypes = {
  * @param {Node} iconFilled
  * @param {Node} iconNormal
  */
-const Star = ({ currentScore, value, text, onScoreChange, iconFilled, iconNormal }) => {
+const Star = ({ currentScore, value, text, onScoreChange, iconFilled, iconNormal, enabled }) => {
     const isFilled = value <= currentScore;
     const starIcon = isFilled ? iconFilled : iconNormal;
 
-    return <IconButton style={{width: 35}} onTouchTap={() => onScoreChange(value)} touch={true} tooltip={text}>{starIcon}</IconButton>;
+    return <IconButton disabled={!enabled} style={{width: 35}} onTouchTap={() => onScoreChange(value) } touch={true} tooltip={text}>{starIcon}</IconButton>;
 };
 
 Star.defaultProps = {
