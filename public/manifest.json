@@ -8,5 +8,27 @@
   "theme_color": "#3f51b5",
   "background_color": "#3f51b5",
   "gcm_sender_id": "549261178603",
-  "gcm_user_visible_only": true
+  "gcm_user_visible_only": true,
+  "icons": [
+    {
+      "src": "/atm-event-app/mipmap-mdpi/ic_launcher.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "/atm-event-app/mipmap-xhdpi/ic_launcher.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "/atm-event-app/mipmap-xxhdpi/ic_launcher.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "/atm-event-app/mipmap-xxxhdpi/ic_launcher.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ]
 }
