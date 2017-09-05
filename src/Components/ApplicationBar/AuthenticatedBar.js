@@ -8,6 +8,7 @@ const AuthenticatedBar = ({ title, profile, children, history }) => {
         <AppBar title={title}
                 style={{position: 'sticky', top: 0}}
                 iconElementLeft={logo}
+                onLeftIconButtonTouchTap={() => history.push('/atm-event-app')}
                 onRightIconButtonTouchTap={() => history.push('/atm-event-app/profile')}
                 iconElementRight={<Avatar style={{cursor: 'pointer'}} size={48} src={profile.photoURL}/>}>
             {children}
