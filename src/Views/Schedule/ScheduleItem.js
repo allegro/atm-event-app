@@ -46,7 +46,7 @@ class ScheduleItem extends Component {
         const {item, history, hideDescription, score} = this.props;
         const avatar = <span>
             {item.speakers.map((speaker, i) => <Avatar key={`${speaker.name}-${i}`} className="speaker-avatar" src={speaker.photo}/>)}
-            {score ? <p style={{float: 'right'}}><ActionStars style={{verticalAlign: 'middle', padding: 5, color: 'rgba(0, 0, 0, 0.54)'}} />{score}</p> : null}
+            {score ? <p style={{float: 'right'}}><ActionStars style={{verticalAlign: 'middle', padding: 5, color: 'rgba(0, 0, 0, 0.54)'}} />{score} głosów</p> : null}
             </span>;
 
         return <Card className="schedule-card" style={{margin: '0 0 30px 0', cursor: 'pointer'}}

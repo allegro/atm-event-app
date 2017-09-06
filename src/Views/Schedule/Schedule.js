@@ -32,7 +32,7 @@ export default class Schedule extends Component {
 
     getScore(item) {
         const votes = this.props.votes || {};
-        if (!votes.hasOwnProperty(item.id)) return null;
-        return parseFloat(Object.keys(votes[item.id]).map(key => votes[item.id][key].score).map(val => (val + 5) / (5 + 5)).reduce((a, b) => a + b, 0)).toFixed(1);
+        if (!votes.hasOwnProperty(item.id)) return 0;
+        return Object.keys(votes[item.id]).length;
     }
 }
