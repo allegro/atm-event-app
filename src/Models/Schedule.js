@@ -36,7 +36,7 @@ export default class ScheduleRepository {
         return this.records()
             .get()
             .filter(record => {
-                return !record.isTechnical() && moment(record.date).isAfter(moment(date));
+                return !record.isTechnical() && moment(moment(record.date + ' ' + record.start, "YYYY-MM-DD HH:mm")).isAfter(moment(date));
             })
             .slice(0, limit);
     }
