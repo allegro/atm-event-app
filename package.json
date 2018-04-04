@@ -1,41 +1,21 @@
 {
-  "name": "atm",
+  "name": "atm-event-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://allegro.tech/atm-event-app",
-  "devDependencies": {
-    "external-editor": "^2.0.4",
-    "flow-bin": "^0.47.0",
-    "gh-pages": "^1.0.0",
-    "klaw": "^2.1.0",
-    "react-scripts": "1.0.7"
-  },
   "dependencies": {
-    "blueimp-md5": "^2.10.0",
-    "firebase": "^4.3.0",
-    "history": "^4.7.2",
-    "material-ui": "^0.18.7",
-    "moment": "^2.18.1",
-    "prop-types": "^15.5.10",
-    "react": "^15.6.1",
-    "react-disqus-comments": "^1.0.3",
-    "react-dom": "^15.6.1",
-    "react-flexbox-grid": "^1.1.5",
-    "react-google-maps": "^7.2.0",
-    "react-router": "^4.2.0",
-    "react-router-dom": "^4.2.2",
-    "react-router-transition": "^0.1.1",
-    "react-tap-event-plugin": "^2.0.1",
-    "react-transition-group": "^1.2.0",
-    "slugify": "^1.2.1",
-    "taffy": "^2.6.2"
+    "material-ui": "^1.0.0-beta.40",
+    "material-ui-icons": "^1.0.0-beta.36",
+    "moment": "^2.22.0",
+    "prop-types": "^15.6.1",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1",
+    "react-scripts": "1.1.4",
+    "react-transition-group": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && cp ./build/index.html ./build/404.html",
+    "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "eject": "react-scripts eject"
   }
 }

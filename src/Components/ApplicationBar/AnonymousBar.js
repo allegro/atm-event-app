@@ -1,18 +1,47 @@
-// @flow
-import React, {Component} from 'react';
-import {AppBar, IconButton} from 'material-ui';
-import SocialPerson from 'material-ui/svg-icons/social/person';
-import logo from './logo';
+import React from 'react';
+import PropTypes from 'prop-types';
+import {withStyles} from 'material-ui/styles';
+import AppBar from 'material-ui/AppBar';
+import Toolbar from 'material-ui/Toolbar';
+import Typography from 'material-ui/Typography';
+import Button from 'material-ui/Button';
+import IconButton from 'material-ui/IconButton';
+import MenuIcon from 'material-ui-icons/Menu';
 
-export default class AnonymousAppBar extends Component {
-    render() {
-        return (
-            <AppBar title={this.props.title} iconElementRight={<IconButton><SocialPerson/></IconButton>}
-                    iconElementLeft={logo}
-                    style={{position: 'sticky', top: 0}}
-                    onRightIconButtonTouchTap={this.handleLogin}>
-                {this.props.children}
+const styles = {
+    root: {
+        flexGrow: 1,
+    },
+    flex: {
+        flex: 1,
+    },
+    menuButton: {
+        marginLeft: -12,
+        marginRight: 20,
+    },
+};
+
+function AnonymousBar(props) {
+    const {classes} = props;
+    return (
+        <div className={classes.root}>
+            <AppBar position="static">
+                <Toolbar>
+                    <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+                        <MenuIcon/>
+                    </IconButton>
+                    <Typography variant="title" color="inherit" className={classes.flex}>
+                        Title
+                    </Typography>
+                    <Button color="inherit">Login</Button>
+                </Toolbar>
             </AppBar>
-        )
-    }
+        </div>
+    );
 }
+
+AnonymousBar.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(AnonymousBar);

@@ -1,47 +1,49 @@
-// @flow
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom'
-import { PropTypes } from 'prop-types';
-import { BottomNavigation, BottomNavigationItem, Paper } from 'material-ui';
-import { ActionHome, ActionSchedule, CommunicationLocationOn, ActionCardTravel } from 'material-ui/svg-icons';
+import React from 'react';
+import PropTypes from 'prop-types';
+import {withStyles} from 'material-ui/styles';
+import BottomNavigation, {BottomNavigationAction} from 'material-ui/BottomNavigation';
+import RestoreIcon from 'material-ui-icons/Restore';
+import FavoriteIcon from 'material-ui-icons/Favorite';
+import LocationOnIcon from 'material-ui-icons/LocationOn';
 
-class BottomMenuComponent extends Component {
+const styles = {
+    root: {
+        position: 'fixed',
+        bottom: 0,
+        width: '100%'
+    },
+};
 
-    static propTypes = {
-        match: PropTypes.object.isRequired,
-        location: PropTypes.object.isRequired,
-        history: PropTypes.object.isRequired
+class BottomMenu extends React.Component {
+    state = {
+        value: 0,
     };
 
-    goTo = (route: string) => {
-        this.props.history.push(route);
+    handleChange = (event, value) => {
+        this.setState({value});
     };
 
     render() {
-        const menuOptions = [
-            { label: 'Główna', icon: <ActionHome/>, link: '/atm-event-app/home' },
-            { label: 'Rozkład', icon: <ActionSchedule/>, link: '/atm-event-app/schedule' },
-            { label: 'Dojazd', icon: <ActionCardTravel/>, link: '/atm-event-app/logistics' },
-            { label: 'Mapa', icon: <CommunicationLocationOn/>, link: '/atm-event-app/info' },
-        ];
-
-        const activeOptionIndex = menuOptions.findIndex(option => this.props.location.pathname.startsWith(option.link));
+        const {classes} = this.props;
+        const {value} = this.state;
 
         return (
-            <Paper className="bottomBar" zDepth={1} style={{position: 'fixed', bottom: 0, zIndex: 1000, width: '100%'}}>
-                <BottomNavigation selectedIndex={activeOptionIndex}>
-                    {menuOptions.map(option =>
-                        <BottomNavigationItem
-                            key={option.link}
-                            label={option.label}
-                            icon={option.icon}
-                            onTouchTap={() => this.goTo(option.link)}
-                        />
-                    )}
-                </BottomNavigation>
-            </Paper>
+            <BottomNavigation
+                value={value}
+                onChange={this.handleChange}
+                showLabels
+                className={classes.root}
+            >
+                <BottomNavigationAction label="Recents" icon={<RestoreIcon/>}/>
+                <BottomNavigationAction label="Favorites" icon={<FavoriteIcon/>}/>
+                <BottomNavigationAction label="Nearby" icon={<LocationOnIcon/>}/>
+            </BottomNavigation>
         );
     }
 }
 
-export default withRouter(BottomMenuComponent);
+BottomMenu.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(BottomMenu);
