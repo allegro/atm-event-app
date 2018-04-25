@@ -3,14 +3,25 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "material-ui": "^1.0.0-beta.40",
-    "material-ui-icons": "^1.0.0-beta.36",
+    "@material-ui/icons": "^1.0.0-beta.43",
+    "firebase": "^4.13.1",
+    "history": "^4.7.2",
+    "material-ui": "^1.0.0-beta.43",
     "moment": "^2.22.0",
     "prop-types": "^15.6.1",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
+    "react-redux": "^5.0.7",
+    "react-redux-firebase": "^2.0.6",
+    "react-router-dom": "^4.2.2",
+    "react-router-redux": "^5.0.0-alpha.9",
     "react-scripts": "1.1.4",
-    "react-transition-group": "^2.3.0"
+    "react-transition-group": "^2.3.0",
+    "recompose": "^0.27.0",
+    "redux": "^4.0.0",
+    "redux-auth-wrapper": "^2.0.2",
+    "redux-saga": "^0.16.0",
+    "typeface-roboto": "0.0.54"
   },
   "scripts": {
     "start": "react-scripts start",
