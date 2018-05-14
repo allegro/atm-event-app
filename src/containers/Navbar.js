@@ -4,17 +4,17 @@ import { connect } from "react-redux";
 import { firebaseConnect, isLoaded, isEmpty } from "react-redux-firebase";
 import { Link } from "react-router-dom";
 import { push } from "react-router-redux";
-import { withStyles } from "material-ui/styles";
+import { withStyles } from "@material-ui/core/styles";
 import { compose } from "recompose";
 
-import AppBar from "material-ui/AppBar";
-import Avatar from "material-ui/Avatar";
-import Button from "material-ui/Button";
-import IconButton from "material-ui/IconButton";
-import Toolbar from "material-ui/Toolbar";
-import Typography from "material-ui/Typography";
-import Menu, { MenuItem } from "material-ui/Menu";
-import { ListItemText, ListItemIcon } from "material-ui/List";
+import AppBar from "@material-ui/core/AppBar";
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import Menu, { MenuItem } from "@material-ui/core/Menu";
+import { ListItemText, ListItemIcon } from "@material-ui/core/List";
 
 import ArrowDropDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import CssBaseline from "material-ui/CssBaseline";
-import { MuiThemeProvider, createMuiTheme } from "material-ui/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { ConnectedRouter } from "react-router-redux";
 import { Provider } from "react-redux";
 
