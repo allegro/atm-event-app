@@ -7,6 +7,7 @@
     "@material-ui/icons": "^1.0.0-rc.0",
     "firebase": "^4.13.1",
     "history": "^4.7.2",
+    "lodash": "^4.17.10",
     "prop-types": "^15.6.1",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
@@ -19,6 +20,7 @@
     "recompose": "^0.27.0",
     "redux": "^4.0.0",
     "redux-auth-wrapper": "^2.0.2",
+    "redux-form": "^7.3.0",
     "redux-saga": "^0.16.0",
     "typeface-roboto": "0.0.54"
   },

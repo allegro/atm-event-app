@@ -4,6 +4,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { ConnectedRouter } from "react-router-redux";
 import { Provider } from "react-redux";
+import Notifications from "./Notifications";
 
 import BaseLayout from "../layouts/BaseLayout";
 import Theme from "../theme";
@@ -28,6 +29,7 @@ class AppContainer extends Component {
                         <BaseLayout>
                             <div>
                                 {routes}
+                                <Notifications />
                             </div>
                         </BaseLayout>
                     </ConnectedRouter>
