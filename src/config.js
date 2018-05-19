@@ -8,7 +8,8 @@ export const firebase = {
 };
 
 export const reduxFirebase = {
-    userProfile: "users"
+    userProfile: "users",
+    useFirestoreForProfile: true
 };
 
 export default { firebase, reduxFirebase };

@@ -4,8 +4,9 @@ import createSagaMiddleware from "redux-saga";
 import firebase from "firebase";
 import createHistory from "history/createBrowserHistory";
 import { reactReduxFirebase, getFirebase } from "react-redux-firebase";
+import { reduxFirestore } from "redux-firestore";
 
-import { reduxFirebase as reduxConfig } from "./config";
+import { reduxFirebase as reduxFirebaseConfig } from "./config";
 import rootReducer from "./modules";
 import Saga from "./sagas";
 
@@ -32,7 +33,8 @@ export function createAppStore(initialState = {}) {
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
     const composedEnhancers = composeEnhancers(
-        reactReduxFirebase(firebase, reduxConfig),
+        reactReduxFirebase(firebase, reduxFirebaseConfig),
+        reduxFirestore(firebase),
         applyMiddleware(...middleware),
         ...enhancers
     );

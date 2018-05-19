@@ -5,7 +5,6 @@ import Paper from "@material-ui/core/Paper";
 import { withFirebase } from "react-redux-firebase";
 import { withHandlers, pure, compose } from "recompose";
 
-import Typography from "@material-ui/core/Typography";
 import { UserIsNotAuthenticated } from "../../utils/router";
 
 import { withNotifications } from "../../modules/notification";
@@ -64,7 +63,7 @@ export default compose(
             props.showError(formErrs ? "Form Invalid" : err.message || "Error"),
 
         emailLogin: ({ firebase, showError, showSuccess }) => creds =>
-            firebase.login(creds).then(() => showSuccess('Zalogowano poprawnie')).catch(err => showError(err.message))
+            firebase.login(creds).then(() => showSuccess("Zalogowano poprawnie")).catch(err => showError(err.message))
     }),
     withStyles(styles),
     pure

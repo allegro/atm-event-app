@@ -1,6 +1,5 @@
-import { fork } from "redux-saga/effects";
-import someSaga from "./some";
+// import { fork } from "redux-saga/effects";
 
 export default function* rootSaga() {
-    yield fork(someSaga);
+    // yield fork(someSaga);
 }

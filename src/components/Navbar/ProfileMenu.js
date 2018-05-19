@@ -35,7 +35,7 @@ class ProfileMenu extends Component {
     });
 
     render() {
-        const { classes, profile, auth } = this.props;
+        const { profile } = this.props;
         const { menuAnchorElement } = this.state;
         const isOpen = Boolean(menuAnchorElement);
 
