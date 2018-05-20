@@ -42,7 +42,7 @@ class Navbar extends Component {
     handleLogout = () => this.props.logout();
 
     render() {
-        const { profile, auth, classes } = this.props;
+        const { profile, auth, classes, gotoAdminPanel } = this.props;
 
         const dataLoaded = isLoaded(auth, profile);
         const authExists = isLoaded(auth) && !isEmpty(auth);
@@ -50,6 +50,14 @@ class Navbar extends Component {
         const profileMenu = dataLoaded && authExists
             ?
             <ProfileMenu profile={profile} auth={auth}>
+                {
+                    profile.role == "admin"
+                        ? <ProfileMenuItem onClick={gotoAdminPanel}>
+                            <ListItemText inset primary="Admin Panel" />
+                        </ProfileMenuItem>
+                        : null
+                }
+
                 <ProfileMenuItem onClick={this.handleLogout}>
                     <ListItemIcon><ExitToAppIcon /></ListItemIcon>
                     <ListItemText inset primary="Logout" />
@@ -88,6 +96,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+    gotoAdminPanel: () => dispatch(push("/admin")),
     logout: () => dispatch(push("/logout"))
 });
 

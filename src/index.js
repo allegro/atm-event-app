@@ -11,7 +11,9 @@ import registerServiceWorker from "./registerServiceWorker";
 import App from "./containers/App";
 
 firebase.initializeApp(firebaseConfig);
-firebase.firestore();
+
+const firestore = firebase.firestore();
+firestore.settings({ timestampsInSnapshots: true });
 
 const store = createAppStore();
 const routes = createRoutes(store);

@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import { compose } from "recompose";
 import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-
-import {push} from "react-router-redux";
 import {firebaseConnect} from "react-redux-firebase";
 import {connect} from "react-redux";
+
+import { UserIsAuthenticated } from "../../utils/router";
 
 const styles = theme => ({
     messageText: {
@@ -36,13 +36,10 @@ const mapStateToProps = (state) => ({
     profile: state.firebase.profile
 });
 
-const mapDispatchToProps = (dispatch) => ({
-    logout: () => dispatch(push("/logout"))
-});
-
 export default compose(
+    UserIsAuthenticated,
     firebaseConnect(),
-    connect(mapStateToProps, mapDispatchToProps),
+    connect(mapStateToProps),
     withStyles(styles)
 )(HomePage);
 
