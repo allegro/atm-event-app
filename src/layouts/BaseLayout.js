@@ -14,8 +14,6 @@ const styles = theme => ({
     },
     contentFrame: {
         height: "calc(100% - 48px)",
-        maxWidth: "1200px",
-        padding: "1.5em 1em 1em",
         margin: "0 auto",
         overflowY: "scroll"
     }

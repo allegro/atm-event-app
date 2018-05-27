@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 
-import { withStyles } from "@material-ui/core/styles";
+import {withStyles} from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
@@ -9,7 +9,10 @@ import MenuItem from "@material-ui/core/MenuItem";
 import IdentityIcon from "@material-ui/icons/PermIdentity";
 
 const styles = {
-
+    button: {
+        padding: 0,
+        minWidth: 'auto'
+    }
 };
 
 export class ProfileMenuItem extends Component {
@@ -19,8 +22,7 @@ export class ProfileMenuItem extends Component {
 }
 
 class ProfileMenu extends Component {
-    static propTypes = {
-    };
+    static propTypes = {};
 
     state = {
         menuAnchorElement: null,
@@ -35,22 +37,22 @@ class ProfileMenu extends Component {
     });
 
     render() {
-        const { profile } = this.props;
-        const { menuAnchorElement } = this.state;
+        const {profile, classes} = this.props;
+        const {menuAnchorElement} = this.state;
         const isOpen = Boolean(menuAnchorElement);
 
         return (
             <div>
-                <Button disableRipple={true} color="inherit" onClick={this.openMenu}>
+                <Button className={classes.button} disableRipple={true} color="inherit" onClick={this.openMenu}>
                     {profile.avatarUrl
-                        ? <Avatar src={profile.avatarUrl} />
-                        : <Avatar><IdentityIcon /></Avatar>
+                        ? <Avatar src={profile.avatarUrl}/>
+                        : <Avatar><IdentityIcon/></Avatar>
                     }
                 </Button>
                 <Menu
                     anchorEl={menuAnchorElement}
-                    anchorOrigin={{ vertical: "top", horizontal: "right" }}
-                    transformOrigin={{ vertical: "top", horizontal: "right" }}
+                    anchorOrigin={{vertical: "top", horizontal: "right"}}
+                    transformOrigin={{vertical: "top", horizontal: "right"}}
                     open={isOpen}
                     onClose={this.closeMenu}
                     onClick={this.closeMenu}
