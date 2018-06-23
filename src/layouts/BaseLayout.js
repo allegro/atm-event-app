@@ -7,28 +7,40 @@ import BottomMenu from "../components/BottomMenu/BottomMenu";
 
 const styles = theme => ({
     container: {
-        height: "100%",
-        minHeight: "100vh",
-        overflowY: "hidden",
+        height: "100vh",
+        overflow: "hidden",
+        display: "flex",
+        flexDirection: "column",
         backgroundColor: theme.palette.grey[200]
     },
+    topFrame: {
+        flexGrow: 0,
+        flexShrink: 0,
+    },
     contentFrame: {
-        height: "calc(100% - 48px)",
         margin: "0 auto",
-        overflowY: "scroll"
-    }
+        overflowY: "scroll",
+        flexGrow: 1
+    },
+    bottomFrame: {
+        flexGrow: 0,
+        flexShrink: 0,
+    },
 });
 
 export const BaseLayout = ({ children, classes }) => (
     <div className={classes.container}>
-        <Navbar />
+        <div className={classes.topFrame}><Navbar /></div>
         <div className={classes.contentFrame}>{children}</div>
-        <BottomMenu/>
+        <div className={classes.bottomFrame}><BottomMenu/></div>
     </div>
 );
 
 BaseLayout.propTypes = {
-    children: PropTypes.element.isRequired,
+    children: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.node),
+        PropTypes.node
+    ]),
     classes: PropTypes.object.isRequired
 };
 

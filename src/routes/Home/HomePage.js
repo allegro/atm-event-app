@@ -10,6 +10,9 @@ import FeaturedItem from "../../components/Schedule/FeaturedItem";
 import Talk from "../../domain/Talk";
 import Speaker from "../../domain/Speaker";
 import ScheduleItem from "../../components/Schedule/ScheduleItem";
+import LoadingSpinner from "../../components/LoadingSpinner";
+
+import BaseLayout from "../../layouts/BaseLayout";
 
 const styles = theme => ({
     topCard: {
@@ -41,21 +44,24 @@ function getFeaturedTalk(schedule) {
     const end = new Date(scheduleElement.date.seconds * 1000);
     end.setHours(example.end.split(":")[0]);
     end.setMinutes(example.end.split(":")[1]);
-    return new Talk(example.title, example.content, new Speaker(example.speaker.name, example.speaker.photo), start, end)
+    return new Talk(example.title, example.content, new Speaker(example.speaker.name, example.speaker.photo), start, end);
 }
 
 function HomePage(props) {
-    const {schedule} = props;
-    if (!isLoaded(schedule)) return <div>loading</div>; //TODO: how to reuse spinner?
-    return <div>
+    const { schedule } = props;
+
+    if (!isLoaded(schedule)) return <BaseLayout><LoadingSpinner /></BaseLayout>;
+
+    return <BaseLayout>
         <FeaturedItem talk={getFeaturedTalk(schedule)}/>
         <Typography variant="headline">Kolejne wystąpienia</Typography>
         {schedule[0].agenda.map(talk => <ScheduleItem key={talk.title} talk={talk}/>)}
-    </div>;
+    </BaseLayout>;
 }
 
 HomePage.propTypes = {
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
+    schedule: PropTypes.array
 };
 
 export default compose(

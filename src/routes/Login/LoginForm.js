@@ -15,8 +15,12 @@ const styles = theme => ({
         display: "flex",
         flexDirection: "column"
     },
+    field: {
+        marginTop: theme.spacing.unit,
+        marginBottom: theme.spacing.unit
+    },
     submit: {
-        marginTop: theme.spacing.unit * 2
+        marginTop: theme.spacing.unit * 3
     }
 });
 
@@ -34,15 +38,17 @@ export const LoginForm = ({ pristine, submitting, handleSubmit, classes }) => (
         <Field
             name="email"
             component={renderTextField}
-            label="Email"
+            label="E-mail"
             validate={[required, validateEmail]}
+            className={classes.field}
         />
         <Field
             name="password"
             component={renderTextField}
-            label="Password"
+            label="Hasło"
             type="password"
             validate={required}
+            className={classes.field}
         />
         <div className={classes.submit}>
             <Button
@@ -51,7 +57,7 @@ export const LoginForm = ({ pristine, submitting, handleSubmit, classes }) => (
                 type="submit"
                 disabled={pristine || submitting}
             >
-                {submitting ? "Loading" : "Login"}
+                {submitting ? "Logowanie..." : "Zaloguj"}
             </Button>
         </div>
     </form>

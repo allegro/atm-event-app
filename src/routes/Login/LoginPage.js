@@ -10,48 +10,51 @@ import { UserIsNotAuthenticated } from "../../utils/router";
 import { withNotifications } from "../../modules/notification";
 import LoginForm from "./LoginForm";
 
+import AtmLogo from "../../components/AtmLogo";
+import BareLayout from "../../layouts/BareLayout";
+
 import { withStyles } from "@material-ui/core/styles";
 
 const styles = theme => ({
     container: {
         maxWidth: "400px",
+        minHeight: "90vh",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
+        alignItems: "center",
         margin: "0 auto",
-        marginTop: theme.spacing.unit * 2
+        padding: theme.spacing.unit * 2
     },
-    or: {
-        textAlign: "center",
-        margin: theme.spacing.unit
-    },
-    providers: {
-        display: "flex",
-        justifyContent: "center"
-    },
-    panel: theme.mixins.gutters({
-        paddingTop: 16,
-        paddingBottom: 16,
-        marginTop: theme.spacing.unit * 3
-    })
+    panel: {
+        width: "100%",
+        ...theme.mixins.gutters({
+            paddingTop: 16,
+            paddingBottom: 16,
+            marginTop: theme.spacing.unit * 5
+        })
+    }
 });
 
-export const LoginPage = ({ emailLogin, googleLogin, onSubmitFail, classes }) => (
-    <div className={classes.container}>
-        <Paper className={classes.panel}>
-            <LoginForm onSubmit={emailLogin} onSubmitFail={onSubmitFail} />
-        </Paper>
-    </div>
+export const LoginPage = ({ emailLogin, onSubmitFail, classes }) => (
+    <BareLayout>
+        <div className={classes.container}>
+            <AtmLogo width={200} height="auto" />
+
+            <Paper className={classes.panel}>
+                <LoginForm onSubmit={emailLogin} onSubmitFail={onSubmitFail} />
+            </Paper>
+        </div>
+    </BareLayout>
 );
 
 LoginPage.propTypes = {
     classes: PropTypes.object,
-    firebase: PropTypes.shape({ // eslint-disable-line
+    firebase: PropTypes.shape({
         login: PropTypes.func.isRequired
     }),
     emailLogin: PropTypes.func,
-    onSubmitFail: PropTypes.func,
-    googleLogin: PropTypes.func
+    onSubmitFail: PropTypes.func
 };
 
 export default compose(

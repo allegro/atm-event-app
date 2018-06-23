@@ -10,18 +10,18 @@ import StarIcon from "@material-ui/icons/Star";
 import CommentIcon from "@material-ui/icons/Comment";
 import Typography from "@material-ui/core/Typography";
 import PropTypes from "prop-types";
-import Talk from "../../domain/Talk"
+import Talk from "../../domain/Talk";
 import moment from "moment";
 
 const styles = theme => ({
     root: {
-        overflow: 'initial'
+        overflow: "initial"
     },
     topCard: {
         backgroundImage: "url(https://subwallpaper.com/Widescreen-Wallpapers/google-now-wallpaper-photo-For-Widescreen-Wallpaper.jpg)",
         backgroundSize: "cover",
         backgroundPosition: "center",
-        height: "200px",
+        minHeight: "200px",
         display: "flex",
         justifyContent: "flex-end",
         flexDirection: "column"

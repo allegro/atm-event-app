@@ -1,14 +1,12 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import { routerMiddleware } from "react-router-redux";
 import createSagaMiddleware from "redux-saga";
-import firebase from "firebase";
 import createHistory from "history/createBrowserHistory";
-import { reactReduxFirebase, getFirebase } from "react-redux-firebase";
-import { reduxFirestore } from "redux-firestore";
 
-import { reduxFirebase as reduxFirebaseConfig } from "./config";
 import rootReducer from "./modules";
 import Saga from "./sagas";
+
+import reduxFirebase from "./firebase";
 
 export const history = createHistory();
 
@@ -19,13 +17,7 @@ export function createAppStore(initialState = {}) {
     const enhancers = [];
 
     const middleware = [
-        ({ dispatch, getState }) => next => action => {
-            if (typeof action === "function") {
-                return action(dispatch, getState, getFirebase);
-            }
-
-            return next(action);
-        },
+        ...reduxFirebase.middlewares,
         routerMiddleware(history),
         sagaMiddleware
     ];
@@ -33,8 +25,7 @@ export function createAppStore(initialState = {}) {
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
     const composedEnhancers = composeEnhancers(
-        reactReduxFirebase(firebase, reduxFirebaseConfig),
-        reduxFirestore(firebase),
+        ...reduxFirebase.enhancers,
         applyMiddleware(...middleware),
         ...enhancers
     );
