@@ -1,3 +1,9 @@
 import "typeface-roboto";
 
-export default {};
+export default {
+    palette: {
+        primary: {
+            main: "#4667C7"
+        }
+    },
+};

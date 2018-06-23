@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {withStyles} from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
+import { fade } from "@material-ui/core/styles/colorManipulator";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import PlaceIcon from "@material-ui/icons/Place";
@@ -9,10 +10,18 @@ import StarBorderIcon from "@material-ui/icons/StarBorder";
 import TodayIcon from "@material-ui/icons/Today";
 import HomeIcon from "@material-ui/icons/Home";
 
-const styles = {
+const styles = theme => ({
     root: {
+        backgroundColor: theme.palette.primary.main
     },
-};
+    linkRoot: {
+        color: fade(theme.palette.primary.contrastText, .6),
+        "&$linkSelected": {
+            color: theme.palette.primary.contrastText,
+        }
+    },
+    linkSelected: {}
+});
 
 class BottomMenu extends React.Component {
     state = {
@@ -27,18 +36,23 @@ class BottomMenu extends React.Component {
         const {classes} = this.props;
         const {value} = this.state;
 
+        const inverted = {
+            root: classes.linkRoot,
+            selected: classes.linkSelected
+        };
+
         return (
             <BottomNavigation
                 value={value}
                 onChange={this.handleChange}
                 showLabels
-                className={classes.root}
+                classes={{ root: classes.root }}
             >
-                <BottomNavigationAction label="Główna" icon={<HomeIcon />} />
-                <BottomNavigationAction label="Agenda" icon={<TodayIcon />} />
-                <BottomNavigationAction label="Oceny" icon={<StarBorderIcon />} />
-                <BottomNavigationAction label="Dojazd" icon={<CardTravelIcon />} />
-                <BottomNavigationAction label="Mapa" icon={<PlaceIcon />} />
+                <BottomNavigationAction label="Główna" icon={<HomeIcon />} classes={inverted} />
+                <BottomNavigationAction label="Agenda" icon={<TodayIcon />} classes={inverted} />
+                <BottomNavigationAction label="Oceny" icon={<StarBorderIcon />} classes={inverted} />
+                <BottomNavigationAction label="Dojazd" icon={<CardTravelIcon />} classes={inverted} />
+                <BottomNavigationAction label="Mapa" icon={<PlaceIcon />} classes={inverted} />
             </BottomNavigation>
         );
     }
