@@ -1,19 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {withStyles} from '@material-ui/core/styles';
-import BottomNavigation from '@material-ui/core/BottomNavigation';
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import PlaceIcon from '@material-ui/icons/Place';
-import CardTravelIcon from '@material-ui/icons/CardTravel';
-import StarBorderIcon from '@material-ui/icons/StarBorder';
-import TodayIcon from '@material-ui/icons/Today';
-import HomeIcon from '@material-ui/icons/Home';
+import React from "react";
+import PropTypes from "prop-types";
+import {withStyles} from "@material-ui/core/styles";
+import BottomNavigation from "@material-ui/core/BottomNavigation";
+import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
+import PlaceIcon from "@material-ui/icons/Place";
+import CardTravelIcon from "@material-ui/icons/CardTravel";
+import StarBorderIcon from "@material-ui/icons/StarBorder";
+import TodayIcon from "@material-ui/icons/Today";
+import HomeIcon from "@material-ui/icons/Home";
 
 const styles = {
     root: {
-        position: 'fixed',
-        bottom: 0,
-        width: '100%'
     },
 };
 
