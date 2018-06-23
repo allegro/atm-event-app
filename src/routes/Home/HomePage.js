@@ -6,32 +6,32 @@ import {withStyles} from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import {UserIsAuthenticated} from "../../utils/router";
 import {firestoreConnect, isLoaded} from "react-redux-firebase";
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions/CardActions";
 import Avatar from "@material-ui/core/Avatar/Avatar";
 import IdentityIcon from "@material-ui/icons/PermIdentity";
 import IconButton from "@material-ui/core/IconButton/IconButton";
-import StarIcon from '@material-ui/icons/Star';
-import CommentIcon from '@material-ui/icons/Comment';
+import StarIcon from "@material-ui/icons/Star";
+import CommentIcon from "@material-ui/icons/Comment";
 
 const styles = theme => ({
     topCard: {
-        backgroundImage: 'url(https://subwallpaper.com/Widescreen-Wallpapers/google-now-wallpaper-photo-For-Widescreen-Wallpaper.jpg)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        height: '200px',
-        display: 'flex',
-        justifyContent: 'flex-end',
-        flexDirection: 'column'
+        backgroundImage: "url(https://subwallpaper.com/Widescreen-Wallpapers/google-now-wallpaper-photo-For-Widescreen-Wallpaper.jpg)",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        height: "200px",
+        display: "flex",
+        justifyContent: "flex-end",
+        flexDirection: "column"
     },
     topHeading: {
         color: theme.palette.grey[200],
-        textShadow: '1px 1px #000'
+        textShadow: "1px 1px #000"
     },
     topParagraph: {
         color: theme.palette.grey[200],
-        textShadow: '1px 1px #000'
+        textShadow: "1px 1px #000"
     }
 });
 
@@ -56,7 +56,7 @@ function HomePage(props) {
                     <Typography>Name Surname</Typography>
                     <Typography>8 till end</Typography>
                 </div>
-                <IconButton aria-label="Star" style={{marginLeft: 'auto'}}>
+                <IconButton aria-label="Star" style={{marginLeft: "auto"}}>
                     <StarIcon/>
                 </IconButton>
                 <IconButton aria-label="Comment">
