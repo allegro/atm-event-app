@@ -20,6 +20,9 @@ import ProfileMenu, {ProfileMenuItem} from "../components/Navbar/ProfileMenu";
 import AtmLogo from "../components/AtmLogo";
 
 const styles = theme => ({
+    appBar: {
+        position: 'relative'
+    },
     flex: {
         flex: 1
     },
