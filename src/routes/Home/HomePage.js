@@ -6,14 +6,10 @@ import {withStyles} from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import {UserIsAuthenticated} from "../../utils/router";
 import {firestoreConnect, isLoaded} from "react-redux-firebase";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions/CardActions";
-import Avatar from "@material-ui/core/Avatar/Avatar";
-import IdentityIcon from "@material-ui/icons/PermIdentity";
-import IconButton from "@material-ui/core/IconButton/IconButton";
-import StarIcon from "@material-ui/icons/Star";
-import CommentIcon from "@material-ui/icons/Comment";
+import FeaturedItem from "../../components/Schedule/FeaturedItem";
+import Talk from "../../domain/Talk";
+import Speaker from "../../domain/Speaker";
+import ScheduleItem from "../../components/Schedule/ScheduleItem";
 
 const styles = theme => ({
     topCard: {
@@ -35,37 +31,26 @@ const styles = theme => ({
     }
 });
 
+function getFeaturedTalk(schedule) {
+    //TODO: make real logic :)
+    const scheduleElement = schedule[0];
+    const example = scheduleElement.agenda[2];
+    const start = new Date(scheduleElement.date.seconds * 1000);
+    start.setHours(example.start.split(":")[0]);
+    start.setMinutes(example.start.split(":")[1]);
+    const end = new Date(scheduleElement.date.seconds * 1000);
+    end.setHours(example.end.split(":")[0]);
+    end.setMinutes(example.end.split(":")[1]);
+    return new Talk(example.title, example.content, new Speaker(example.speaker.name, example.speaker.photo), start, end)
+}
+
 function HomePage(props) {
-    const {classes, schedule} = props;
+    const {schedule} = props;
+    if (!isLoaded(schedule)) return <div>loading</div>; //TODO: how to reuse spinner?
     return <div>
-        <Card>
-            <CardContent className={classes.topCard}>
-                <Typography className={classes.topHeading} gutterBottom variant="headline" component="h2">
-                    Tytuł wystąpienia
-                </Typography>
-                <Typography component="p" className={classes.topParagraph}>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aut, natus. Cupiditate dolores eaque
-                    eos expedita ipsa iste recusandae sint, vero voluptas! Dicta dolorem ex, ipsum iure saepe ullam ut.
-                </Typography>
-            </CardContent>
-            <CardActions>
-                <Avatar>
-                    <IdentityIcon/>
-                </Avatar>
-                <div>
-                    <Typography>Name Surname</Typography>
-                    <Typography>8 till end</Typography>
-                </div>
-                <IconButton aria-label="Star" style={{marginLeft: "auto"}}>
-                    <StarIcon/>
-                </IconButton>
-                <IconButton aria-label="Comment">
-                    <CommentIcon/>
-                </IconButton>
-            </CardActions>
-        </Card>
-        <Typography variant="headline" >Kolejne wystąpienia</Typography>
-        {isLoaded(schedule) ? schedule.map(day => <div key={day.id}>{day.id} / {day.date.toDate().toString()}</div>) : null}
+        <FeaturedItem talk={getFeaturedTalk(schedule)}/>
+        <Typography variant="headline">Kolejne wystąpienia</Typography>
+        {schedule[0].agenda.map(talk => <ScheduleItem key={talk.title} talk={talk}/>)}
     </div>;
 }
 
@@ -76,7 +61,7 @@ HomePage.propTypes = {
 export default compose(
     UserIsAuthenticated,
     firestoreConnect(["schedule"]),
-    connect((state, props) => ({
+    connect((state) => ({
         schedule: state.firestore.ordered.schedule
     })),
     withStyles(styles)
