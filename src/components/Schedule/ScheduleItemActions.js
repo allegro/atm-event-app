@@ -20,7 +20,7 @@ const styles = theme => ({
 
 const ScheduleItemActions = ({classes, speakers, startsAt}) => (
     <CardActions>
-        {speakers.map(speaker => <Avatar><IdentityIcon/></Avatar>)}
+        {speakers.map(speaker => <Avatar key={speaker.name}><IdentityIcon/></Avatar>)}
         <div>
             <Typography>{speakers.map(speaker => speaker.name).join(', ')}</Typography>
             <Typography>{moment(startsAt).fromNow()}</Typography>
@@ -36,8 +36,8 @@ const ScheduleItemActions = ({classes, speakers, startsAt}) => (
 
 ScheduleItemActions.propTypes = {
     classes: PropTypes.object.isRequired,
-    speakers: PropTypes.arrayOf(Speaker).isRequired,
-    startsAt: PropTypes.any
+    speakers: PropTypes.arrayOf(PropTypes.instanceOf(Speaker)).isRequired,
+    startsAt: PropTypes.number.isRequired
 };
 
 export default withStyles(styles)(ScheduleItemActions);

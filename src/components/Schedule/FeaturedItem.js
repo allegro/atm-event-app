@@ -34,7 +34,6 @@ const styles = theme => ({
     }
 });
 
-//TODO: should we keep full date in db?
 const FeaturedItem = ({classes, talk}) => (
     <Card className={classes.root}>
         <CardContent className={classes.card}>
@@ -45,7 +44,9 @@ const FeaturedItem = ({classes, talk}) => (
                 {talk.description}
             </Typography>
         </CardContent>
-        {talk.speakers ? <div className={classes.speaker}><ScheduleItemActions startsAt={talk.start} speakers={talk.speakers}/></div> : null}
+        {talk.speakers ? <div className={classes.speaker}>
+            <ScheduleItemActions startsAt={talk.start} speakers={talk.speakers}/>
+        </div> : undefined}
     </Card>
 );
 
