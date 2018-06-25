@@ -1,25 +1,15 @@
-// @flow
-import React from 'react';
-import ReactDOM from 'react-dom';
-import registerServiceWorker from './registerServiceWorker';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-import FirebaseAuth from './Auth/Auth';
-import {MuiThemeProvider} from "material-ui";
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import theme from './Config/theme';
-import 'moment/locale/pl';
-import './index.css';
-import App from './Components/App';
+import React from "react";
+import ReactDOM from "react-dom";
 
-import config from './Config/config';
+import createRoutes from "./routes";
+import registerServiceWorker from "./registerServiceWorker";
+import { history, createAppStore } from "./store";
 
-injectTapEventPlugin();
+import App from "./containers/App";
 
-const auth = new FirebaseAuth(config.FIREBASE_CONFIG);
+const store = createAppStore();
+const routes = createRoutes(store);
 
-ReactDOM.render(
-    <MuiThemeProvider muiTheme={getMuiTheme(theme)}>
-        <App auth={auth}/>
-    </MuiThemeProvider>,
-    document.querySelector('#app'));
+ReactDOM.render(<App store={store} history={history} routes={routes} />, document.getElementById("root"));
+
 registerServiceWorker();
