@@ -16,7 +16,8 @@ import BaseLayout from "../../layouts/BaseLayout";
 
 const styles = theme => ({
     sectionHeader: {
-        fontWeight: 100,
+        color: theme.palette.grey[500],
+        fontWeight: 300,
         padding: theme.spacing.unit * 3
     }
 });

@@ -5,32 +5,47 @@ import Avatar from "@material-ui/core/Avatar/Avatar";
 import IdentityIcon from "@material-ui/icons/PermIdentity";
 import IconButton from "@material-ui/core/IconButton/IconButton";
 import StarIcon from "@material-ui/icons/Star";
-import CommentIcon from "@material-ui/icons/Comment";
 import Typography from "@material-ui/core/Typography";
 import PropTypes from "prop-types";
 import Speaker from "../../domain/Speaker";
 import moment from "moment";
+import 'moment/locale/pl';
 
 const styles = theme => ({
-    root: {},
-    starButton: {
-        marginLeft: "auto"
+    avatars: {
+        minWidth: 80,
+        display: 'flex',
+        justifyContent: 'center'
+    },
+    avatar: {
+        '&:nth-child(2)': {
+            margin: `0 0 0 -${theme.spacing.unit * 2}px`
+        }
+    },
+    stars: {
+        display: 'flex',
+        alignItems: 'center',
+        padding: theme.spacing.unit,
+        width: '100%',
+        justifyContent: 'flex-end'
     }
 });
 
 const ScheduleItemActions = ({classes, speakers, startsAt}) => (
     <CardActions>
-        {speakers.map(speaker => <Avatar key={speaker.name}><IdentityIcon/></Avatar>)}
+        <div className={classes.avatars}>
+            {speakers.map(speaker => <Avatar className={classes.avatar} key={speaker.name}><IdentityIcon/></Avatar>)}
+        </div>
         <div>
-            <Typography>{speakers.map(speaker => speaker.name).join(', ')}</Typography>
+            <Typography color="secondary">{speakers.map(speaker => speaker.name).join(', ')}</Typography>
             <Typography>{moment(startsAt).fromNow()}</Typography>
         </div>
-        <IconButton aria-label="Star" className={classes.starButton}>
-            <StarIcon/>
-        </IconButton>
-        <IconButton aria-label="Comment">
-            <CommentIcon/>
-        </IconButton>
+        <div className={classes.stars}>
+            <IconButton aria-label="star">
+                <StarIcon/>
+            </IconButton>
+            <Typography>4,5</Typography>
+        </div>
     </CardActions>
 );
 

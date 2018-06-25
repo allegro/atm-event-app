@@ -10,14 +10,21 @@ import ScheduleItemActions from "./ScheduleItemActions";
 const styles = theme => ({
     root: {
         marginBottom: theme.spacing.unit * 2,
-        padding: theme.spacing.unit * 2
+    },
+    content: {
+        padding: `${theme.spacing.unit * 2}px 0 0 ${theme.spacing.unit * 2}px`
+    },
+    title: {
+        color: theme.palette.grey[700],
+        fontSize: '1.3em',
+        fontWeight: 300
     }
 });
 
 const ScheduleItem = ({classes, talk}) => (
-    <Card className={classes.root}>
-        <CardContent>
-            <Typography gutterBottom variant="headline" component="h2">
+    <Card className={classes.root} square>
+        <CardContent className={classes.content}>
+            <Typography className={classes.title} gutterBottom variant="subheading" component="h2">
                 {talk.title}
             </Typography>
         </CardContent>

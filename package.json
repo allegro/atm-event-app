@@ -1,6 +1,6 @@
 {
   "name": "atm-event-app",
-  "version": "0.1.0",
+  "homepage": "https://allegro.tech/atm-event-app",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^1.2.3",
@@ -28,7 +28,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && cp ./build/index.html ./build/404.html",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
