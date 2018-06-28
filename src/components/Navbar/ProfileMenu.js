@@ -11,7 +11,7 @@ import IdentityIcon from "@material-ui/icons/PermIdentity";
 const styles = {
     button: {
         padding: 0,
-        minWidth: 'auto'
+        minWidth: "auto"
     }
 };
 

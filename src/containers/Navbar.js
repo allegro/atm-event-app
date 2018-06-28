@@ -21,7 +21,7 @@ import AtmLogo from "../components/AtmLogo";
 
 const styles = theme => ({
     appBar: {
-        position: 'relative'
+        position: "relative"
     },
     flex: {
         flex: 1
@@ -43,7 +43,7 @@ class Navbar extends Component {
     handleLogout = () => this.props.logout();
 
     render() {
-        const {profile, auth, classes, gotoAdminPanel} = this.props;
+        const {profile, auth, classes} = this.props;
 
         const dataLoaded = isLoaded(auth, profile);
         const authExists = isLoaded(auth) && !isEmpty(auth);
@@ -56,8 +56,13 @@ class Navbar extends Component {
                             <AtmLogo />
                         </Link>
                     </Typography>
-                    {!dataLoaded ? <CircularProgress color="secondary"/> : dataLoaded && authExists ?
-                        Navbar.getProfileMenu(profile, auth, gotoAdminPanel) : Navbar.getLoginButton()}
+                    {
+                        !dataLoaded
+                            ? <CircularProgress color="secondary"/>
+                            : dataLoaded && authExists
+                                ? this.renderProfileMenu(profile, auth)
+                                : Navbar.getLoginButton()
+                    }
                 </Toolbar>
             </AppBar>
         );
@@ -67,13 +72,8 @@ class Navbar extends Component {
         return <Button color="inherit" component={props => <Link to="/login" {...props} />}>Login</Button>;
     }
 
-    static getProfileMenu(profile, auth, gotoAdminPanel) {
+    renderProfileMenu(profile, auth) {
         return <ProfileMenu profile={profile} auth={auth}>
-            {profile.role === "admin"
-                ? <ProfileMenuItem onClick={gotoAdminPanel}>
-                    <ListItemText inset primary="Admin Panel"/>
-                </ProfileMenuItem>
-                : null}
             <ProfileMenuItem onClick={this.handleLogout}>
                 <ListItemIcon><ExitToAppIcon/></ListItemIcon>
                 <ListItemText inset primary="Logout"/>
@@ -88,7 +88,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    gotoAdminPanel: () => dispatch(push("/admin")),
     logout: () => dispatch(push("/logout"))
 });
 
