@@ -1,13 +1,12 @@
 import { connectedReduxRedirect } from "redux-auth-wrapper/history4/redirect";
 import { replace } from "react-router-redux";
-import { homepage } from '../../package.json';
 import LoadingSpinner from "../components/LoadingSpinner";
 
 const AUTHED_REDIRECT = "AUTHED_REDIRECT";
 const UNAUTHED_REDIRECT = "UNAUTHED_REDIRECT";
 
 export const UserIsAuthenticated = connectedReduxRedirect({
-    redirectPath: `${homepage}/login`,
+    redirectPath: "/login",
     authenticatedSelector: ({ firebase: { auth } }) => !auth.isEmpty,
     authenticatingSelector: ({ firebase: { auth, isInitializing } }) => !auth.isLoaded || isInitializing,
     AuthenticatingComponent: LoadingSpinner,

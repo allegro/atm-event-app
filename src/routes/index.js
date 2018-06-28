@@ -9,11 +9,11 @@ import LogoutPage from "./Logout/LogoutPage";
 import Schedule from "./Schedule/Schedule";
 
 export const createRoutes = () => <Switch>
-    <Route exact path='/atm-event-app/admin' component={AdminPanel} />
-    <Route exact path='/atm-event-app/login' component={LoginPage} />
-    <Route exact path='/atm-event-app/logout' component={LogoutPage} />
-    <Route exact path='/atm-event-app/' component={Home} />
-    <Route exact path='/atm-event-app/schedule' component={Schedule} />
+    <Route exact path='/admin' component={AdminPanel} />
+    <Route exact path='/login' component={LoginPage} />
+    <Route exact path='/logout' component={LogoutPage} />
+    <Route exact path='/schedule' component={Schedule} />
+    <Route exact path='/' component={Home} />
     <Route exact path='*' component={NotFoundPage} />
 </Switch>;
 
