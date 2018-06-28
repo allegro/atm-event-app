@@ -3,8 +3,11 @@ import { routerMiddleware } from "react-router-redux";
 import createHistory from "history/createBrowserHistory";
 import rootReducer from "./modules";
 import reduxFirebase from "./firebase";
+import { pathPrefix } from "../package.json";
 
-export const history = createHistory();
+export const history = createHistory({
+    basename: window.location.pathname.startsWith(pathPrefix) ? pathPrefix : ""
+});
 
 export function createAppStore(initialState = {}) {
 
