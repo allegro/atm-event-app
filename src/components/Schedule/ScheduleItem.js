@@ -16,7 +16,7 @@ const styles = theme => ({
     },
     title: {
         color: theme.palette.grey[700],
-        fontSize: '1.3em',
+        fontSize: "1.3em",
         fontWeight: 300
     }
 });

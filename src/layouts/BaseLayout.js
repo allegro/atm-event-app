@@ -1,9 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { firestoreConnect, isLoaded } from "react-redux-firebase";
 
 import Navbar from "../containers/Navbar";
 import BottomMenu from "../components/BottomMenu/BottomMenu";
+import LoadingSpinner from "../components/LoadingSpinner";
+import { UserIsAuthenticated } from "../utils/router";
+import Speaker from "../domain/Speaker";
+import Talk from "../domain/Talk";
 
 const styles = theme => ({
     container: {
@@ -28,20 +35,44 @@ const styles = theme => ({
     },
 });
 
-export const BaseLayout = ({ children, classes }) => (
-    <div className={classes.container}>
-        <div className={classes.topFrame}><Navbar /></div>
-        <div className={classes.contentFrame}>{children}</div>
-        <div className={classes.bottomFrame}><BottomMenu/></div>
-    </div>
-);
+function mapToDomain(rawSchedule, rawSpeakers) {
+    const speakers = Object.keys(rawSpeakers)
+        .reduce((speakers, speakerRef) => {
+            return { ...speakers, [speakerRef]: Speaker.fromFirebase(rawSpeakers[speakerRef]) };
+        }, {});
 
-BaseLayout.propTypes = {
-    children: PropTypes.oneOfType([
-        PropTypes.arrayOf(PropTypes.node),
-        PropTypes.node
-    ]),
-    classes: PropTypes.object.isRequired
+    const schedule = Object.values(rawSchedule).map(firebaseTalk => Talk.fromFirebase(firebaseTalk, speakers));
+
+    return { schedule, speakers };
+}
+
+export const BaseLayout = ({ render, schedule, speakers, classes }) => {
+    const content = isLoaded(schedule) && isLoaded(speakers)
+        ? render(mapToDomain(schedule, speakers))
+        : <LoadingSpinner />;
+
+    return (
+        <div className={classes.container}>
+            <div className={classes.topFrame}><Navbar /></div>
+            <div className={classes.contentFrame}>{content}</div>
+            <div className={classes.bottomFrame}><BottomMenu/></div>
+        </div>
+    );
 };
 
-export default withStyles(styles)(BaseLayout);
+BaseLayout.propTypes = {
+    render: PropTypes.func.isRequired,
+    classes: PropTypes.object.isRequired,
+    schedule: PropTypes.object,
+    speakers: PropTypes.object
+};
+
+export default compose(
+    UserIsAuthenticated,
+    firestoreConnect(["schedule", "speakers"]),
+    connect(state => ({
+        schedule: state.firestore.data.schedule,
+        speakers: state.firestore.data.speakers
+    })),
+    withStyles(styles)
+)(BaseLayout);
