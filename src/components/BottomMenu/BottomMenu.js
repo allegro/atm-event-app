@@ -1,5 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { push } from "react-router-redux";
+import { compose } from "recompose";
 import { withStyles } from "@material-ui/core/styles";
 import { fade } from "@material-ui/core/styles/colorManipulator";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
@@ -23,14 +26,33 @@ const styles = theme => ({
     linkSelected: {}
 });
 
+const links = [
+    { label: "Główna", link: "/", exact: true, icon: <HomeIcon /> },
+    { label: "Agenda", link: "/schedule", icon: <TodayIcon /> },
+    { label: "Oceny", link: "/votes", icon: <StarBorderIcon /> },
+    { label: "Dojazd", link: "/directions", icon: <CardTravelIcon /> },
+    { label: "Mapa", link: "/map", icon: <PlaceIcon /> },
+];
+
 class BottomMenu extends React.Component {
     state = {
         value: 0,
     };
 
     handleChange = (event, value) => {
-        this.setState({value});
+        this.props.navigateTo(links[value].link);
     };
+
+    static getDerivedStateFromProps(props) {
+        const { currentPath } = props;
+
+        return {
+            value: links.findIndex(link => link.exact
+                ? currentPath === link.link
+                : currentPath.startsWith(link.link)
+            )
+        };
+    }
 
     render() {
         const {classes} = this.props;
@@ -48,18 +70,29 @@ class BottomMenu extends React.Component {
                 showLabels
                 classes={{ root: classes.root }}
             >
-                <BottomNavigationAction label="Główna" icon={<HomeIcon />} classes={inverted} />
-                <BottomNavigationAction label="Agenda" icon={<TodayIcon />} classes={inverted} />
-                <BottomNavigationAction label="Oceny" icon={<StarBorderIcon />} classes={inverted} />
-                <BottomNavigationAction label="Dojazd" icon={<CardTravelIcon />} classes={inverted} />
-                <BottomNavigationAction label="Mapa" icon={<PlaceIcon />} classes={inverted} />
+                {links.map(link => (
+                    <BottomNavigationAction key={link.label} label={link.label} icon={link.icon} classes={inverted} />
+                ))}
             </BottomNavigation>
         );
     }
 }
 
 BottomMenu.propTypes = {
+    currentPath: PropTypes.string.isRequired,
     classes: PropTypes.object.isRequired,
+    navigateTo: PropTypes.func.isRequired
 };
 
-export default withStyles(styles)(BottomMenu);
+const mapStateToProps = (state) => ({
+    currentPath: state.router.location.pathname
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    navigateTo: (path) => dispatch(push(path))
+});
+
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    withStyles(styles)
+)(BottomMenu);
