@@ -1,8 +1,9 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import { compose } from "redux";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import { firestoreConnect, isLoaded } from "react-redux-firebase";
 
 import Navbar from "../containers/Navbar";
@@ -46,25 +47,41 @@ function mapToDomain(rawSchedule, rawSpeakers) {
     return { schedule, speakers };
 }
 
-export const BaseLayout = ({ render, schedule, speakers, classes }) => {
-    const content = isLoaded(schedule) && isLoaded(speakers)
-        ? render(mapToDomain(schedule, speakers))
-        : <LoadingSpinner />;
+class BaseLayout extends Component {
+    constructor(props) {
+        super(props);
+        this.contentFrame = React.createRef();
+    }
 
-    return (
-        <div className={classes.container}>
-            <div className={classes.topFrame}><Navbar /></div>
-            <div className={classes.contentFrame}>{content}</div>
-            <div className={classes.bottomFrame}><BottomMenu/></div>
-        </div>
-    );
-};
+    componentDidUpdate(prevProps) {
+        if (this.props.location !== prevProps.location) {
+            this.contentFrame.current.scrollTo(0, 0);
+        }
+    }
+
+    render() {
+        const { render, schedule, speakers, classes } = this.props;
+        const content = isLoaded(schedule) && isLoaded(speakers)
+            ? render(mapToDomain(schedule, speakers))
+            : <LoadingSpinner/>;
+
+        return (
+
+            <div className={classes.container}>
+                <div className={classes.topFrame}><Navbar/></div>
+                <div className={classes.contentFrame} ref={this.contentFrame}>{content}</div>
+                <div className={classes.bottomFrame}><BottomMenu/></div>
+            </div>
+        );
+    };
+}
 
 BaseLayout.propTypes = {
     render: PropTypes.func.isRequired,
     classes: PropTypes.object.isRequired,
     schedule: PropTypes.object,
-    speakers: PropTypes.object
+    speakers: PropTypes.object,
+    location: PropTypes.string.isRequired
 };
 
 export default compose(
@@ -74,5 +91,6 @@ export default compose(
         schedule: state.firestore.data.schedule,
         speakers: state.firestore.data.speakers
     })),
-    withStyles(styles)
+    withStyles(styles),
+    withRouter
 )(BaseLayout);
