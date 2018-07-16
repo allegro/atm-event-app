@@ -3,7 +3,7 @@
   "pathPrefix": "/atm-event-app",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^1.2.3",
+    "@material-ui/core": "^1.4.0",
     "@material-ui/icons": "^1.1.0",
     "firebase": "^5.1.0",
     "history": "^4.7.2",

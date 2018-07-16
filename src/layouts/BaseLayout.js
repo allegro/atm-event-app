@@ -81,7 +81,7 @@ BaseLayout.propTypes = {
     classes: PropTypes.object.isRequired,
     schedule: PropTypes.object,
     speakers: PropTypes.object,
-    location: PropTypes.string.isRequired
+    location: PropTypes.object.isRequired
 };
 
 export default compose(

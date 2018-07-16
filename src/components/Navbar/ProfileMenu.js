@@ -5,8 +5,7 @@ import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-
-import IdentityIcon from "@material-ui/icons/PermIdentity";
+import {DEFAULT_ICON} from "../Avatars/Avatars";
 
 const styles = {
     button: {
@@ -46,7 +45,7 @@ class ProfileMenu extends Component {
                 <Button className={classes.button} disableRipple={true} color="inherit" onClick={this.openMenu}>
                     {profile.avatarUrl
                         ? <Avatar src={profile.avatarUrl}/>
-                        : <Avatar><IdentityIcon/></Avatar>
+                        : <Avatar>{DEFAULT_ICON}</Avatar>
                     }
                 </Button>
                 <Menu
