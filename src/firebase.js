@@ -8,9 +8,6 @@ import config from "./config";
 
 firebase.initializeApp(config.firebase);
 
-const firestore = firebase.firestore();
-firestore.settings({ timestampsInSnapshots: true });
-
 export const middlewares = [
     ({ dispatch, getState }) => next => action => {
         if (typeof action === "function") {
@@ -30,6 +27,3 @@ export default {
     middlewares,
     enhancers
 };
-
-// for debug
-window.firebase = firebase;

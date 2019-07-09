@@ -24,14 +24,14 @@ const styles = theme => ({
         justifyContent: "center",
         alignItems: "center",
         margin: "0 auto",
-        padding: theme.spacing.unit * 2
+        padding: theme.spacing(2)
     },
     panel: {
         width: "100%",
         ...theme.mixins.gutters({
             paddingTop: 16,
             paddingBottom: 16,
-            marginTop: theme.spacing.unit * 5
+            marginTop: theme.spacing(5)
         })
     }
 });

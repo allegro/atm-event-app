@@ -16,7 +16,7 @@ import Talk from "../../domain/Talk";
 const styles = theme => ({
     sectionHeader: {
         fontWeight: 100,
-        padding: theme.spacing.unit * 3
+        padding: theme.spacing(3)
     },
     tabsIndicator: {
         backgroundColor: theme.palette.secondary
@@ -40,9 +40,9 @@ const styles = theme => ({
     tabSelected: {},
 });
 
-function Transition(props) {
-    return <Slide direction="up" {...props} />;
-}
+const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+});
 
 class Votes extends React.Component {
     state = {
@@ -81,7 +81,7 @@ class Votes extends React.Component {
                     <Tabs
                         value={this.state.value}
                         onChange={this.handleChange}
-                        fullWidth
+                        variant="fullWidth"
                         classes={{ root: classes.tabsRoot, indicator: classes.tabsIndicator }}
                     >
                         <Tab classes={{ root: classes.tabRoot, selected: classes.tabSelected }} label="Środa" />

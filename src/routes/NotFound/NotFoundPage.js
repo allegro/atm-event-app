@@ -15,7 +15,7 @@ const styles = theme => ({
 
 function PageNotFound(props) {
     const { classes } = props;
-    return <Typography variant="headline" className={classes.messageText}>404</Typography>;
+    return <Typography variant="caption" className={classes.messageText}>404</Typography>;
 }
 
 PageNotFound.propTypes = {

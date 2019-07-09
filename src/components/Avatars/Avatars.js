@@ -15,7 +15,7 @@ const styles = theme => ({
     },
     avatar: {
         "&:nth-child(2)": {
-            margin: `0 0 0 -${theme.spacing.unit * 2}px`
+            margin: `0 0 0 -${theme.spacing(2)}px`
         }
     }
 });

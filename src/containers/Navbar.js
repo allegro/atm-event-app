@@ -1,22 +1,21 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
-import {connect} from "react-redux";
-import {firebaseConnect, isLoaded, isEmpty} from "react-redux-firebase";
-import {Link} from "react-router-dom";
-import {push} from "react-router-redux";
-import {withStyles} from "@material-ui/core/styles";
+import { connect } from "react-redux";
+import { firebaseConnect, isEmpty, isLoaded } from "react-redux-firebase";
+import { Link } from "react-router-dom";
+import { push } from "react-router-redux";
+import { withStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import {compose} from "recompose";
+import { compose } from "recompose";
 
 import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
-import ProfileMenu, {ProfileMenuItem} from "../Components/Navbar/ProfileMenu";
+import ProfileMenu, { ProfileMenuItem } from "../Components/Navbar/ProfileMenu";
 import AtmLogo from "../Components/AtmLogo";
 
 const styles = theme => ({
@@ -27,7 +26,7 @@ const styles = theme => ({
         flex: 1
     },
     userPhoto: {
-        marginRight: theme.spacing.unit
+        marginRight: theme.spacing(1)
     }
 });
 
@@ -43,7 +42,7 @@ class Navbar extends Component {
     handleLogout = () => this.props.logout();
 
     render() {
-        const {profile, auth, classes} = this.props;
+        const { profile, auth, classes } = this.props;
 
         const dataLoaded = isLoaded(auth, profile);
         const authExists = isLoaded(auth) && !isEmpty(auth);
@@ -51,17 +50,17 @@ class Navbar extends Component {
         return (
             <AppBar position="static" className={classes.appBar}>
                 <Toolbar>
-                    <Typography variant="title" color="inherit" className={classes.flex}>
+                    <div className={classes.flex}>
                         <Link to="/">
-                            <AtmLogo />
+                            <AtmLogo/>
                         </Link>
-                    </Typography>
+                    </div>
                     {
                         !dataLoaded
                             ? <CircularProgress color="secondary"/>
                             : dataLoaded && authExists
-                                ? this.renderProfileMenu(profile, auth)
-                                : Navbar.getLoginButton()
+                            ? this.renderProfileMenu(profile, auth)
+                            : Navbar.getLoginButton()
                     }
                 </Toolbar>
             </AppBar>

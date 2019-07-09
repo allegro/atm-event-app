@@ -21,7 +21,7 @@ const styles = theme => ({
         display: "flex",
         justifyContent: "flex-end",
         flexDirection: "column",
-        padding: theme.spacing.unit * 4
+        padding: theme.spacing(4)
     },
     heading: {
         color: theme.palette.grey[200],
@@ -35,7 +35,7 @@ const MapPage = ({ classes, pages }) => {
     return <div>
         <Card className={classes.root} square>
             <CardContent className={classes.imageCard}>
-                <Typography className={classes.heading} gutterBottom variant="headline" component="h2">
+                <Typography className={classes.heading} gutterBottom variant="caption" component="h2">
                     Dojazd
                 </Typography>
             </CardContent>

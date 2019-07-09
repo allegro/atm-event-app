@@ -1,11 +1,12 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import { routerMiddleware } from "react-router-redux";
-import createHistory from "history/createBrowserHistory";
 import rootReducer from "./modules";
 import reduxFirebase from "./firebase";
 import { pathPrefix } from "../package.json";
 
-export const history = createHistory({
+const createBrowserHistory = require("history").createBrowserHistory;
+
+export const history = createBrowserHistory({
     basename: window.location.pathname.startsWith(pathPrefix) ? pathPrefix : ""
 });
 

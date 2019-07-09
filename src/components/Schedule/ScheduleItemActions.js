@@ -13,7 +13,7 @@ const styles = theme => ({
     stars: {
         display: "flex",
         alignItems: "center",
-        padding: `${theme.spacing.unit}px ${theme.spacing.unit * 3}px`,
+        padding: `${theme.spacing(1)}px ${theme.spacing(3)}px`,
         justifyContent: "flex-end"
     }
 });

@@ -16,11 +16,11 @@ const styles = theme => ({
         flexDirection: "column"
     },
     field: {
-        marginTop: theme.spacing.unit,
-        marginBottom: theme.spacing.unit
+        marginTop: theme.spacing(1),
+        marginBottom: theme.spacing(1)
     },
     submit: {
-        marginTop: theme.spacing.unit * 3
+        marginTop: theme.spacing(3)
     }
 });
 

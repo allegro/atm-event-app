@@ -21,7 +21,7 @@ const styles = theme => ({
         display: "flex",
         justifyContent: "flex-end",
         flexDirection: "column",
-        padding: theme.spacing.unit * 4
+        padding: theme.spacing(4)
     },
     heading: {
         color: theme.palette.grey[200],

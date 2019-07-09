@@ -19,7 +19,7 @@ const styles = theme => ({
         flex: 1,
     },
     talkDetails: {
-        padding: theme.spacing.unit * 3,
+        padding: theme.spacing(3),
     },
     speakerItem: {
         display: "flex",
@@ -30,32 +30,32 @@ const styles = theme => ({
     speakerAvatar: {
         width: 70,
         height: 70,
-        marginBottom: theme.spacing.unit,
+        marginBottom: theme.spacing(1),
     },
     talkTitle: {
         textAlign: "center",
         fontSize: "16px",
         color: theme.palette.grey[600],
-        paddingTop: theme.spacing.unit * 2,
-        paddingBottom: theme.spacing.unit * 2,
+        paddingTop: theme.spacing(2),
+        paddingBottom: theme.spacing(2),
     },
     talkDescription: {
         textAlign: "justify",
         fontSize: "16px",
-        paddingTop: theme.spacing.unit * 2,
-        paddingBottom: theme.spacing.unit * 2,
+        paddingTop: theme.spacing(2),
+        paddingBottom: theme.spacing(2),
     },
     talkSpeakers: {
-        paddingTop: theme.spacing.unit * 3,
+        paddingTop: theme.spacing(3),
     },
     speakerBio: {
-        paddingTop: theme.spacing.unit * 3,
+        paddingTop: theme.spacing(3),
         color: theme.palette.grey[600],
         textAlign: "center"
     },
     lightningChip: {
         display: "block",
-        paddingBottom: theme.spacing.unit * 2,
+        paddingBottom: theme.spacing(2),
     }
 });
 
@@ -71,7 +71,7 @@ function TalkDetailsDialog(props) {
                     <IconButton color="inherit" onClick={onClose} aria-label="Close">
                         <ArrowBackIcon />
                     </IconButton>
-                    <Typography variant="title" color="inherit" className={classes.flex}>
+                    <Typography variant="caption" color="inherit" className={classes.flex}>
                         Wystąpienie
                     </Typography>
                 </Toolbar>

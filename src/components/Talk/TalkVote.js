@@ -25,7 +25,7 @@ const styles = theme => ({
         flex: 1,
     },
     talkDetails: {
-        padding: theme.spacing.unit * 3,
+        padding: theme.spacing(3),
     },
     speakerItem: {
         display: "flex",
@@ -36,26 +36,26 @@ const styles = theme => ({
     speakerAvatar: {
         width: 70,
         height: 70,
-        marginBottom: theme.spacing.unit,
+        marginBottom: theme.spacing(1),
     },
     talkTitle: {
         textAlign: "center",
         fontSize: "16px",
         color: theme.palette.grey[600],
-        paddingTop: theme.spacing.unit * 2,
-        paddingBottom: theme.spacing.unit * 2,
+        paddingTop: theme.spacing(2),
+        paddingBottom: theme.spacing(2),
     },
     talkDescription: {
         textAlign: "justify",
         fontSize: "16px",
-        paddingTop: theme.spacing.unit * 2,
-        paddingBottom: theme.spacing.unit * 2,
+        paddingTop: theme.spacing(2),
+        paddingBottom: theme.spacing(2),
     },
     voteHeader: {
         textAlign: "center",
         fontSize: "13px",
         color: theme.palette.grey[600],
-        paddingTop: theme.spacing.unit * 4,
+        paddingTop: theme.spacing(4),
     },
     commentTextField: {
         width: "100%",
@@ -135,7 +135,7 @@ class TalkVoteDialog extends Component {
                         <IconButton color="inherit" onClick={onClose} aria-label="Close">
                             <ArrowBackIcon/>
                         </IconButton>
-                        <Typography variant="title" color="inherit" className={classes.flex}>
+                        <Typography variant="caption" color="inherit" className={classes.flex}>
                             Oceń wystąpienie
                         </Typography>
                     </Toolbar>
@@ -153,11 +153,11 @@ class TalkVoteDialog extends Component {
                     {isStarted ? <Typography style={{padding: 10}} color="secondary" variant="body1" align="center">
                         Za wcześnie na oceny i komentarze!
                     </Typography> : <div>
-                        <Typography className={classes.voteHeader} variant="headline">
+                        <Typography className={classes.voteHeader} variant="caption">
                             Twoja ocena:
                         </Typography>
                         <Rating value={score} max={5} onChange={this.onVote}/>
-                        <Typography className={classes.voteHeader} variant="headline">
+                        <Typography className={classes.voteHeader} variant="caption">
                             Twój komentarz:
                         </Typography>
 

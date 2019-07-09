@@ -22,7 +22,7 @@ const styles = theme => ({
         display: "flex",
         justifyContent: "flex-end",
         flexDirection: "column",
-        padding: theme.spacing.unit * 4
+        padding: theme.spacing(4)
     },
     heading: {
         textShadow: "1px 1px #000"
@@ -52,7 +52,7 @@ const styles = theme => ({
     sectionHeader: {
         color: theme.palette.grey[500],
         fontWeight: 300,
-        padding: theme.spacing.unit * 3
+        padding: theme.spacing(3)
     }
 });
 
@@ -62,7 +62,7 @@ const MapPage = ({ classes, pages }) => {
     const { map } = pages;
 
     return <div>
-        <Typography className={classes.sectionHeader} variant="headline">Otwórz w mapach</Typography>
+        <Typography className={classes.sectionHeader} variant="h5">Otwórz w mapach</Typography>
         <Card className={classes.card} square>
             <ButtonBase
                 className={classes.cardAction}
@@ -75,8 +75,8 @@ const MapPage = ({ classes, pages }) => {
                 />
                 <div className={classes.details}>
                     <CardContent className={classes.content}>
-                        <Typography variant="headline">Alvernia Planet</Typography>
-                        <Typography variant="subheading" color="textSecondary">
+                        <Typography variant="subtitle1">Alvernia Planet</Typography>
+                        <Typography variant="subtitle2" color="textSecondary">
                             Ferdynanda Wspaniałego 1<br />
                             32-566 Alwernia
                         </Typography>
@@ -85,7 +85,7 @@ const MapPage = ({ classes, pages }) => {
             </ButtonBase>
         </Card>
 
-        <Typography className={classes.sectionHeader} variant="headline">Schemat Alvernii</Typography>
+        <Typography className={classes.sectionHeader} variant="h5">Schemat Alvernii</Typography>
         <Card className={classes.root} square>
             <CardMedia
                 className={classes.media}

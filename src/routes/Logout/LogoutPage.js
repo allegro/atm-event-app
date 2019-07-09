@@ -20,7 +20,7 @@ const styles = theme => ({
         justifyContent: "center",
         alignItems: "center",
         margin: "0 auto",
-        padding: theme.spacing.unit * 2
+        padding: theme.spacing(2)
     },
     panel: {
         width: "100%",
@@ -31,12 +31,12 @@ const styles = theme => ({
         ...theme.mixins.gutters({
             paddingTop: 16,
             paddingBottom: 16,
-            marginTop: theme.spacing.unit * 5
+            marginTop: theme.spacing(5)
         })
     },
     thankYouText: {
-        margin: theme.spacing.unit * 2,
-        marginBottom: theme.spacing.unit * 3
+        margin: theme.spacing(2),
+        marginBottom: theme.spacing(3)
     }
 });
 
@@ -48,7 +48,7 @@ const LogoutPage = ({ firebase, classes }) => {
             <AtmLogo width={200} height="auto" />
 
             <Paper className={classes.panel}>
-                <Typography variant="headline" className={classes.thankYouText}>
+                <Typography variant="caption" className={classes.thankYouText}>
                     Dzięki! <span role="img" aria-label="">👍</span>
                 </Typography>
                 <Button

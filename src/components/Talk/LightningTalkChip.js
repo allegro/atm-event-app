@@ -13,7 +13,7 @@ const styles = theme => ({
     label: { fontSize: 12 },
     lightningChip: {
         height: 24,
-        marginRight: theme.spacing.unit
+        marginRight: theme.spacing(1)
     }
 });
 

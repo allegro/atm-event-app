@@ -13,10 +13,10 @@ const noop = () => {};
 
 const styles = theme => ({
     root: {
-        paddingBottom: theme.spacing.unit * 2,
+        paddingBottom: theme.spacing(2),
     },
     content: {
-        padding: `${theme.spacing.unit * 2}px 0 0 ${theme.spacing.unit * 2}px`,
+        padding: `${theme.spacing(2)}px 0 0 ${theme.spacing(2)}px`,
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center'
@@ -45,7 +45,7 @@ const RegularScheduleItem = ({ classes, talk, userVotes, onClick = noop }) => {
         >
             <Card className={classes.root} square>
                 <CardContent className={classes.content}>
-                    <Typography className={classes.title} gutterBottom variant="subheading" component="h2">
+                    <Typography className={classes.title} gutterBottom variant="caption" component="h2">
                         {talk.title}
                     </Typography>
                     {talk.isLightning() ? <LightningTalkChip /> : null}

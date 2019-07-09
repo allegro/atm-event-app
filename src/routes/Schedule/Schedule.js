@@ -15,7 +15,7 @@ import TalkDetailsView from "../../Components/Talk/TalkDetails";
 const styles = theme => ({
     sectionHeader: {
         fontWeight: 100,
-        padding: theme.spacing.unit * 3
+        padding: theme.spacing(3)
     },
     tabsIndicator: {
         backgroundColor: theme.palette.secondary
@@ -39,9 +39,9 @@ const styles = theme => ({
     tabSelected: {},
 });
 
-function Transition(props) {
-    return <Slide direction="up" {...props} />;
-}
+const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+});
 
 class Schedule extends React.Component {
     state = {
@@ -77,8 +77,8 @@ class Schedule extends React.Component {
                 <AppBar position="sticky" color="default">
                     <Tabs
                         value={this.state.value}
+                        variant="fullWidth"
                         onChange={this.handleChange}
-                        fullWidth
                         classes={{ root: classes.tabsRoot, indicator: classes.tabsIndicator }}
                     >
                         <Tab classes={{ root: classes.tabRoot, selected: classes.tabSelected }} label="Środa" />
