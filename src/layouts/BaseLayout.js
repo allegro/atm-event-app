@@ -7,8 +7,8 @@ import { withRouter } from "react-router-dom";
 import { firestoreConnect, isLoaded, withFirestore } from "react-redux-firebase";
 
 import Navbar from "../containers/Navbar";
-import BottomMenu from "../components/BottomMenu/BottomMenu";
-import LoadingSpinner from "../components/LoadingSpinner";
+import BottomMenu from "../Components/BottomMenu/BottomMenu";
+import LoadingSpinner from "../Components/LoadingSpinner";
 import { UserIsAuthenticated } from "../utils/router";
 import Speaker from "../domain/Speaker";
 import Talk from "../domain/Talk";

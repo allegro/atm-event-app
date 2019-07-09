@@ -16,8 +16,8 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
-import ProfileMenu, {ProfileMenuItem} from "../components/Navbar/ProfileMenu";
-import AtmLogo from "../components/AtmLogo";
+import ProfileMenu, {ProfileMenuItem} from "../Components/Navbar/ProfileMenu";
+import AtmLogo from "../Components/AtmLogo";
 
 const styles = theme => ({
     appBar: {

@@ -1,6 +1,6 @@
 import { connectedReduxRedirect } from "redux-auth-wrapper/history4/redirect";
 import { replace } from "react-router-redux";
-import LoadingSpinner from "../components/LoadingSpinner";
+import LoadingSpinner from "../Components/LoadingSpinner";
 
 const AUTHED_REDIRECT = "AUTHED_REDIRECT";
 const UNAUTHED_REDIRECT = "UNAUTHED_REDIRECT";

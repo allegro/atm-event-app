@@ -10,7 +10,7 @@ import { UserIsNotAuthenticated } from "../../utils/router";
 import { withNotifications } from "../../modules/notification";
 import LoginForm from "./LoginForm";
 
-import AtmLogo from "../../components/AtmLogo";
+import AtmLogo from "../../Components/AtmLogo";
 import BareLayout from "../../layouts/BareLayout";
 
 import { withStyles } from "@material-ui/core/styles";
