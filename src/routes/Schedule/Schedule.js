@@ -9,8 +9,8 @@ import { fade } from "@material-ui/core/styles/colorManipulator";
 import Dialog from "@material-ui/core/Dialog";
 import Slide from "@material-ui/core/Slide";
 
-import ScheduleItem from "../../Components/Schedule/ScheduleItem";
-import TalkDetailsView from "../../Components/Talk/TalkDetails";
+import ScheduleItem from "../../components/Schedule/ScheduleItem";
+import TalkDetailsView from "../../components/Talk/TalkDetails";
 
 const styles = theme => ({
     sectionHeader: {

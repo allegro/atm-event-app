@@ -11,6 +11,7 @@ import PlaceIcon from "@material-ui/icons/Place";
 import CardTravelIcon from "@material-ui/icons/CardTravel";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import TodayIcon from "@material-ui/icons/Today";
+import ConfirmationNumberIcon from "@material-ui/icons/ConfirmationNumber";
 
 const styles = theme => ({
     root: {
@@ -33,6 +34,7 @@ const links = [
     { label: "Oceny", link: "/votes", icon: <StarBorderIcon /> },
     { label: "Dojazd", link: "/directions", icon: <CardTravelIcon /> },
     { label: "Mapa", link: "/map", icon: <PlaceIcon /> },
+    { label: "Bilet", link: "/ticket", icon: <ConfirmationNumberIcon /> },
 ];
 
 class BottomMenu extends React.Component {

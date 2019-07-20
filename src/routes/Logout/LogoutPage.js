@@ -8,7 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 
-import AtmLogo from "../../Components/AtmLogo";
+import AtmLogo from "../../components/AtmLogo";
 import BareLayout from "../../layouts/BareLayout";
 
 const styles = theme => ({

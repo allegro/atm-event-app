@@ -9,8 +9,8 @@ import { fade } from "@material-ui/core/styles/colorManipulator";
 import Dialog from "@material-ui/core/Dialog";
 import Slide from "@material-ui/core/Slide";
 
-import ScheduleItem from "../../Components/Schedule/ScheduleItem";
-import TalkVoteView from "../../Components/Talk/TalkVote";
+import ScheduleItem from "../../components/Schedule/ScheduleItem";
+import TalkVoteView from "../../components/Talk/TalkVote";
 import Talk from "../../domain/Talk";
 
 const styles = theme => ({

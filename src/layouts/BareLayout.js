@@ -6,22 +6,26 @@ const styles = theme => ({
     container: {
         height: "100%",
         minHeight: "100vh",
-        backgroundColor: theme.palette.primary.main
+        backgroundColor: theme.palette.primary.main,
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        backgroundBlendMode: 'soft-light'
     }
 });
 
-export const BaseLayout = ({ children, classes }) => (
-    <div className={classes.container}>
+export const BareLayout = ({ children, classes, bgImage }) => (
+    <div className={classes.container} style={{ backgroundImage: `url(${bgImage}` }}>
         {children}
     </div>
 );
 
-BaseLayout.propTypes = {
+BareLayout.propTypes = {
     children: PropTypes.oneOfType([
         PropTypes.arrayOf(PropTypes.node),
         PropTypes.node
     ]),
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
+    bgImage: PropTypes.string
 };
 
-export default withStyles(styles)(BaseLayout);
+export default withStyles(styles)(BareLayout);

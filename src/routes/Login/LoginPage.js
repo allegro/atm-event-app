@@ -10,7 +10,7 @@ import { UserIsNotAuthenticated } from "../../utils/router";
 import { withNotifications } from "../../modules/notification";
 import LoginForm from "./LoginForm";
 
-import AtmLogo from "../../Components/AtmLogo";
+import AtmLogo from "../../components/AtmLogo";
 import BareLayout from "../../layouts/BareLayout";
 
 import { withStyles } from "@material-ui/core/styles";
@@ -37,7 +37,7 @@ const styles = theme => ({
 });
 
 export const LoginPage = ({ emailLogin, onSubmitFail, classes }) => (
-    <BareLayout>
+    <BareLayout bgImage={'https://firebasestorage.googleapis.com/v0/b/atm-voting.appspot.com/o/atm12-bg.jpg?alt=media&token=ca386ba4-eff6-4981-b70f-731a67f77a0e'}>
         <div className={classes.container}>
             <AtmLogo width={200} height="auto" />
 
