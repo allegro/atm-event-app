@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.js": "/atm-event-app/static/js/main.06cf4769.chunk.js",
+    "main.js.map": "/atm-event-app/static/js/main.06cf4769.chunk.js.map",
+    "runtime~main.js": "/atm-event-app/static/js/runtime~main.1143e979.js",
+    "runtime~main.js.map": "/atm-event-app/static/js/runtime~main.1143e979.js.map",
+    "static/css/2.53b5dbc4.chunk.css": "/atm-event-app/static/css/2.53b5dbc4.chunk.css",
+    "static/js/2.664e61c2.chunk.js": "/atm-event-app/static/js/2.664e61c2.chunk.js",
+    "static/js/2.664e61c2.chunk.js.map": "/atm-event-app/static/js/2.664e61c2.chunk.js.map",
+    "index.html": "/atm-event-app/index.html",
+    "precache-manifest.156ca0ca00b0765fc1a63ac2779c041a.js": "/atm-event-app/precache-manifest.156ca0ca00b0765fc1a63ac2779c041a.js",
+    "service-worker.js": "/atm-event-app/service-worker.js",
+    "static/css/2.53b5dbc4.chunk.css.map": "/atm-event-app/static/css/2.53b5dbc4.chunk.css.map",
+    "static/media/index.css": "/atm-event-app/static/media/roboto-latin-900italic.bc833e72.woff"
+  }
+}
