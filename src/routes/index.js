@@ -6,7 +6,6 @@ import NotFoundPage from "./NotFound/NotFoundPage";
 import LogoutPage from "./Logout/LogoutPage";
 import Schedule from "./Schedule/Schedule";
 import Votes from "./Votes/Votes";
-import Directions from "./Directions/Directions";
 import Map from "./Map/Map";
 import Ticket from "./Ticket/Ticket";
 import BaseLayout from "../layouts/BaseLayout";
@@ -25,7 +24,6 @@ export const createRoutes = () => <Switch>
 
     <AppRoute exact path='/' component={Schedule} />
     <AppRoute exact path='/votes' component={Votes} />
-    <AppRoute exact path='/directions' component={Directions} />
     <AppRoute exact path='/map' component={Map} />
     <AppRoute exact path='/ticket' component={Ticket} />
     <AppRoute exact path='*' component={NotFoundPage} />

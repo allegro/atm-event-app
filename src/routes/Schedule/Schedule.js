@@ -68,9 +68,9 @@ class Schedule extends React.Component {
     render() {
         const { classes, schedule } = this.props;
 
-        const firtDayEnd = new Date("2018-09-06T00:00:00");
-        const firstDaySchedule = schedule.filter(talk => talk.start < firtDayEnd);
-        const secondDaySchedule = schedule.filter(talk => talk.start > firtDayEnd);
+        const firstDayEnd = new Date("2019-09-25T00:00:00");
+        const firstDaySchedule = schedule.filter(talk => talk.start < firstDayEnd);
+        const secondDaySchedule = schedule.filter(talk => talk.start > firstDayEnd);
 
         return (
             <div className={classes.root}>
@@ -81,8 +81,8 @@ class Schedule extends React.Component {
                         onChange={this.handleChange}
                         classes={{ root: classes.tabsRoot, indicator: classes.tabsIndicator }}
                     >
+                        <Tab classes={{ root: classes.tabRoot, selected: classes.tabSelected }} label="Wtorek" />
                         <Tab classes={{ root: classes.tabRoot, selected: classes.tabSelected }} label="Środa" />
-                        <Tab classes={{ root: classes.tabRoot, selected: classes.tabSelected }} label="Czwartek" />
                     </Tabs>
                 </AppBar>
                 <SwipeableViews

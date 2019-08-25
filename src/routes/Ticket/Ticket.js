@@ -5,16 +5,16 @@ import { withStyles } from "@material-ui/core/styles";
 import QRCode from "qrcode";
 import { firebaseConnect, isEmpty, isLoaded } from "react-redux-firebase";
 import { connect } from "react-redux";
+import Typography from "@material-ui/core/Typography";
 
 const styles = theme => ({
+    sectionHeader: {
+        color: theme.palette.grey[500],
+        fontWeight: 300,
+        padding: theme.spacing(3)
+    },
     ticketContainer: {
-        display: 'flex',
-        alignItems: 'center',
-        position: 'absolute',
-        top: 0,
-        bottom: 0,
-        left: 0,
-        right: 0
+        paddingTop: '1em'
     }
 });
 
@@ -24,16 +24,16 @@ class TicketImage extends Component {
     };
 
     componentDidMount() {
-        QRCode.toDataURL(this.props.text, { width: 600 }, (err, url) => {
+        QRCode.toDataURL(this.props.text, { width: 600, errorCorrectionLevel: 'H', scale: 8, color: { dark: '#fff', light: '#A7168F' } }, (err, url) => {
             if (!err) this.setState({ ticketImageData: url });
         })
     }
 
     render() {
         const { ticketImageData } = this.state;
-        return ticketImageData ? <img alt="ticket" src={ticketImageData} width="100%"/> : <div>loading...</div>;
+        return ticketImageData ? <img src={ticketImageData} width="100%" alt="" /> : <div>loading...</div>;
     }
-};
+}
 
 const TicketPage = ({ classes, profile, auth }) => {
     const dataLoaded = isLoaded(auth, profile);
@@ -41,10 +41,12 @@ const TicketPage = ({ classes, profile, auth }) => {
 
     if (dataLoaded && authExists) {
         const { uid, email } = auth;
-        const ticketText = JSON.stringify({ uid, email });
+        const { displayName, type } = profile;
+        const ticketText = JSON.stringify({ uid, type, name: displayName });
 
         return <div className={classes.ticketContainer}>
-            <TicketImage text={ticketText}/>
+            <Typography className={classes.sectionHeader} variant="h5">Twój bilet ({email})</Typography>
+            <TicketImage text={ticketText} />
         </div>;
     }
 

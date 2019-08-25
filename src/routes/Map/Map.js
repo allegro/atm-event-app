@@ -56,47 +56,30 @@ const styles = theme => ({
     }
 });
 
-const mapImage = "https://firebasestorage.googleapis.com/v0/b/atm-voting.appspot.com/o/alvernia-map.png?alt=media&token=b5302ff1-cdb7-440a-a6a8-1ae6c5420486";
-
-const MapPage = ({ classes, pages }) => {
-    const { map } = pages;
-
+const MapPage = ({ classes }) => {
     return <div>
         <Typography className={classes.sectionHeader} variant="h5">Otwórz w mapach</Typography>
         <Card className={classes.card} square>
             <ButtonBase
                 className={classes.cardAction}
-                onClick={() => window.open("https://goo.gl/maps/6NFKuD6cC832")}
+                onClick={() => window.open("https://goo.gl/maps/UwFSNWiAuVPcBCrH9")}
             >
                 <CardMedia
                     className={classes.cover}
-                    image="https://firebasestorage.googleapis.com/v0/b/atm-voting.appspot.com/o/alvernia-bg.jpg?alt=media&token=d26be066-18d8-41d8-8260-c7a221570292"
-                    title="Alvernia planet"
+                    image="https://firebasestorage.googleapis.com/v0/b/atm-voting.appspot.com/o/multikino.jpg?alt=media&token=511a24a0-ba53-44cc-83de-bcedca9b06b4"
+                    title="Złote Tarasy"
                 />
                 <div className={classes.details}>
                     <CardContent className={classes.content}>
-                        <Typography variant="subtitle1">Alvernia Planet</Typography>
+                        <Typography variant="subtitle1">Multikino Złote Tarasy</Typography>
                         <Typography variant="subtitle2" color="textSecondary">
-                            Ferdynanda Wspaniałego 1<br />
-                            32-566 Alwernia
+                            Złota 59<br />
+                            00-120 Warszawa
                         </Typography>
                     </CardContent>
                 </div>
             </ButtonBase>
         </Card>
-
-        <Typography className={classes.sectionHeader} variant="h5">Schemat Alvernii</Typography>
-        <Card className={classes.root} square>
-            <CardMedia
-                className={classes.media}
-                image={mapImage}
-                title="Schemat Alvernia Studios"
-            />
-            <CardContent className={classes.cardContent}>
-                <Typography dangerouslySetInnerHTML={{ __html: map.html }} />
-            </CardContent>
-        </Card>
-
     </div>;
 };
 
