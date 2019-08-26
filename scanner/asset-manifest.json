@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/atm-event-app/scanner/static/css/main.aafb7e44.chunk.css",
+    "main.js": "/atm-event-app/scanner/static/js/main.172d57ce.chunk.js",
+    "main.js.map": "/atm-event-app/scanner/static/js/main.172d57ce.chunk.js.map",
+    "runtime~main.js": "/atm-event-app/scanner/static/js/runtime~main.cc592acb.js",
+    "runtime~main.js.map": "/atm-event-app/scanner/static/js/runtime~main.cc592acb.js.map",
+    "static/js/2.dd312e86.chunk.js": "/atm-event-app/scanner/static/js/2.dd312e86.chunk.js",
+    "static/js/2.dd312e86.chunk.js.map": "/atm-event-app/scanner/static/js/2.dd312e86.chunk.js.map",
+    "index.html": "/atm-event-app/scanner/index.html",
+    "precache-manifest.04554d6203c4024a261cf674692a0207.js": "/atm-event-app/scanner/precache-manifest.04554d6203c4024a261cf674692a0207.js",
+    "service-worker.js": "/atm-event-app/scanner/service-worker.js",
+    "static/css/main.aafb7e44.chunk.css.map": "/atm-event-app/scanner/static/css/main.aafb7e44.chunk.css.map",
+    "static/media/scanner.svg": "/atm-event-app/scanner/static/media/scanner.1798b973.svg"
+  }
+}
