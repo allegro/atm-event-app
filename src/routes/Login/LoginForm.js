@@ -52,9 +52,10 @@ export const LoginForm = ({ pristine, submitting, handleSubmit, classes }) => (
         />
         <div className={classes.submit}>
             <Button
-                variant="raised"
+                variant="contained"
                 color="primary"
                 type="submit"
+                fullWidth
                 disabled={pristine || submitting}
             >
                 {submitting ? "Logowanie..." : "Zaloguj"}
