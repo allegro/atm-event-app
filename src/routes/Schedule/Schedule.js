@@ -37,6 +37,10 @@ const styles = theme => ({
         },
     },
     tabSelected: {},
+
+    header: {
+        top: "56px"
+    }
 });
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -74,7 +78,7 @@ class Schedule extends React.Component {
 
         return (
             <div className={classes.root}>
-                <AppBar position="sticky" color="default">
+                <AppBar className={classes.header} position="fixed" color="default">
                     <Tabs
                         value={this.state.value}
                         variant="fullWidth"

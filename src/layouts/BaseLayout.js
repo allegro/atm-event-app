@@ -15,20 +15,20 @@ import Talk from "../domain/Talk";
 
 const styles = theme => ({
     container: {
-        height: "100vh",
-        overflow: "hidden",
-        display: "flex",
-        flexDirection: "column",
         backgroundColor: theme.palette.grey[200]
     },
     topFrame: {
-        flexGrow: 0,
-        flexShrink: 0,
+        position: "fixed",
+        zIndex: 1,
+        top: 0,
+        left: 0,
+        right: 0
     },
     contentFrame: {
         margin: "0 auto",
         overflowY: "scroll",
         flexGrow: 1,
+        marginTop: "56px",
         marginBottom: "56px"
     },
     bottomFrame: {

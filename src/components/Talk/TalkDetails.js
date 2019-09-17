@@ -40,7 +40,7 @@ const styles = theme => ({
         paddingBottom: theme.spacing(2),
     },
     talkDescription: {
-        textAlign: "justify",
+        textAlign: "left",
         fontSize: "16px",
         paddingTop: theme.spacing(2),
         paddingBottom: theme.spacing(2),
