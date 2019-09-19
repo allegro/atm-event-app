@@ -39,6 +39,7 @@ export const LoginForm = ({ pristine, submitting, handleSubmit, classes }) => (
             name="email"
             component={renderTextField}
             label="E-mail"
+            type="email"
             validate={[required, validateEmail]}
             className={classes.field}
         />

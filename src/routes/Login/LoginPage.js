@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 
 import Paper from "@material-ui/core/Paper";
@@ -36,17 +36,31 @@ const styles = theme => ({
     }
 });
 
-export const LoginPage = ({ emailLogin, onSubmitFail, classes }) => (
-    <BareLayout bgImage={'https://firebasestorage.googleapis.com/v0/b/atm-voting.appspot.com/o/atm12-bg.jpg?alt=media&token=ca386ba4-eff6-4981-b70f-731a67f77a0e'}>
-        <div className={classes.container}>
-            <AtmLogo width={200} height="auto" />
+export const LoginPage = ({ emailLogin, onSubmitFail, classes }) => {
+    useEffect(() => {
+        try {
+            const urlParams = new URLSearchParams(window.location.search);
+            const login = urlParams.get('login');
+            const password = urlParams.get('password');
 
-            <Paper className={classes.panel}>
-                <LoginForm onSubmit={emailLogin} onSubmitFail={onSubmitFail} />
-            </Paper>
-        </div>
-    </BareLayout>
-);
+            if (login && password) {
+                emailLogin({ email: login, password });
+            }
+        } catch(e) {}
+    }, []);
+
+    return (
+        <BareLayout bgImage={'https://firebasestorage.googleapis.com/v0/b/atm-voting.appspot.com/o/atm12-bg.jpg?alt=media&token=ca386ba4-eff6-4981-b70f-731a67f77a0e'}>
+            <div className={classes.container}>
+                <AtmLogo width={200} height="auto" />
+
+                <Paper className={classes.panel}>
+                    <LoginForm onSubmit={emailLogin} onSubmitFail={onSubmitFail} />
+                </Paper>
+            </div>
+        </BareLayout>
+    );
+}
 
 LoginPage.propTypes = {
     classes: PropTypes.object,
