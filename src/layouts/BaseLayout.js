@@ -39,7 +39,7 @@ const styles = theme => ({
     },
 });
 
-function mapToDomain(rawSchedule, rawSpeakers, rawPages, rawVotes) {
+function mapToDomain(rawSchedule, rawSpeakers, rawSettings, rawVotes) {
     const speakers = Object.keys(rawSpeakers)
         .reduce((speakers, speakerRef) => {
             return { ...speakers, [speakerRef]: Speaker.fromFirebase(rawSpeakers[speakerRef]) };
@@ -49,7 +49,7 @@ function mapToDomain(rawSchedule, rawSpeakers, rawPages, rawVotes) {
         .map(id => Talk.fromFirebase(Object.assign({ id }, rawSchedule[id]), speakers))
         .sort((talkA, talkB) => talkA.start - talkB.start);
 
-    return { schedule, speakers, pages: rawPages, votes: rawVotes };
+    return { schedule, speakers, settings: rawSettings, votes: rawVotes };
 }
 
 class BaseLayout extends Component {
@@ -65,9 +65,9 @@ class BaseLayout extends Component {
     }
 
     render() {
-        const { render, schedule, speakers, pages, votes, classes } = this.props;
-        const content = isLoaded(schedule) && isLoaded(speakers) && isLoaded(pages) && isLoaded(votes)
-            ? render(mapToDomain(schedule, speakers, pages, votes))
+        const { render, schedule, speakers, settings, votes, classes } = this.props;
+        const content = isLoaded(schedule) && isLoaded(speakers) && isLoaded(settings) && isLoaded(votes)
+            ? render(mapToDomain(schedule, speakers, settings, votes))
             : <LoadingSpinner/>;
 
         return (
@@ -86,7 +86,7 @@ BaseLayout.propTypes = {
     classes: PropTypes.object.isRequired,
     schedule: PropTypes.object,
     speakers: PropTypes.object,
-    pages: PropTypes.object,
+    settings: PropTypes.object,
     votes: PropTypes.object,
     location: PropTypes.object.isRequired
 };
@@ -97,17 +97,17 @@ export default compose(
     firestoreConnect(props => ([
         "schedule",
         "speakers",
-        "pages",
+        "settings",
         `users/${props.firebase.auth().currentUser.uid}/votes`
     ])),
     connect((state, props) => {
-        const { schedule, speakers, pages, users } = state.firestore.data;
+        const { schedule, speakers, settings, users } = state.firestore.data;
         const currentUid = props.firebase.auth().currentUser.uid;
 
         return {
             schedule,
             speakers,
-            pages,
+            settings,
             votes: users && users[currentUid] && users[currentUid].votes
         };
     }),

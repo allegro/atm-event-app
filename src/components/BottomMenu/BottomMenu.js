@@ -7,17 +7,19 @@ import { withStyles } from "@material-ui/core/styles";
 import { fade } from "@material-ui/core/styles/colorManipulator";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import PlaceIcon from "@material-ui/icons/Place";
+
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import TodayIcon from "@material-ui/icons/Today";
 import ConfirmationNumberIcon from "@material-ui/icons/ConfirmationNumber";
+import QuestionIcon from "@material-ui/icons/QuestionAnswer";
+import InfoIcon from "@material-ui/icons/Info";
 
 const styles = theme => ({
     root: {
         backgroundColor: theme.palette.primary.main
     },
     action: {
-        minWidth: 75,
+        minWidth: 60,
     },
     linkRoot: {
         color: fade(theme.palette.primary.contrastText, .6),
@@ -31,7 +33,8 @@ const styles = theme => ({
 const links = [
     { label: "Agenda", link: "/", exact: true, icon: <TodayIcon /> },
     { label: "Oceny", link: "/votes", icon: <StarBorderIcon /> },
-    { label: "Mapa", link: "/map", icon: <PlaceIcon /> },
+    { label: "Q&A", link: "/questions", icon: <QuestionIcon /> },
+    { label: "Info", link: "/info", icon: <InfoIcon /> },
     { label: "Bilet", link: "/ticket", icon: <ConfirmationNumberIcon /> },
 ];
 

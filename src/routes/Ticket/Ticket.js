@@ -14,7 +14,8 @@ const styles = theme => ({
         padding: theme.spacing(3)
     },
     ticketContainer: {
-        paddingTop: '1em'
+        paddingTop: theme.spacing(1),
+        paddingBottom: theme.spacing(3)
     }
 });
 
@@ -31,7 +32,10 @@ class TicketImage extends Component {
 
     render() {
         const { ticketImageData } = this.state;
-        return ticketImageData ? <img src={ticketImageData} width="100%" alt="" /> : <div>loading...</div>;
+
+        return ticketImageData
+            ? <img src={ticketImageData} width="100%" alt="" />
+            : <div>loading...</div>;
     }
 }
 
@@ -45,7 +49,7 @@ const TicketPage = ({ classes, profile, auth }) => {
         const ticketText = JSON.stringify({ uid, type, name: displayName });
 
         return <div className={classes.ticketContainer}>
-            <Typography className={classes.sectionHeader} variant="h5">Twój bilet ({email})</Typography>
+            <Typography className={classes.sectionHeader} variant="h5">{email}</Typography>
             <TicketImage text={ticketText} />
         </div>;
     }
@@ -55,7 +59,8 @@ const TicketPage = ({ classes, profile, auth }) => {
 
 TicketPage.propTypes = {
     classes: PropTypes.object.isRequired,
-    pages: PropTypes.object
+    profile: PropTypes.object,
+    auth: PropTypes.object,
 };
 
 const mapStateToProps = (state) => ({
